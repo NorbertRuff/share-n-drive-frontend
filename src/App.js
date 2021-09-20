@@ -1,12 +1,16 @@
-
 import './styles/App.css';
 import Page from "./components/Page";
+import GlobalStyle from "./contexts/GlobalStyle";
+import {Fragment} from "react";
 
 
 function App() {
-  return (
-    <Page/>
-  );
+    return (
+        <Fragment>
+            <GlobalStyle/>
+            <Page/>
+        </Fragment>
+    );
 }
 
 export default App;
