@@ -1,13 +1,29 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+    font-family: 'Freight_Text_Bold';
+    src: local('MyFont'), url("/src/assets/font/Freight_Text_Bold.otf");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+    font-family: 'Freight_Text_Medium';
+    src: local('MyFont'), url("/src/assets/font/Freight Text Medium.otf");
+}
+
+@font-face {
+    font-family: 'Freight_Text_Light';
+    src: local('MyFont'), url("/src/assets/font/Freight Text Light.otf");
+}
+
+@font-face {
+    font-family: 'BasisGrotesquePro_Light';
+    src: local('MyFont'), url("/src/assets/font/BasisGrotesquePro-Light.ttf");
+}
+
+@font-face {
+    font-family: 'BasisGrotesquePro_Bold';
+    src: local('MyFont'), url("/src/assets/font/BasisGrotesquePro-Bold.ttf");
+}
+
+@font-face {
+    font-family: 'BasisGrotesquePro_Regular';
+    src: local('MyFont'), url("/src/assets/font/BasisGrotesquePro-Regular.ttf");
 }
