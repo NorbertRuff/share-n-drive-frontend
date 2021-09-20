@@ -1,14 +1,14 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {GlobalStyles} from "../contexts/GlobalStyles";
+
 import Home from "./homepage/Home";
 import {MainContainer} from "./styled_elements/MainContainer";
-import NavBar from "./NavBar";
+import NavBar from "./navbar/NavBar";
+import Footer from "./Footer";
 
 const Page = () => {
     return (
         <React.Fragment>
-            <GlobalStyles/>
             <BrowserRouter>
                 <MainContainer data-testid="main-container">
                     <NavBar/>
@@ -19,7 +19,9 @@ const Page = () => {
                             exact
                         />
                     </Switch>
+                    <Footer/>
                 </MainContainer>
+
             </BrowserRouter>
         </React.Fragment>
     );
