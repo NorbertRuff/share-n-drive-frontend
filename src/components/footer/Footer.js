@@ -1,11 +1,11 @@
 import React from 'react';
-import {FooterContainer} from "./FooterStyledElement";
-import {HeroSubTitle} from "../homepage/HomeStyledElements";
+import {FooterContainer, FooterElements} from "./FooterStyledElement";
+
 
 const Footer = () => {
     return (
         <FooterContainer>
-            <HeroSubTitle>Footer</HeroSubTitle>
+            <FooterElements>Footer</FooterElements>
         </FooterContainer>
     );
 };
