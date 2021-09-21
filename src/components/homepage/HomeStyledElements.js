@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import hero from "../../assets/img/hero.jpg";
-import Select from "react-select";
+
 
 export const HomeContainer = styled.div`
   grid-area: content;
@@ -9,11 +9,14 @@ export const HomeContainer = styled.div`
   justify-content: center;
 `;
 export const HeroTitle = styled.h1`
+  font-family: var(--ff-heading-light);
   background-color: white;
   text-align: center;
+  font-size: 6rem;
   padding: 1rem;
 `;
 export const HeroSubTitle = styled.h2`
+  font-family: var(--ff-heading-bold);
   text-align: center;
   padding: 1rem;
   background-color: white;
@@ -52,12 +55,11 @@ export const FilterCars = styled.div`
 `;
 export const FilterButtons = styled.div`
   grid-area:FilterButtons;
-    
-
 `;
-export const FilteredItems = styled.div`
-  grid-area: FilteredItems;
 
+export const FeaturedSingleElementContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export const FilterHeroTitle = styled.div`
@@ -82,6 +84,7 @@ export const FilteredCarsContainer = styled.div`
   padding: 1rem;
   margin:1rem;
   display: flex;
+  grid-area: FilteredItems;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
