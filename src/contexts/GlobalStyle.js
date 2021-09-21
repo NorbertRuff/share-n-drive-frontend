@@ -3,19 +3,27 @@ import {createGlobalStyle} from "styled-components";
 const GlobalStyle = createGlobalStyle`
 
   :root {
+    //<------------------------------Headings fonts------------------------------------>
     --ff-heading-normal: "Freight_Text_Medium", serif;
     --ff-heading-bold: "Freight_Text_Bold", cursive;
     --ff-heading-light: "Freight_Text_Light", cursive;
-
+    //<------------------------------Body fonts------------------------------------>
     --ff-body-normal: "BasisGrotesquePro_Regular", serif;
     --ff-body-bold: "BasisGrotesquePro_Bold", cursive;
     --ff-body-light: "BasisGrotesquePro_Light", cursive;
-
-    --clr-primary-100: #9dace0;
-    --clr-primary-200: #6d7db4;
-    --clr-primary-300: #4f5c8d;
-    --clr-primary-400: #2f3b64;
-    --clr-primary-500: #131b3a;
+    //<------------------------------Sample Colors------------------------------------>
+    //--clr-primary-100: #9dace0;
+    //--clr-primary-200: #6d7db4;
+    //--clr-primary-300: #4f5c8d;
+    //--clr-primary-400: #2f3b64;
+    //--clr-primary-500: #131b3a;
+    //<------------------------------Marta Colors------------------------------------>
+    --clr-primary-100: #f0ead2;
+    --clr-primary-200: #dde5b6;
+    --clr-primary-300: #adc178;
+    --clr-primary-400: #a98467;
+    --clr-primary-500: #6c584c;
+    //<------------------------------Marta Colors------------------------------------>  
 
     --fs-base: 1rem;
     --clr-accent: #85ff9e;
@@ -38,8 +46,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     font-family: var(--ff-heading-normal);
-    background-color: var(--clr-dark);
-    -webkit-font-smoothing: antialiased;  
+    background-color: var(--clr-primary-100);
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
