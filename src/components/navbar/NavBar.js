@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {DropdownMenu, Logo, NavBarContainer, NavLinks, UserLogo} from "./NavbarStyledElements";
 
 
-
 const NavBar = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [isToggled, setIsToggled] = useState('none');
@@ -24,7 +23,7 @@ const NavBar = () => {
         <NavBarContainer>
             <Logo data-testid="logo" to="/" title="Home"/>
             <div/>
-            <NavLinks>links</NavLinks>
+            <NavLinks to="/cars" title="Cars">Link to somewhere</NavLinks>
             <UserLogo onClick={dropMenu}>
                 {showMenu ? (
                     <DropdownMenu>

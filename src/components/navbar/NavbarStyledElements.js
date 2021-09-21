@@ -14,7 +14,7 @@ export const Logo = styled(NavLink)`
   margin: 1rem;
 `;
 
-export const NavLinks = styled.div`
+export const NavLinks = styled(NavLink)`
 
 
 
@@ -22,8 +22,9 @@ export const NavLinks = styled.div`
 
 export const DropdownMenu = styled.div`
   position: absolute;
-  top: 10vh;
-  background-color: #61dafb;
+  top: 5vh;
+  right: 0;
+  background-color: var(--clr-primary-300);
   width: 8vw;
   height: 10vw;
 `;
