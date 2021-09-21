@@ -16,6 +16,7 @@ export const HeroTitle = styled.h1`
 export const HeroSubTitle = styled.h2`
   text-align: center;
   padding: 1rem;
+  background-color: white;
 `;
 
 export const HeroContainer = styled.div`
@@ -32,11 +33,16 @@ export const FeaturedCarsContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 45vh;
-  background-color: white;
   border: 1px solid black;
+  background-color: white;
+  margin: 3rem;
+  color: black; 
 `;
 export const FilterCars = styled.div`
   display: grid;
+  margin: 3rem;
+  background-color: white;
+  color: black;
   grid-template-columns: 20vw 1fr;
   grid-template-rows: 1fr 3fr 3fr;
   grid-template-areas: 
