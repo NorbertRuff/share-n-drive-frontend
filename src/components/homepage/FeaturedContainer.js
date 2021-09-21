@@ -19,7 +19,7 @@ import {
 
 const FeaturedContainer = (props) => {
 
-
+    const [error, setError] = useState(false);
     const [featuredCars, setFeaturedCars] = useState([
             {
                 id: 1,
@@ -83,6 +83,12 @@ const FeaturedContainer = (props) => {
             },
         ]
     )
+
+    // useEffect(() => {
+    //     dataHandler._api_get(url, setFilteredCars, setError)
+    // }, [url]);
+
+
     return (
         <FeaturedCarsContainer>
             <Carousel

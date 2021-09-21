@@ -5,6 +5,7 @@ import Home from "./homepage/Home";
 import {MainContainer} from "./styled_elements/MainContainer";
 import NavBar from "./navbar/NavBar";
 import Footer from "./footer/Footer";
+import Cars from "./Cars/Cars";
 
 const Page = () => {
     return (
@@ -18,10 +19,14 @@ const Page = () => {
                             render={(props) => <Home {...props}/>}
                             exact
                         />
+                        <Route
+                            path="/cars"
+                            render={(props) => <Cars {...props}/>}
+                            exact
+                        />
                     </Switch>
                     <Footer/>
                 </MainContainer>
-
             </BrowserRouter>
         </React.Fragment>
     );

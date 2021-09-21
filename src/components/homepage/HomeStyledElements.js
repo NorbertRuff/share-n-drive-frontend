@@ -16,10 +16,13 @@ export const HeroTitle = styled.h1`
   color: var(--clr-primary-500);
 `;
 export const HeroSubTitle = styled.h2`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--ff-heading-bold);
   text-align: center;
+  background-color: var(--clr-light);
   padding: 1rem;
-  background-color: white;
 `;
 
 export const HeroContainer = styled.div`
@@ -61,6 +64,11 @@ export const FilterHeroTitle = styled.div`
   align-items: center;
   grid-area: heroTitle;
   font-size: 3rem;
+  font-family: var(--ff-heading-light);
+  background-color: var(--clr-primary-300);
+  text-align: center;
+  padding: 1rem;
+  color: var(--clr-primary-500);
 
 `;
 
@@ -75,12 +83,12 @@ export const FilterOption = styled.div`
 
 export const FilteredCarsContainer = styled.div`
   padding: 1rem;
-  margin:1rem;
+  margin: 1rem;
   display: flex;
   grid-area: FilteredItems;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  border: 1px solid var(--clr-primary-100);
   height: 50vh;
 
 `;
