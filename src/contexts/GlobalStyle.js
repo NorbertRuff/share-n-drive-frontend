@@ -38,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     font-family: var(--ff-heading-normal);
-    background-color: var(--clr-primary-100);
+    background-color: var(--clr-dark);
     -webkit-font-smoothing: antialiased;  
     -moz-osx-font-smoothing: grayscale;
   }
