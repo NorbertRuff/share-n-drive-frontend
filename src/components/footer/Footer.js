@@ -1,6 +1,6 @@
 import React from 'react';
 import {FooterContainer} from "./FooterStyledElement";
-import {HeroSubTitle} from "./homepage/HomeStyledElements";
+import {HeroSubTitle} from "../homepage/HomeStyledElements";
 
 const Footer = () => {
     return (
