@@ -1,16 +1,15 @@
 import React from 'react';
 
 
-import {Logo, LogoContainer, NavBarContainer, NavLinks, UserLogo} from "./NavbarStyledElements";
+import {Logo, NavBarContainer, NavLinks, UserLogo} from "./NavbarStyledElements";
 
 const NavBar = () => {
     return (
         <NavBarContainer>
-            <LogoContainer to="/" title="Home">
-                <Logo data-testid="logo">logo</Logo>
-            </LogoContainer>
+            <Logo data-testid="logo" to="/" title="Home"/>
+            <div/>
             <NavLinks>links</NavLinks>
-            <UserLogo>User</UserLogo>
+            <UserLogo />
         </NavBarContainer>
     );
 };
