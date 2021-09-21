@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import hero from "../../assets/img/hero.jpg";
 
 
 export const HomeContainer = styled.div`
@@ -10,10 +9,11 @@ export const HomeContainer = styled.div`
 `;
 export const HeroTitle = styled.h1`
   font-family: var(--ff-heading-light);
-  background-color: white;
+  background-color: var(--clr-primary-300);
   text-align: center;
-  font-size: 6rem;
+  font-size: 4rem;
   padding: 1rem;
+  color: var(--clr-primary-500);
 `;
 export const HeroSubTitle = styled.h2`
   font-family: var(--ff-heading-bold);
@@ -23,9 +23,9 @@ export const HeroSubTitle = styled.h2`
 `;
 
 export const HeroContainer = styled.div`
-  background-image: url(${hero});
-  width: 100%;  
-  height: 35vh;
+  background-image: url(${(props) => props.image});
+  width: 100%;
+  height: 30vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -35,15 +35,12 @@ export const FeaturedCarsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 45vh;
-  border: 1px solid black;
-  background-color: white;
-  margin: 3rem;
-  color: black; 
+  margin: 1rem;
+  color: black;
 `;
 export const FilterCars = styled.div`
   display: grid;
-  margin: 3rem;
+  margin: 3rem 0;
   background-color: white;
   color: black;
   grid-template-columns: 20vw 1fr;
@@ -57,10 +54,6 @@ export const FilterButtons = styled.div`
   grid-area:FilterButtons;
 `;
 
-export const FeaturedSingleElementContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
 
 export const FilterHeroTitle = styled.div`
   display: flex;

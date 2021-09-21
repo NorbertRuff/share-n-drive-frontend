@@ -9,11 +9,16 @@ export const Logo = styled(NavLink)`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100%;
+  height: 80%;
+  width: 50%;
   margin: 1rem;
 `;
 
-export const NavLinks = styled.div``;
+export const NavLinks = styled.div`
+
+
+
+`;
 
 export const DropdownMenu = styled.div`
   position: absolute;
@@ -36,8 +41,8 @@ export const UserLogo = styled.div`
 export const NavBarContainer = styled.div`
   grid-area: header;
   display: grid;
-  grid-template-columns: 10% auto 10% 10%;
+  grid-template-columns: 1fr 4fr 0.5fr 0.5fr;
   align-items: center;
-  background-color: white;
-  border-bottom: 3px solid var(--clr-primary-200);
+  background-color: var(--clr-primary-400);
+  border-bottom: 3px solid var(--clr-primary-400);
 `;
