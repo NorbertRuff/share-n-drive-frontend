@@ -13,7 +13,7 @@ import makeAnimated from 'react-select/animated';
 const animatedComponents = makeAnimated();
 
 const selectStyle = {
-    control: styles => ({ ...styles, backgroundColor: 'cornflowerblue' , color: 'white'}),
+    control: styles => ({ ...styles, backgroundColor: 'black' , color: 'white'}),
 
 
 }
