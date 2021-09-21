@@ -38,7 +38,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     font-family: var(--ff-heading-normal);
-    -webkit-font-smoothing: antialiased;
+    background-color: var(--clr-primary-100);
+    -webkit-font-smoothing: antialiased;  
     -moz-osx-font-smoothing: grayscale;
   }
 
