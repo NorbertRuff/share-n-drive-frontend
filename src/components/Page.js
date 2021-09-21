@@ -4,7 +4,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Home from "./homepage/Home";
 import {MainContainer} from "./styled_elements/MainContainer";
 import NavBar from "./navbar/NavBar";
-import Footer from "./Footer";
+import Footer from "./footer/Footer";
 
 const Page = () => {
     return (
