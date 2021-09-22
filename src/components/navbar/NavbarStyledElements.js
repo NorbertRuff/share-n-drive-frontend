@@ -15,9 +15,12 @@ export const Logo = styled(NavLink)`
 `;
 
 export const NavLinks = styled(NavLink)`
-
-
-
+`;
+export const NavLinkContainer = styled.div`
+    display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 export const DropdownMenu = styled.div`
