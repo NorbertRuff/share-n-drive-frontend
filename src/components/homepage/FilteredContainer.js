@@ -1,6 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
-    CarCard, CardDetails, CardThumbnail, CardTitle,
+    CarCard,
+    CardDetails,
+    CardThumbnail,
+    CardTitle,
     FilterButtons,
     FilterCars,
     FilteredCarsContainer,
@@ -11,6 +14,7 @@ import {
 import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
 import clio from "../../assets/img/clio.jpg";
+import {dataHandler} from "../../services/Data_handler";
 
 
 const animatedComponents = makeAnimated();
@@ -117,19 +121,19 @@ const FilteredContainer = (props) => {
             price: '30000 HUF'
         },
     ]);
-    // const baseUrl = "http://localhost:8080/filter/all";
-    // const [url, setUrl] = useState(baseUrl);
+    const baseUrl = "http://localhost:8080/filter/all";
+    const [url, setUrl] = useState(baseUrl);
 
-    // useEffect(() => {
-    //     dataHandler._api_get(url, setFilteredCars, setError)
-    // }, [url]);
+    useEffect(() => {
+        dataHandler._api_get(url, setFilteredCars, setError)
+    }, [url]);
 
 
     const handleChange = (selector, event) => {
         if (selector === "Color") {
             console.log(selector)
             console.log(event)
-            // setUrl(baseUrl + "?filter=" + Event.target.value)
+            // setUrl(baseUrl + "?filter=" + event)
             // dataHandler._api_get("/",setFilteredCars,setError)
             // }
             // else if (selector === "Manufacturer") {
@@ -137,7 +141,7 @@ const FilteredContainer = (props) => {
             // } else if (selector === "BodyType") {
             //     dataHandler._api_get("https:\\", setFilteredCars, setError)
             // } else {
-            //
+
         }
     }
 
