@@ -11,3 +11,7 @@ export const MainContainer = styled.div`
     "MainContent MainContent MainContent"
     "footer footer footer";
 `;
+
+export const Error = styled.h1`
+  color: red;
+`;
