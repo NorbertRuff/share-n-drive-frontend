@@ -4,17 +4,16 @@ import Scirocco from '../../assets/img/scirocco.jpg';
 import {FeaturedCarsContainer} from "./HomeStyledElements";
 import {
     BodyType,
-    Brand,
     CarType,
     Category,
     FeaturedSingleElementContainer,
     FuelType,
-    GridTitle,
+    GridTitle, GridTitleStrong,
     Price,
     SeatNumber,
     Thumbnail,
     Title
-} from "./FeaturedElements";
+} from "./FeaturedStyleElements";
 
 
 const FeaturedContainer = (props) => {
@@ -105,16 +104,15 @@ const FeaturedContainer = (props) => {
                 {featuredCars.map(item =>
                     <FeaturedSingleElementContainer key={item.id}>
                         <Thumbnail src={Scirocco}/>
-                        <Title>{item.title}</Title>
                         <CarType><GridTitle>Type</GridTitle>{item.carType}</CarType>
-                        <Brand>{item.brand}</Brand>
+                        <Title>{item.brand} {item.title}</Title>
                         <FuelType><GridTitle>Fuel type</GridTitle>{item.fuel}</FuelType>
                         <BodyType><GridTitle>Body Type</GridTitle>{item.bodyType}</BodyType>
-                        <Category><GridTitle>Category</GridTitle> {item.category}</Category>
+                        <Category><GridTitleStrong>Category</GridTitleStrong> {item.category}</Category>
 
-                        <SeatNumber><GridTitle>SeatNumber</GridTitle> {item.seat}</SeatNumber>
+                        <SeatNumber><GridTitle>Seats</GridTitle> {item.seat}</SeatNumber>
 
-                        <Price><GridTitle>Price</GridTitle>{item.price}/day</Price>
+                        <Price><GridTitleStrong/>{item.price} / day</Price>
                     </FeaturedSingleElementContainer>)}
             </Carousel>
         </FeaturedCarsContainer>
