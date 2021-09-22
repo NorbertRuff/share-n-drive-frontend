@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 export const HomeContainer = styled.div`
-  grid-area: content;
+  grid-area: MainContent;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,6 +10,9 @@ export const HomeContainer = styled.div`
 export const HeroTitle = styled.h1`
   font-family: var(--ff-heading-light);
   background-color: var(--clr-primary-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   font-size: 4rem;
   padding: 1rem;
