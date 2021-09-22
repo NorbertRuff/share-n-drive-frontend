@@ -1,9 +1,17 @@
 import React, {useState} from 'react';
-import {FilterButtons, FilterCars, FilteredCarsContainer, FilterHeroTitle, FilterOption} from "./HomeStyledElements";
+import {
+    CarCard, CardDetails, CardThumbnail, CardTitle,
+    FilterButtons,
+    FilterCars,
+    FilteredCarsContainer,
+    FilteredSingleElementContainer,
+    FilterHeroTitle,
+    FilterOption
+} from "./FilteredStyleElements";
 import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
-import {BodyType, FeaturedSingleElementContainer, Thumbnail, Title} from "./FeaturedElements";
-import Scirocco from "../../assets/img/scirocco.jpg";
+import {BodyType} from "./FeaturedStyleElements";
+import clio from "../../assets/img/clio.jpg";
 
 
 const animatedComponents = makeAnimated();
@@ -54,7 +62,7 @@ const FilteredContainer = (props) => {
             title: 'Scirocco',
             brand: 'Volkswagen',
             bodyType: 'Coupe',
-            image: "../../assets/img/clio.jpg",
+            image: "https://localhost:3000/assets/img/clio.jpg",
             fuel: 'Gasoline',
             category: 'Fun',
             carType: 'Racing',
@@ -75,6 +83,18 @@ const FilteredContainer = (props) => {
         },
         {
             id: 4,
+            title: 'Scirocco',
+            brand: 'Volkswagen',
+            bodyType: 'Coupe',
+            image: "../../assets/img/clio.jpg",
+            fuel: 'Gasoline',
+            category: 'Fun',
+            carType: 'Racing',
+            seat: '4',
+            price: '30000 HUF'
+        },
+        {
+            id: 5,
             title: 'Scirocco',
             brand: 'Volkswagen',
             bodyType: 'Coupe',
@@ -159,19 +179,15 @@ const FilteredContainer = (props) => {
             </FilterButtons>
             <FilteredCarsContainer>
                 {filteredCars.map((car) =>
-                    <FeaturedSingleElementContainer key={car.id}>
-                        <Thumbnail src={car.image}/>
-                        <Title>{car.title}</Title>
-                        {/*<CarType><GridTitle>Type</GridTitle>{car.carType}</CarType>*/}
-                        {/*<Brand>{car.brand}</Brand>*/}
-                        {/*<FuelType><GridTitle>Fuel type</GridTitle>{car.fuel}</FuelType>*/}
-                        {/*<BodyType><GridTitle>Body Type</GridTitle>{car.bodyType}</BodyType>*/}
-                        {/*<Category><GridTitle>Category</GridTitle> {car.category}</Category>*/}
-
-                        {/*<SeatNumber><GridTitle>SeatNumber</GridTitle> {car.seat}</SeatNumber>*/}
-
-                        {/*<Price><GridTitle>Price</GridTitle>{car.price}/day</Price>*/}
-                    </FeaturedSingleElementContainer>)}
+                    <FilteredSingleElementContainer key={car.id}>
+                        <CarCard>
+                            <CardThumbnail img={clio}/>
+                            <CardDetails>
+                                <CardTitle>{car.brand} {car.title}</CardTitle>
+                                    {car.carType} <br/> {car.fuel} <br/> {car.category}
+                            </CardDetails>
+                        </CarCard>
+                    </FilteredSingleElementContainer>)}
 
             </FilteredCarsContainer>
 
