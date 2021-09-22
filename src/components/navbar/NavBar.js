@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {DropdownMenu, Logo, NavBarContainer, NavLinks, UserLogo} from "./NavbarStyledElements";
+import {DropdownMenu, Logo, NavBarContainer, NavLinkContainer, NavLinks, UserLogo} from "./NavbarStyledElements";
 
 
 const NavBar = () => {
@@ -23,7 +23,10 @@ const NavBar = () => {
         <NavBarContainer>
             <Logo data-testid="logo" to="/" title="Home"/>
             <div/>
-            <NavLinks to="/cars" title="Cars">Link to somewhere</NavLinks>
+            <NavLinkContainer>
+                <NavLinks to="/cars" title="Cars">Link to somewhere</NavLinks>
+                <NavLinks  to="/user" title="Cars">User</NavLinks>
+            </NavLinkContainer>
             <UserLogo onClick={dropMenu}>
                 {showMenu ? (
                     <DropdownMenu>
@@ -35,7 +38,7 @@ const NavBar = () => {
                 ) : null}
 
 
-            </UserLogo>
+            </UserLogo >
         </NavBarContainer>
     );
 };

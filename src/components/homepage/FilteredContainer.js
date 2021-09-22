@@ -10,7 +10,6 @@ import {
 } from "./FilteredStyleElements";
 import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
-import {BodyType} from "./FeaturedStyleElements";
 import clio from "../../assets/img/clio.jpg";
 
 
@@ -118,8 +117,8 @@ const FilteredContainer = (props) => {
             price: '30000 HUF'
         },
     ]);
-    const baseUrl = "http://localhost:8080/filter/all";
-    const [url, setUrl] = useState(baseUrl);
+    // const baseUrl = "http://localhost:8080/filter/all";
+    // const [url, setUrl] = useState(baseUrl);
 
     // useEffect(() => {
     //     dataHandler._api_get(url, setFilteredCars, setError)
