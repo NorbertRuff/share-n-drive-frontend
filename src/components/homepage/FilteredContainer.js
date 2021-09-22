@@ -46,8 +46,9 @@ const CarmakerOptions = [
 
 const FilteredContainer = (props) => {
 
-    const [error, setError] = useState(false);
-    const [filteredCars, setFilteredCars] = useState([
+    // const [error, setError] = useState(false);
+    // const [filteredCars, setFilteredCars] = useState([
+    const filteredCars = useState([
         {
             id: 1,
             title: 'Scirocco',
@@ -121,8 +122,8 @@ const FilteredContainer = (props) => {
             price: '30000 HUF'
         },
     ]);
-    const baseUrl = "http://localhost:8080/filter/all";
-    const [url, setUrl] = useState(baseUrl);
+    // const baseUrl = "http://localhost:8080/filter/all";
+    // const [url, setUrl] = useState(baseUrl);
 
     useEffect(() => {
         dataHandler._api_get(url, setFilteredCars, setError)
