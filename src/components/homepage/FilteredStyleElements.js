@@ -13,6 +13,7 @@ export const FilteredCarsContainer = styled.div`
 export const FilteredSingleElementContainer = styled.div`
   margin: 1rem;
   border: 1px solid var(--clr-primary-100);
+
 `;
 
 
@@ -57,7 +58,8 @@ export const CarCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 20vw;
+  width: 30vw;
+  min-width: 30vw;
   border: 3px solid var(--clr-primary-300);
 `;
 
