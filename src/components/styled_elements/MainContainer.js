@@ -8,6 +8,6 @@ export const MainContainer = styled.div`
   grid-template-rows: 3rem auto 3rem;
   grid-template-areas:
     "header header header"
-    "content content content"
+    "MainContent MainContent MainContent"
     "footer footer footer";
 `;
