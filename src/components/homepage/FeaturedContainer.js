@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Carousel from 'react-elastic-carousel';
 import Scirocco from '../../assets/img/scirocco.jpg';
 import {FeaturedCarsContainer} from "./HomeStyledElements";
@@ -8,17 +8,20 @@ import {
     Category,
     FeaturedSingleElementContainer,
     FuelType,
-    GridTitle, GridTitleStrong,
+    GridTitle,
+    GridTitleStrong,
     Price,
     SeatNumber,
     Thumbnail,
     Title
 } from "./FeaturedStyleElements";
+import {dataHandler} from "../../services/Data_handler";
 
 
 const FeaturedContainer = (props) => {
 
     const [error, setError] = useState(false);
+    const url = "http://localhost:8080"
     const [featuredCars, setFeaturedCars] = useState([
             {
                 id: 1,
@@ -83,9 +86,9 @@ const FeaturedContainer = (props) => {
         ]
     )
 
-    // useEffect(() => {
-    //     dataHandler._api_get(url, setFilteredCars, setError)
-    // }, [url]);
+    useEffect(() => {
+        dataHandler._api_get(url, setFeaturedCars, setError)
+    }, []);
 
 
     return (
