@@ -18,8 +18,9 @@ import {
 
 const FeaturedContainer = (props) => {
 
-    const [error, setError] = useState(false);
-    const [featuredCars, setFeaturedCars] = useState([
+    // const [error, setError] = useState(false);
+    // const [featuredCars, setFeaturedCars] = useState([
+    const featuredCars = useState([
             {
                 id: 1,
                 title: 'Scirocco',
