@@ -1,5 +1,6 @@
 import React from 'react';
-import * as assert from "assert";
+import * as ReactDOM from "react-dom";
+import App from "../App";
 
 beforeAll(() =>
     Object.defineProperty(HTMLMediaElement.prototype, "muted", {
@@ -8,7 +9,8 @@ beforeAll(() =>
 );
 
 it('renders without crashing', () => {
-    assert(true)
+        const div = document.createElement('div');
+        ReactDOM.render(<App />, div);
 });
 
 
