@@ -65,6 +65,50 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
+
+  .rec.rec-slider-container {
+    margin: 1rem
+  }
+
+  .rec.rec-arrow,
+  .rec.rec-arrow-left,
+  .rec.rec-arrow-right,
+  .rec.rec-arrow-left:enabled,
+  .rec.rec-arrow-right:enabled,
+  .rec.rec-arrow-right:visited {
+    background-color: var(--clr-primary-300);
+    box-shadow: 0 0 1px 3px var(--clr-primary-200);
+  }
+
+  .rec.rec-arrow-left:hover:enabled,
+  .rec.rec-arrow-right:hover:enabled {
+    background-color: var(--clr-primary-400);
+    box-shadow: 0 0 1px 3px var(--clr-primary-400);
+  }
+
+  .rec.rec-carousel-item:hover{
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 10px;
+  }
+
+  /* hide disabled buttons */
+  .rec.rec-arrow:disabled {
+    background-color: var(--clr-dark);
+  }
+
+  /* disable default outline on focused items */
+  /* add custom outline on focused items */
+  .rec-carousel-item:focus {
+    outline: none;
+    box-shadow: inset 0 0 1px 1px lightgrey;
+  }
+
+  button.rec-dot_active {
+    background-color: var(--clr-primary-300);
+    box-shadow: 0 0 1px 3px var(--clr-primary-200);
+  }
+  
+  
 `;
 
 export default GlobalStyle;
