@@ -3,15 +3,15 @@ import styled from "styled-components";
 export const FeaturedSingleElementContainer = styled.div`
   display: grid;
   font-family: var(--ff-body-bold);
-  grid-template-columns: 2fr 0.8fr 0.8fr 0.8fr 0.5fr;
+  grid-template-columns: 1.5fr 0.8fr 0.5fr 0.5fr 0.8fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas: 
-    "thumbnail brand title . category"
-    "thumbnail . carType fuelType ."
-    "thumbnail bodyType seatNumber . price";
+    "thumbnail title title title brand"
+    "thumbnail category carType fuelType price"
+    "thumbnail category bodyType seatNumber price";
   justify-content: center;
   height: 100%;
-  width: 70vw;
+  width: 80vw;
 `;
 export const Thumbnail = styled.img`
   object-fit: cover;
@@ -29,6 +29,11 @@ export const Title = styled.div`
 `;
 
 export const GridTitle = styled.h2`
+  color: var(--clr-primary-400);
+`;
+export const GridTitleStrong = styled.h2`
+  font-size: 2rem;
+  font-family: var(--ff-heading-normal);
   color: var(--clr-primary-400);
 `;
 export const CarType = styled.div`
@@ -63,6 +68,7 @@ export const BodyType = styled.div`
 `;
 export const Category = styled.div`
   display: flex;
+  font-size: 2rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -76,9 +82,12 @@ export const SeatNumber = styled.div`
   grid-area: seatNumber;
 `;
 export const Price = styled.div`
+  font-size: 2rem;
+  color: red;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   grid-area: price;
 `;
