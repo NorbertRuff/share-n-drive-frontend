@@ -18,6 +18,7 @@ export const FilteredSingleElementContainer = styled.div`
 
 
 export const FilterCars = styled.div`
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   display: grid;
   margin: 3rem 0;
   background-color: white;
@@ -55,6 +56,14 @@ export const FilterOption = styled.div`
 `;
 
 export const CarCard = styled.div`
+  transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  :hover, :focus-within {
+    transform: translateY(-10px);
+    transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
