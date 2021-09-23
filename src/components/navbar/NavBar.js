@@ -5,7 +5,6 @@ import {
     Logo,
     NavBarContainer,
     NavLinkContainer,
-    NavLinks,
     UserLogo
 } from "./NavbarStyledElements";
 

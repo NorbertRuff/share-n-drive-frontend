@@ -21,8 +21,7 @@ import {
     FilteredSingleElementContainer
 } from "../homepage/FilteredStyleElements";
 import Scirocco from "../../assets/img/scirocco.jpg";
-import Clio from "../../assets/img/clio.jpg";
-import {ComponentAddress, ComponentBasic, ComponentContact, ComponentInterests, ComponentStatic} from "./UserEdit";
+import {ComponentAddress, ComponentBasic, ComponentContact, ComponentStatic} from "./UserEdit";
 import {dataHandler} from "../../services/Data_handler";
 
 const UserPage = (props) => {
