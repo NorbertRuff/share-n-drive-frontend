@@ -78,11 +78,10 @@ const FilteredContainer = (props) => {
             .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]))
             .join('&');
     }
-// .filter(k =>obj[k].length>0)
+    
    const fetchFilteredData = (data)  =>{
         let queryStr = createQueryString(data);
         setUrl(`${baseUrl}?${queryStr}`);
-        console.log(url);
     }
 
     return (
