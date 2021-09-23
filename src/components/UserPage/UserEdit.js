@@ -20,6 +20,14 @@ const DetailsValue = styled.div`
   text-align: center;
   font-size: 1.5rem;
 `;
+
+const DetailsTextarea= styled.textarea`
+  background-color: var(--clr-primary-300);
+  color: var(--clr-primary-500);
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+`;
 export const ComponentStatic = (props) => {
     return (
         <>
@@ -28,8 +36,8 @@ export const ComponentStatic = (props) => {
                 <DetailsSubTitle>Name: </DetailsSubTitle><DetailsValue>{props.userDetails.firstName} {props.userDetails.lastName}</DetailsValue>
                 <DetailsSubTitle>User name: </DetailsSubTitle><DetailsValue>{props.userDetails.userName}</DetailsValue>
                 <DetailsSubTitle>Address: </DetailsSubTitle>
-                <DetailsValue>{props.userDetails.address.city}
-                    {props.userDetails.address.zipCode} {props.userDetails.address.street} {props.userDetails.address.HouseNumber}
+                <DetailsValue>{props.userDetails.address.zipCode} {props.userDetails.address.city}
+                     {props.userDetails.address.street} {props.userDetails.address.House}
                 </DetailsValue>
                 <DetailsSubTitle>Phone: </DetailsSubTitle><DetailsValue>{props.userDetails.phone}</DetailsValue>
                 <DetailsSubTitle>E-Mail: </DetailsSubTitle><DetailsValue>{props.userDetails.email}</DetailsValue>
@@ -44,10 +52,12 @@ export const ComponentBasic = (props) => {
         <>
             <HeroSubTitle>Basic details</HeroSubTitle>
             <UserDetails>
-                <DetailsSubTitle>First
-                    name: </DetailsSubTitle><DetailsValue>{props.userDetails.firstName}</DetailsValue>
-                <DetailsSubTitle>Last name: </DetailsSubTitle><DetailsValue>{props.userDetails.lastName}</DetailsValue>
-                <DetailsSubTitle>User name: </DetailsSubTitle><DetailsValue>{props.userDetails.userName}</DetailsValue>
+                    <DetailsSubTitle>First
+                        name: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.firstName}/>
+                    <DetailsSubTitle>Last name: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.lastName}/>
+                    <DetailsSubTitle>User name: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.userName}/>
+
+
             </UserDetails>
         </>
     )
@@ -57,10 +67,10 @@ export const ComponentAddress = (props) => {
         <>
             <HeroSubTitle>Address</HeroSubTitle>
             <UserDetails>
-                <DetailsSubTitle>City: </DetailsSubTitle><DetailsValue>{props.userDetails.address.city}</DetailsValue>
-                <DetailsSubTitle>Zip: </DetailsSubTitle><DetailsValue>{props.userDetails.address.zipCode}</DetailsValue>
-                <DetailsSubTitle>Street: </DetailsSubTitle><DetailsValue>{props.userDetails.address.street}</DetailsValue>
-                <DetailsSubTitle>House: </DetailsSubTitle><DetailsValue>{props.userDetails.address.HouseNumber}</DetailsValue>
+                <DetailsSubTitle>City: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.address.city}/>
+                <DetailsSubTitle>Zip: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.address.zipCode}/>
+                <DetailsSubTitle>Street: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.address.street}/>
+                <DetailsSubTitle>House: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.address.house}/>
             </UserDetails>
         </>
     )
@@ -69,26 +79,8 @@ export const ComponentContact = (props) => {
     return (<>
             <HeroSubTitle>Contact</HeroSubTitle>
             <UserDetails>
-                <DetailsSubTitle>Phone: </DetailsSubTitle><DetailsValue>{props.userDetails.phone}</DetailsValue>
-                <DetailsSubTitle>E-Mail: </DetailsSubTitle><DetailsValue>{props.userDetails.email}</DetailsValue>
-            </UserDetails>
-        </>
-    )
-}
-export const ComponentInterests = (props) => {
-    return (
-        <>
-            <HeroSubTitle>Interests</HeroSubTitle>
-            <UserDetails>
-                {props.userDetails.interests.map(interest =>
-                    <>
-                        <DetailsSubTitle>Interests</DetailsSubTitle>
-                        <DetailsValue>{interest}</DetailsValue>
-                    </>
-                )
-
-                }
-
+                <DetailsSubTitle>Phone: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.phone}/>
+                <DetailsSubTitle>E-Mail: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.email}/>
             </UserDetails>
         </>
     )

@@ -8,6 +8,7 @@ export const UserProfileContainer = styled.div`
 `;
 
 export const UserProfileDetails = styled.div`
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   background-color: var(--clr-primary-200);
   margin: 2rem auto;
   padding: 1rem;
@@ -65,6 +66,7 @@ export const Details = styled.div`
 `;
 
 export const UserCars = styled.div`
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -75,6 +77,7 @@ export const UserCars = styled.div`
 `;
 
 export const UserCalendar = styled.div`
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   background-color: var(--clr-primary-300);
   height: 30vh;
   margin: 3rem;

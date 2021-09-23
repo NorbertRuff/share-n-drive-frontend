@@ -26,55 +26,43 @@ import {ComponentAddress, ComponentBasic, ComponentContact, ComponentInterests, 
 import {dataHandler} from "../../services/Data_handler";
 
 const UserPage = (props) => {
-    const baseUrl = "http://localhost:8080/filter/all";
+    const baseUrl = "http://localhost:8080/share-n-drive/user";
     const [error, setError] = useState();
     const [menuItem, setMenuItem] = useState("static")
-    const [user, setUser] = useState({
 
-        firstName: "John",
-        lastName: "Wick",
-        userName: "ShArE&DrIvEfAnAtIc",
-        email: "wick@codeccol.com",
-        phone: "+36-30-111-111",
+    const [user, setUser] = useState({
+        firstName: "",
+        lastName: "",
+        userName: "",
+        email: "",
+        phone: "",
         address: {
-            city: "Budapest",
-            zipCode: "1111",
-            street: "Nagymező str",
-            HouseNumber: "42"
+            city: "",
+            zipCode: "",
+            street: "",
+            houseNumber: ""
         },
-        interests: ["Sportscars", "revenge"],
+        interests: [],
         userAvatar: "",
         bookings: "",
         cars: [{
-            id: 5,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
+            title: '',
+            brand: '',
+            bodyType: '',
             image: Scirocco,
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        }, {
-            id: 5,
-            title: 'Clio',
-            brand: 'Renault',
-            bodyType: 'HatchBack',
-            image: Clio,
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Small Car',
-            seat: '5',
-            price: '30000 HUF'
+            fuel: '',
+            category: '',
+            carType: '',
+            seat: '',
+            price: ''
         }]
     })
 
 
     useEffect(() => {
-        dataHandler._api_get(baseUrl, setUser, setError)
-    }, [baseUrl]);
+        dataHandler._api_get(baseUrl, setUser, setError);
 
+    }, [baseUrl]);
 
     const getComponent = () => {
         switch (menuItem) {
@@ -84,8 +72,6 @@ const UserPage = (props) => {
                 return <ComponentAddress userDetails={user}/>;
             case 'contact':
                 return <ComponentContact userDetails={user}/>;
-            case 'interests':
-                return <ComponentInterests userDetails={user}/>;
             case 'static':
                 return <ComponentStatic userDetails={user}/>;
             default:
@@ -105,13 +91,12 @@ const UserPage = (props) => {
                     <UserMenuItem onClick={() => setMenuItem("basic")}>Basic</UserMenuItem>
                     <UserMenuItem onClick={() => setMenuItem("address")}>Address</UserMenuItem>
                     <UserMenuItem onClick={() => setMenuItem("contact")}>Contact</UserMenuItem>
-                    <UserMenuItem onClick={() => setMenuItem("interests")}>Interests</UserMenuItem>
                 </UserMenu>
                 <Details>
                     {getComponent()}
                 </Details>
             </UserProfileDetails>
-            <HeroTitle>{user.firstName} {user.lastName} Cars</HeroTitle>
+            <HeroTitle> {user.userName}'s Cars</HeroTitle>
             <HeroSubTitle>Share your cars now!</HeroSubTitle>
             <UserCars>
                 {user.cars.map((car) =>
@@ -125,11 +110,11 @@ const UserPage = (props) => {
                         </CarCard>
                     </FilteredSingleElementContainer>)}
             </UserCars>
-            <HeroTitle>{user.firstName} {user.lastName} Calendar</HeroTitle>
+            <HeroTitle>{user.userName}'s Calendar</HeroTitle>
             <UserCalendar/>
         </UserProfileContainer>
     )
-}
+};
 
 
 export default UserPage;
