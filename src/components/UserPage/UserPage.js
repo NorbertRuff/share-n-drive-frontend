@@ -26,7 +26,7 @@ import {ComponentAddress, ComponentBasic, ComponentContact, ComponentInterests, 
 import {dataHandler} from "../../services/Data_handler";
 
 const UserPage = (props) => {
-    const baseUrl = "http://localhost:8080/share-n-drive/user";
+    const baseUrl = "http://localhost:8080/share-n-drive/customer/1";
     const [error, setError] = useState();
     const [menuItem, setMenuItem] = useState("static")
 
