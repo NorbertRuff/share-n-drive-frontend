@@ -12,15 +12,13 @@ export const Logo = styled(NavLink)`
   height: 80%;
   width: 50%;
   margin: 1rem;
-  
+
 `;
 
-export const NavLinks = styled(NavLink)`
-`;
-export const NavLinkContainer = styled.div`
-    display: flex;
+export const NavbarUserName = styled.div`
+  display: flex;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: center;
 `;
 
@@ -42,7 +40,7 @@ export const DropdownMenuItem = styled(NavLink)`
 `;
 
 export const UserLogo = styled.div`
-  
+
   padding: 1rem;
   background-image: url(${UserLogoPic});
   background-size: contain;

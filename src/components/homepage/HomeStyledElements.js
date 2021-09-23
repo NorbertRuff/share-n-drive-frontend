@@ -5,7 +5,7 @@ export const HomeContainer = styled.div`
   grid-area: MainContent;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 export const HeroTitle = styled.h1`
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;

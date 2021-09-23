@@ -21,7 +21,7 @@ const DetailsValue = styled.div`
   font-size: 1.5rem;
 `;
 
-const DetailsTextarea= styled.textarea`
+const DetailsTextarea = styled.textarea`
   background-color: var(--clr-primary-300);
   color: var(--clr-primary-500);
   padding: 1rem;
@@ -37,7 +37,7 @@ export const ComponentStatic = (props) => {
                 <DetailsSubTitle>User name: </DetailsSubTitle><DetailsValue>{props.userDetails.userName}</DetailsValue>
                 <DetailsSubTitle>Address: </DetailsSubTitle>
                 <DetailsValue>{props.userDetails.address.zipCode} {props.userDetails.address.city}
-                     {props.userDetails.address.street} {props.userDetails.address.House}
+                    {props.userDetails.address.street} {props.userDetails.address.House}
                 </DetailsValue>
                 <DetailsSubTitle>Phone: </DetailsSubTitle><DetailsValue>{props.userDetails.phone}</DetailsValue>
                 <DetailsSubTitle>E-Mail: </DetailsSubTitle><DetailsValue>{props.userDetails.email}</DetailsValue>
@@ -52,10 +52,12 @@ export const ComponentBasic = (props) => {
         <>
             <HeroSubTitle>Basic details</HeroSubTitle>
             <UserDetails>
-                    <DetailsSubTitle>First
-                        name: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.firstName}/>
-                    <DetailsSubTitle>Last name: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.lastName}/>
-                    <DetailsSubTitle>User name: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.userName}/>
+                <DetailsSubTitle>First
+                    name: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.firstName}/>
+                <DetailsSubTitle>Last name: </DetailsSubTitle><DetailsTextarea
+                defaultValue={props.userDetails.lastName}/>
+                <DetailsSubTitle>User name: </DetailsSubTitle><DetailsTextarea
+                defaultValue={props.userDetails.userName}/>
 
 
             </UserDetails>
@@ -67,10 +69,14 @@ export const ComponentAddress = (props) => {
         <>
             <HeroSubTitle>Address</HeroSubTitle>
             <UserDetails>
-                <DetailsSubTitle>City: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.address.city}/>
-                <DetailsSubTitle>Zip: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.address.zipCode}/>
-                <DetailsSubTitle>Street: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.address.street}/>
-                <DetailsSubTitle>House: </DetailsSubTitle><DetailsTextarea defaultValue={props.userDetails.address.house}/>
+                <DetailsSubTitle>City: </DetailsSubTitle><DetailsTextarea
+                defaultValue={props.userDetails.address.city}/>
+                <DetailsSubTitle>Zip: </DetailsSubTitle><DetailsTextarea
+                defaultValue={props.userDetails.address.zipCode}/>
+                <DetailsSubTitle>Street: </DetailsSubTitle><DetailsTextarea
+                defaultValue={props.userDetails.address.street}/>
+                <DetailsSubTitle>House: </DetailsSubTitle><DetailsTextarea
+                defaultValue={props.userDetails.address.house}/>
             </UserDetails>
         </>
     )

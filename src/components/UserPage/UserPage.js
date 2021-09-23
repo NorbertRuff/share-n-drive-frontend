@@ -23,7 +23,7 @@ import {
 import {ComponentAddress, ComponentBasic, ComponentContact, ComponentStatic} from "./UserEdit";
 import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "../homepage/FeaturedContainer";
-import {Error} from "../PageSyledElements/MainContainer";
+import {ErrorDiv} from "../PageSyledElements/MainContainer";
 
 const UserPage = (props) => {
     const baseUrl = "http://localhost:8080/share-n-drive/customer/5";
@@ -115,7 +115,7 @@ const UserPage = (props) => {
                     <HeroTitle>{user.userName}'s Calendar</HeroTitle>
                     <UserCalendar/>
                 </UserProfileContainer>
-            ) : (<Error>An error occurred while fetching information. Please try again later!</Error>)}</>
+            ) : (<ErrorDiv>An error occurred while fetching information. Please try again later!</ErrorDiv>)}</>
 
     )
 };

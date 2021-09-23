@@ -17,3 +17,9 @@ export const Error = styled.h1`
   justify-content: center;
   color: red;
 `;
+export const ErrorDiv = styled.h1`
+  grid-area: MainContent;
+  display: flex;
+  justify-content: center;
+  color: red;
+`;
