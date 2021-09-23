@@ -53,6 +53,8 @@ const FuelTypeOptions = [
     {value: 'diesel', label: 'Diesel'}
 ]
 
+let queryData = {}
+
 const FilteredContainer = (props) => {
 
     const [error, setError] = useState(false);
@@ -64,35 +66,15 @@ const FilteredContainer = (props) => {
         dataHandler._api_get(url, setFilteredCars, setError)
     }, [url]);
 
-    let queryData = {
-        color:[],
-        brand:[],
-        bodyType:[]
-
-    }
 
     const handleChange = (selector, event) => {
-        if (selector === "Color") {
-            queryData.color = event.map(color => color.value);
-            fetchFilteredData(queryData)
-
-            }
-        else if (selector === "Manufacturer") {
-            queryData.brand = event.map(brand => brand.value);
-            fetchFilteredData(queryData)
-            }
-        else if (selector === "BodyType") {
-            queryData.bodyType = event.map(bodyType => bodyType.value);
-            fetchFilteredData(queryData)
-            }
-        else {
-
-        }
+        queryData[selector] = event.map(selector => selector.value);
+        fetchFilteredData(queryData)
     }
 
    const createQueryString = (obj) => {
         return Object.keys(obj)
-
+            .filter(k =>obj[k].length>0)
             .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]))
             .join('&');
     }
@@ -110,7 +92,7 @@ const FilteredContainer = (props) => {
                 <FilterOption>
                     <h2>Color</h2>
                     <Select closeMenuOnSelect={false}
-                            onChange={event => handleChange("Color", event)}
+                            onChange={event => handleChange("color", event)}
                             styles={selectStyle}
                             components={animatedComponents}
                             isMulti
@@ -120,7 +102,7 @@ const FilteredContainer = (props) => {
                     <h2>Brand</h2>
                     <Select
                         styles={selectStyle}
-                        onChange={event => handleChange("Manufacturer", event)}
+                        onChange={event => handleChange("brand", event)}
                         closeMenuOnSelect={false}
                         components={animatedComponents}
                         isMulti
@@ -129,7 +111,7 @@ const FilteredContainer = (props) => {
                 <FilterOption>
                     <h2>Body type</h2>
                     <Select
-                        onChange={event => handleChange("BodyType", event)}
+                        onChange={event => handleChange("bodyType", event)}
                         closeMenuOnSelect={false}
                         styles={selectStyle}
                         components={animatedComponents}
@@ -139,7 +121,7 @@ const FilteredContainer = (props) => {
                 <FilterOption>
                     <h2>Fuel type</h2>
                     <Select
-                        onChange={event => handleChange("FuelType", event)}
+                        onChange={event => handleChange("fuelType", event)}
                         closeMenuOnSelect={false}
                         styles={selectStyle}
                         components={animatedComponents}
