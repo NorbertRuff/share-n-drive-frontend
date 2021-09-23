@@ -6,6 +6,7 @@ import {MainContainer} from "./PageSyledElements/MainContainer";
 import NavBar from "./navbar/NavBar";
 import Footer from "./footer/Footer";
 import Cars from "./Cars/Cars";
+import UserPage from "./UserPage/UserPage";
 
 const Page = () => {
     return (
@@ -22,6 +23,11 @@ const Page = () => {
                         <Route
                             path="/cars"
                             render={(props) => <Cars {...props}/>}
+                            exact
+                        />
+                        <Route
+                            path="/user"
+                            render={(props) => <UserPage {...props}/>}
                             exact
                         />
                     </Switch>

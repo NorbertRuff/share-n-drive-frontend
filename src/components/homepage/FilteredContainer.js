@@ -1,6 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
-    CarCard, CardDetails, CardThumbnail, CardTitle,
+    CarCard,
+    CardDetails,
+    CardSubTitle,
+    CardThumbnail,
+    CardTitle,
     FilterButtons,
     FilterCars,
     FilteredCarsContainer,
@@ -10,13 +14,19 @@ import {
 } from "./FilteredStyleElements";
 import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
-import clio from "../../assets/img/clio.jpg";
+import {dataHandler} from "../../services/Data_handler";
+import {getPicture} from "./FeaturedContainer";
+import {Error} from "../PageSyledElements/MainContainer";
 
 
 const animatedComponents = makeAnimated();
 
 const selectStyle = {
-    control: styles => ({...styles, backgroundColor: 'var(--clr-primary-200)', color: 'white'}),
+    control: styles => ({...styles,
+        backgroundColor: 'var(--clr-primary-200)',
+        color: 'white',
+        fontSize: '1.3rem'
+    }),
 
 
 }
@@ -39,159 +49,106 @@ const CarmakerOptions = [
     {value: 'bmw', label: 'Bmw'},
     {value: 'vw', label: 'Volkswagen'}
 ]
+const FuelTypeOptions = [
+    {value: 'petrol', label: 'Petrol'},
+    {value: 'electric', label: 'Electric'},
+    {value: 'diesel', label: 'Diesel'}
+]
+
+let queryData = {}
 
 const FilteredContainer = (props) => {
 
-    // const [error, setError] = useState(false);
-    // const [filteredCars, setFilteredCars] = useState([
-    const filteredCars = useState([
-        {
-            id: 1,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
-            image: "../../assets/img/scirocco.jpg",
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        },
-        {
-            id: 2,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
-            image: "https://localhost:3000/assets/img/clio.jpg",
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        },
-        {
-            id: 3,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
-            image: "../../assets/img/clio.jpg",
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        },
-        {
-            id: 4,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
-            image: "../../assets/img/clio.jpg",
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        },
-        {
-            id: 5,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
-            image: "../../assets/img/clio.jpg",
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        },
-        {
-            id: 5,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
-            image: "../../assets/img/clio.jpg",
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        },
-    ]);
-    // const baseUrl = "http://localhost:8080/filter/all";
-    // const [url, setUrl] = useState(baseUrl);
+    const [error, setError] = useState(false);
+    const [filteredCars, setFilteredCars] = useState([]);
+    const baseUrl = "http://localhost:8080/share-n-drive/filter";
+    const allCarsUrl = `${baseUrl}/all`;
+    const [url, setUrl] = useState(allCarsUrl);
 
-    // useEffect(() => {
-    //     dataHandler._api_get(url, setFilteredCars, setError)
-    // }, [url]);
+    useEffect(() => {
+        dataHandler._api_get(url, setFilteredCars, setError)
+    }, [url]);
 
 
     const handleChange = (selector, event) => {
-        if (selector === "Color") {
-            console.log(selector)
-            console.log(event)
-            // setUrl(baseUrl + "?filter=" + Event.target.value)
-            // dataHandler._api_get("/",setFilteredCars,setError)
-            // }
-            // else if (selector === "Manufacturer") {
-            //     dataHandler._api_get("/", setFilteredCars, setError)
-            // } else if (selector === "BodyType") {
-            //     dataHandler._api_get("https:\\", setFilteredCars, setError)
-            // } else {
-            //
-        }
+        queryData[selector] = event.map(selector => selector.value);
+        fetchFilteredData(queryData)
     }
 
+   const createQueryString = (obj) => {
+        return Object.keys(obj)
+            .filter(k =>obj[k].length>0)
+            .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]))
+            .join('&');
+    }
+    
+   const fetchFilteredData = (data)  =>{
+        let queryStr = createQueryString(data);
+        setUrl(queryStr === "" ? allCarsUrl : `${baseUrl}?${queryStr}`);
+    }
 
     return (
-        <FilterCars>
-            <FilterHeroTitle>Filter Cars</FilterHeroTitle>
-            <FilterButtons>
-                <FilterOption>
-                    <h2>Color</h2>
-                    <Select closeMenuOnSelect={false}
-                            onChange={event => handleChange("Color", event)}
-                            styles={selectStyle}
-                            components={animatedComponents}
-                            isMulti
-                            options={ColorOptions}/>
-                </FilterOption>
-                <FilterOption>
-                    <h2>Manufacturer</h2>
-                    <Select
-                        styles={selectStyle}
-                        onChange={event => handleChange("Manufacturer", event)}
-                        closeMenuOnSelect={false}
-                        components={animatedComponents}
-                        isMulti
-                        options={CarmakerOptions}/>
-                </FilterOption>
-                <FilterOption>
-                    <h2>BodyType</h2>
-                    <Select
-                        onChange={event => handleChange("BodyType", event)}
-                        closeMenuOnSelect={false}
-                        styles={selectStyle}
-                        components={animatedComponents}
-                        isMulti
-                        options={BodyTypeOptions}/>
-                </FilterOption>
-            </FilterButtons>
-            <FilteredCarsContainer>
-                {filteredCars.map((car) =>
-                    <FilteredSingleElementContainer key={car.id}>
-                        <CarCard>
-                            <CardThumbnail img={clio}/>
-                            <CardDetails>
-                                <CardTitle>{car.brand} {car.title}</CardTitle>
-                                    {car.carType} <br/> {car.fuel} <br/> {car.category}
-                            </CardDetails>
-                        </CarCard>
-                    </FilteredSingleElementContainer>)}
+        <>
+            {!error ? (
+                <FilterCars>
 
-            </FilteredCarsContainer>
-
-        </FilterCars>
+                    <FilterHeroTitle>Filter Cars</FilterHeroTitle>
+                    <FilterButtons>
+                        <FilterOption>
+                            <h2>Color</h2>
+                            <Select closeMenuOnSelect={false}
+                                    onChange={event => handleChange("color", event)}
+                                    styles={selectStyle}
+                                    components={animatedComponents}
+                                    isMulti
+                                    options={ColorOptions}/>
+                        </FilterOption>
+                        <FilterOption>
+                            <h2>Brand</h2>
+                            <Select
+                                styles={selectStyle}
+                                onChange={event => handleChange("brand", event)}
+                                closeMenuOnSelect={false}
+                                components={animatedComponents}
+                                isMulti
+                                options={CarmakerOptions}/>
+                        </FilterOption>
+                        <FilterOption>
+                            <h2>Body type</h2>
+                            <Select
+                                onChange={event => handleChange("bodyType", event)}
+                                closeMenuOnSelect={false}
+                                styles={selectStyle}
+                                components={animatedComponents}
+                                isMulti
+                                options={BodyTypeOptions}/>
+                        </FilterOption>
+                        <FilterOption>
+                            <h2>Fuel type</h2>
+                            <Select
+                                onChange={event => handleChange("fuelType", event)}
+                                closeMenuOnSelect={false}
+                                styles={selectStyle}
+                                components={animatedComponents}
+                                isMulti
+                                options={FuelTypeOptions}/>
+                        </FilterOption>
+                    </FilterButtons>
+                    <FilteredCarsContainer>
+                        {filteredCars.map((car) =>
+                            <FilteredSingleElementContainer key={car.id}>
+                                <CarCard>
+                                    <CardThumbnail img={getPicture(car.title)}/>
+                                    <CardDetails>
+                                        <CardTitle>{car.brand} {car.title}</CardTitle>
+                                        <CardSubTitle>{car.bodyType} </CardSubTitle>
+                                        <CardSubTitle>{car.fuelType} </CardSubTitle>
+                                    </CardDetails>
+                                </CarCard>
+                            </FilteredSingleElementContainer>)}
+                    </FilteredCarsContainer>
+                </FilterCars>) : (
+                <Error>An error occurred while fetching information. Please try again later!</Error>)}</>
     );
 }
 

@@ -8,7 +8,7 @@ const Cars = () => {
 };
 
 export const CarsContainer = styled.div`
-  grid-area: content;
+  grid-area: MainContent;
 
 `;
 

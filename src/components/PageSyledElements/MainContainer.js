@@ -5,9 +5,15 @@ export const MainContainer = styled.div`
   width: 100vw;
   min-height: 100vh;
   grid-template-columns: 5% 90% 5%;
-  grid-template-rows: 3rem auto 3rem;
+  grid-template-rows: 4rem auto 3rem;
   grid-template-areas:
     "header header header"
-    "content content content"
+    "MainContent MainContent MainContent"
     "footer footer footer";
+`;
+
+export const Error = styled.h1`
+  display: flex;
+  justify-content: center;
+  color: red;
 `;
