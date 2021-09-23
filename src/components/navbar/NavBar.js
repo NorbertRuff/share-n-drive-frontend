@@ -23,7 +23,7 @@ const NavBar = () => {
 
     useEffect(() => {
         dataHandler._api_get(baseUrl, setUser, setError)
-    })
+    }, [])
     return (
         <NavBarContainer>
             <Logo data-testid="logo" to="/" title="Home"/>
