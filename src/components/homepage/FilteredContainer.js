@@ -28,6 +28,14 @@ const selectStyle = {
 
 
 }
+
+const today = new Date();
+const dd = String(today.getDate()).padStart(2, '0');
+const mm = String(today.getMonth() + 1).padStart(2, '0'); 
+const yyyy = today.getFullYear();
+const todayDate = `${yyyy}-${mm}-${dd}`
+let inputDate = todayDate
+
 const ColorOptions = [
     {value: 'chocolate', label: 'Chocolate'},
     {value: 'strawberry', label: 'Strawberry'},
@@ -64,6 +72,7 @@ const FilteredContainer = (props) => {
     const [url, setUrl] = useState(allCarsUrl);
 
     useEffect(() => {
+        console.log(queryData)
         dataHandler._api_get(url, setFilteredCars, setError)
     }, [url]);
 
@@ -71,6 +80,11 @@ const FilteredContainer = (props) => {
     const handleChange = (selector, event) => {
         queryData[selector] = event.map(selector => selector.value);
         fetchFilteredData(queryData)
+    }
+
+    const handleDateChange = (selector, event) => {
+        inputDate = event.target.value;
+        queryData[selector] = [event.target.value];
     }
 
    const createQueryString = (obj) => {
@@ -85,10 +99,30 @@ const FilteredContainer = (props) => {
         setUrl(queryStr === "" ? allCarsUrl : `${baseUrl}?${queryStr}`);
     }
 
+    const bookCar = (carId) => {
+        let bookingData = {
+            customer: {"id": 1},
+            car: {"id": `${carId}`},
+            rentFrom: "2021-09-23",
+            rentTo: "2021-09-24"
+        }
+        dataHandler._api_post("http://localhost:8080/share-n-drive/book-car", 
+        bookingData, console.log, console.log);
+    }
+
     return (
         <FilterCars>
             <FilterHeroTitle>Filter Cars</FilterHeroTitle>
             <FilterButtons>
+                <FilterOption>
+                <label for="start">Start date:</label>
+
+                <input type="date" id="start" name="trip-start"
+                    value={inputDate}
+                    min={todayDate} max="2022-01-01"
+                    onChange={event => handleDateChange("from", event)}>
+                    </input>
+                </FilterOption>
                 <FilterOption>
                     <h2>Color</h2>
                     <Select closeMenuOnSelect={false}
@@ -138,6 +172,7 @@ const FilteredContainer = (props) => {
                                 <CardTitle>{car.brand} {car.title}</CardTitle>
                                     {car.carType} <br/> {car.fuel} <br/> {car.category}
                             </CardDetails>
+                            <button onClick={bookCar(car.id)}>Boook this car</button>
                         </CarCard>
                     </FilteredSingleElementContainer>)}
             </FilteredCarsContainer>
