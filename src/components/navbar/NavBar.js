@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
-import {DropdownMenu, Logo, NavBarContainer, NavLinks, UserLogo} from "./NavbarStyledElements";
+import React, {useEffect, useState} from 'react';
+import {DropdownMenu, DropdownMenuItem, Logo, NavBarContainer, NavbarUserName, UserLogo} from "./NavbarStyledElements";
+import {dataHandler} from "../../services/Data_handler";
 
 
 const NavBar = () => {
+    const baseUrl = "http://localhost:8080/share-n-drive/customer/5";
     const [showMenu, setShowMenu] = useState(false);
     const [isToggled, setIsToggled] = useState('none');
-
+    const [user, setUser] = useState({})
+    const [error, setError] = useState({})
 
     const dropMenu = () => {
         if (showMenu) {
@@ -18,19 +21,22 @@ const NavBar = () => {
         }
     };
 
-
+    useEffect(() => {
+        dataHandler._api_get(baseUrl, setUser, setError)
+    })
     return (
         <NavBarContainer>
             <Logo data-testid="logo" to="/" title="Home"/>
             <div/>
-            <NavLinks to="/cars" title="Cars">Link to somewhere</NavLinks>
+            <NavbarUserName>{!error ? "" : user.userName}</NavbarUserName>
             <UserLogo onClick={dropMenu}>
                 {showMenu ? (
                     <DropdownMenu>
-                        <li>Profile</li>
-                        <li>Rent a car</li>
-                        <li>Share a car</li>
-                        <li>calendar</li>
+                        <DropdownMenuItem to="/user" title="User">Profile</DropdownMenuItem>
+                        <DropdownMenuItem to="/add-car" title="User">Add a car</DropdownMenuItem>
+                        <DropdownMenuItem to="/user" title="User">Share a car</DropdownMenuItem>
+                        <DropdownMenuItem to="/user" title="User">Calendar</DropdownMenuItem>
+                        <DropdownMenuItem to="/" title="User">Logout</DropdownMenuItem>
                     </DropdownMenu>
                 ) : null}
 
