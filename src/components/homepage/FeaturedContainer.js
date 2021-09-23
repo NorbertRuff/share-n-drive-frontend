@@ -21,70 +21,8 @@ import {dataHandler} from "../../services/Data_handler";
 const FeaturedContainer = (props) => {
 
     const [error, setError] = useState(false);
-    const url = "http://localhost:8080"
-    const [featuredCars, setFeaturedCars] = useState([
-            {
-                id: 1,
-                title: 'Scirocco',
-                brand: 'Volkswagen',
-                bodyType: 'Coupe',
-                image: "../../assets/img/scirocco.jpg",
-                fuel: 'Gasoline',
-                category: 'Fun',
-                carType: 'Racing',
-                seat: '4',
-                price: '30000 HUF'
-            },
-            {
-                id: 2,
-                title: 'Scirocco',
-                brand: 'Volkswagen',
-                bodyType: 'Coupe',
-                image: "../../assets/img/clio.jpg",
-                fuel: 'Gasoline',
-                category: 'Fun',
-                carType: 'Racing',
-                seat: '4',
-                price: '30000 HUF'
-            },
-            {
-                id: 3,
-                title: 'Scirocco',
-                brand: 'Volkswagen',
-                bodyType: 'Coupe',
-                image: "../../assets/img/clio.jpg",
-                fuel: 'Gasoline',
-                category: 'Fun',
-                carType: 'Racing',
-                seat: '4',
-                price: '30000 HUF'
-            },
-            {
-                id: 4,
-                title: 'Scirocco',
-                brand: 'Volkswagen',
-                bodyType: 'Coupe',
-                image: "../../assets/img/clio.jpg",
-                fuel: 'Gasoline',
-                category: 'Fun',
-                carType: 'Racing',
-                seat: '4',
-                price: '30000 HUF'
-            },
-            {
-                id: 5,
-                title: 'Scirocco',
-                brand: 'Volkswagen',
-                bodyType: 'Coupe',
-                image: "../../assets/img/clio.jpg",
-                fuel: 'Gasoline',
-                category: 'Fun',
-                carType: 'Racing',
-                seat: '4',
-                price: '30000 HUF'
-            },
-        ]
-    )
+    const url = "http://localhost:8080/share-n-drive/filter/all";
+    const [featuredCars, setFeaturedCars] = useState([]);
 
     useEffect(() => {
         dataHandler._api_get(url, setFeaturedCars, setError)
