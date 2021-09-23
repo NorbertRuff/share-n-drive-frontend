@@ -13,7 +13,6 @@ import {
 } from "./FilteredStyleElements";
 import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
-import clio from "../../assets/img/clio.jpg";
 import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "./FeaturedContainer";
 
@@ -48,35 +47,60 @@ const CarmakerOptions = [
     {value: 'bmw', label: 'Bmw'},
     {value: 'vw', label: 'Volkswagen'}
 ]
+const FuelTypeOptions = [
+    {value: 'petrol', label: 'Petrol'},
+    {value: 'electric', label: 'Electric'},
+    {value: 'diesel', label: 'Diesel'}
+]
 
 const FilteredContainer = (props) => {
 
     const [error, setError] = useState(false);
     const [filteredCars, setFilteredCars] = useState([]);
-    const baseUrl = "http://localhost:8080/share-n-drive/filter/all";
-    const [url, setUrl] = useState(baseUrl);
+    const baseUrl = "http://localhost:8080/share-n-drive/filter";
+    const [url, setUrl] = useState(baseUrl+"/all");
 
     useEffect(() => {
         dataHandler._api_get(url, setFilteredCars, setError)
     }, [url]);
 
+    let queryData = {
+        color:[],
+        brand:[],
+        bodytype:[]
+
+    }
 
     const handleChange = (selector, event) => {
         if (selector === "Color") {
-            console.log(selector)
-            console.log(event)
-            // setUrl(baseUrl + "?filter=" + event)
-            // dataHandler._api_get("/",setFilteredCars,setError)
-            // }
-            // else if (selector === "Manufacturer") {
-            //     dataHandler._api_get("/", setFilteredCars, setError)
-            // } else if (selector === "BodyType") {
-            //     dataHandler._api_get("https:\\", setFilteredCars, setError)
-            // } else {
+            queryData.color = event.map(color => color.value);
+            fetchFilteredData(queryData)
+
+            }
+        else if (selector === "Manufacturer") {
+            queryData.brand = event.map(brand => brand.value);
+            fetchFilteredData(queryData)
+            }
+        else if (selector === "BodyType") {
+            queryData.bodytype = event.map(bodytype => bodytype.value);
+            fetchFilteredData(queryData)
+            }
+        else {
 
         }
     }
 
+   const createQueryString = (obj) => {
+        return Object.keys(obj)
+            .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]))
+            .join('&');
+    }
+
+   const fetchFilteredData = (data)  =>{
+        let queryStr = createQueryString(data);
+        setUrl(`${baseUrl}?${queryStr}`);
+        console.log(url);
+    }
 
     return (
         <FilterCars>
@@ -110,6 +134,16 @@ const FilteredContainer = (props) => {
                         components={animatedComponents}
                         isMulti
                         options={BodyTypeOptions}/>
+                </FilterOption>
+                <FilterOption>
+                    <h2>Fuel type</h2>
+                    <Select
+                        onChange={event => handleChange("FuelType", event)}
+                        closeMenuOnSelect={false}
+                        styles={selectStyle}
+                        components={animatedComponents}
+                        isMulti
+                        options={FuelTypeOptions}/>
                 </FilterOption>
             </FilterButtons>
             <FilteredCarsContainer>
