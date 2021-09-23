@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {
     CarCard,
     CardDetails,
+    CardSubTitle,
     CardThumbnail,
     CardTitle,
     FilterButtons,
@@ -15,6 +16,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
 import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "./FeaturedContainer";
+import {Error} from "../PageSyledElements/MainContainer";
 
 
 const animatedComponents = makeAnimated();
@@ -23,7 +25,7 @@ const selectStyle = {
     control: styles => ({...styles,
         backgroundColor: 'var(--clr-primary-200)',
         color: 'white',
-        fontSize:'1.5rem'
+        fontSize: '1.3rem'
     }),
 
 
@@ -85,62 +87,67 @@ const FilteredContainer = (props) => {
     }
 
     return (
-        <FilterCars>
-            <FilterHeroTitle>Filter Cars</FilterHeroTitle>
-            <FilterButtons>
-                <FilterOption>
-                    <h2>Color</h2>
-                    <Select closeMenuOnSelect={false}
-                            onChange={event => handleChange("color", event)}
-                            styles={selectStyle}
-                            components={animatedComponents}
-                            isMulti
-                            options={ColorOptions}/>
-                </FilterOption>
-                <FilterOption>
-                    <h2>Brand</h2>
-                    <Select
-                        styles={selectStyle}
-                        onChange={event => handleChange("brand", event)}
-                        closeMenuOnSelect={false}
-                        components={animatedComponents}
-                        isMulti
-                        options={CarmakerOptions}/>
-                </FilterOption>
-                <FilterOption>
-                    <h2>Body type</h2>
-                    <Select
-                        onChange={event => handleChange("bodyType", event)}
-                        closeMenuOnSelect={false}
-                        styles={selectStyle}
-                        components={animatedComponents}
-                        isMulti
-                        options={BodyTypeOptions}/>
-                </FilterOption>
-                <FilterOption>
-                    <h2>Fuel type</h2>
-                    <Select
-                        onChange={event => handleChange("fuelType", event)}
-                        closeMenuOnSelect={false}
-                        styles={selectStyle}
-                        components={animatedComponents}
-                        isMulti
-                        options={FuelTypeOptions}/>
-                </FilterOption>
-            </FilterButtons>
-            <FilteredCarsContainer>
-                {filteredCars.map((car) =>
-                    <FilteredSingleElementContainer key={car.id}>
-                        <CarCard>
-                            <CardThumbnail img={getPicture(car.id)}/>
-                            <CardDetails>
-                                <CardTitle>{car.brand} {car.title}</CardTitle>
-                                    {car.carType} <br/> {car.fuel} <br/> {car.category}
-                            </CardDetails>
-                        </CarCard>
-                    </FilteredSingleElementContainer>)}
-            </FilteredCarsContainer>
-        </FilterCars>
+        <>
+            {!error ? (
+                <FilterCars>
+
+                    <FilterHeroTitle>Filter Cars</FilterHeroTitle>
+                    <FilterButtons>
+                        <FilterOption>
+                            <h2>Color</h2>
+                            <Select closeMenuOnSelect={false}
+                                    onChange={event => handleChange("color", event)}
+                                    styles={selectStyle}
+                                    components={animatedComponents}
+                                    isMulti
+                                    options={ColorOptions}/>
+                        </FilterOption>
+                        <FilterOption>
+                            <h2>Brand</h2>
+                            <Select
+                                styles={selectStyle}
+                                onChange={event => handleChange("brand", event)}
+                                closeMenuOnSelect={false}
+                                components={animatedComponents}
+                                isMulti
+                                options={CarmakerOptions}/>
+                        </FilterOption>
+                        <FilterOption>
+                            <h2>Body type</h2>
+                            <Select
+                                onChange={event => handleChange("bodyType", event)}
+                                closeMenuOnSelect={false}
+                                styles={selectStyle}
+                                components={animatedComponents}
+                                isMulti
+                                options={BodyTypeOptions}/>
+                        </FilterOption>
+                        <FilterOption>
+                            <h2>Fuel type</h2>
+                            <Select
+                                onChange={event => handleChange("fuelType", event)}
+                                closeMenuOnSelect={false}
+                                styles={selectStyle}
+                                components={animatedComponents}
+                                isMulti
+                                options={FuelTypeOptions}/>
+                        </FilterOption>
+                    </FilterButtons>
+                    <FilteredCarsContainer>
+                        {filteredCars.map((car) =>
+                            <FilteredSingleElementContainer key={car.id}>
+                                <CarCard>
+                                    <CardThumbnail img={getPicture(car.title)}/>
+                                    <CardDetails>
+                                        <CardTitle>{car.brand} {car.title}</CardTitle>
+                                        <CardSubTitle>{car.bodyType} </CardSubTitle>
+                                        <CardSubTitle>{car.fuelType} </CardSubTitle>
+                                    </CardDetails>
+                                </CarCard>
+                            </FilteredSingleElementContainer>)}
+                    </FilteredCarsContainer>
+                </FilterCars>) : (
+                <Error>An error occurred while fetching information. Please try again later!</Error>)}</>
     );
 }
 

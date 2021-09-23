@@ -13,5 +13,7 @@ export const MainContainer = styled.div`
 `;
 
 export const Error = styled.h1`
+  display: flex;
+  justify-content: center;
   color: red;
 `;
