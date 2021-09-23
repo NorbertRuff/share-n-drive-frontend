@@ -62,7 +62,8 @@ const FilteredContainer = (props) => {
     const [error, setError] = useState(false);
     const [filteredCars, setFilteredCars] = useState([]);
     const baseUrl = "http://localhost:8080/share-n-drive/filter";
-    const [url, setUrl] = useState(baseUrl+"/all");
+    const allCarsUrl = `${baseUrl}/all`;
+    const [url, setUrl] = useState(allCarsUrl);
 
     useEffect(() => {
         dataHandler._api_get(url, setFilteredCars, setError)
@@ -83,7 +84,7 @@ const FilteredContainer = (props) => {
     
    const fetchFilteredData = (data)  =>{
         let queryStr = createQueryString(data);
-        setUrl(`${baseUrl}?${queryStr}`);
+        setUrl(queryStr === "" ? allCarsUrl : `${baseUrl}?${queryStr}`);
     }
 
     return (
