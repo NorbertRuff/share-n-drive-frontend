@@ -5,35 +5,20 @@ import { dataHandler } from '../../services/Data_handler';
 
 
 const AddCar= () => {
-    const [brand, setBrand] = useState('');
-    const [color, setColor] = useState('');
-    const [price, setPrice] = useState(0);
-    const [fuelType, setFuelType] = useState('gas');
-
-    const handleBrandChange = event => {
-        setBrand(event.target.value)
-      };
-
-    const handleColorChange = event => {
-    setColor(event.target.value)
-    };
-
-    const handlePriceChange = event => {
-    setPrice(event.target.value)
-    };
-
-    const handleFuelTypeChange = event => {
-        setFuelType(event.target.value)
-        };
 
     const handleSubmit = event => {
     event.preventDefault();
 
+    const brand = event.target.brand.value;
+    const color = event.target.color.value;
+    const price = event.target.price.value;
+    const fuelType = event.target.fuelType.value;
+
     const url = 'http://localhost:8080/share-n-drive/add-car';
-    const data = { brand, color, price, fuelType };
+    const data = { brand, color, price };
     dataHandler._api_post(url, data, console.log, console.log)
-    
-    };
+
+        };
 
     return(
     <HomeContainer>
@@ -43,39 +28,19 @@ const AddCar= () => {
         <form onSubmit={handleSubmit}>
       <div>
         <label>Brand</label>
-        <input
-          type="text"
-          name="brand"
-          required="required"
-          onChange={handleBrandChange}
-          value={brand}
-        />
+        <input type="text" name="brand" required="required"/>
       </div>
       <div>
         <label>Color</label>
-        <input
-          type="text"
-          name="color"
-          required="required"
-          onChange={handleColorChange}
-          value={color}
-        />
+        <input type="text" name="color" required="required"/>
       </div>
       <div>
-        <label>Price per day</label>
-        <input
-          type="number"
-          name="price"
-          required="required"
-          onChange={handlePriceChange}
-          value={price}
-        />
+        <label>Price per day (Ft)</label>
+        <input type="number" name="price" required="required"/>
       </div>
       <div>
-      <label for="fuelType">Choose fuel type:</label>
-        <select name="fuelType" id="fuelType" 
-        onChange={handleFuelTypeChange}
-        value={fuelType}>
+      <label for="fuelType">Choose fuel type </label>
+        <select name="fuelType" id="fuelType">
             <option value="gas">gas</option>
             <option value="gas">gasoline</option>
             <option value="diesel">diesel</option>
