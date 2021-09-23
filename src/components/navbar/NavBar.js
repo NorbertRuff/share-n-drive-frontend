@@ -1,5 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {DropdownMenu, DropdownMenuItem, Logo, NavBarContainer, NavbarUserName, UserLogo} from "./NavbarStyledElements";
+import {
+    CompanyName,
+    DropdownMenu,
+    DropdownMenuItem,
+    Logo,
+    NavBarContainer,
+    NavbarUserName,
+    UserLogo
+} from "./NavbarStyledElements";
 import {dataHandler} from "../../services/Data_handler";
 
 
@@ -27,6 +35,7 @@ const NavBar = () => {
     return (
         <NavBarContainer>
             <Logo data-testid="logo" to="/" title="Home"/>
+            <CompanyName>Share&Drive</CompanyName>
             <div/>
             <NavbarUserName>{!error ? "" : user.userName}</NavbarUserName>
             <UserLogo onClick={dropMenu}>
