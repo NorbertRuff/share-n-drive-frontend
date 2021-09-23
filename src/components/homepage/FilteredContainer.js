@@ -65,6 +65,19 @@ const FuelTypeOptions = [
 
 let queryData = {}
 
+const bookCar = (carId) => {
+
+    console.log("in book car")
+    let bookingData = {
+        "customer": {"id": 1},
+        "car": {"id": `${carId}`},
+        "rentFrom": "2021-09-23",
+        "rentTo": "2021-09-24"
+    }
+    dataHandler._api_post("http://localhost:8080/share-n-drive/book-car", 
+    bookingData, console.log, console.log);
+}
+
 const FilteredContainer = (props) => {
 
     const [error, setError] = useState(false);
@@ -101,16 +114,6 @@ const FilteredContainer = (props) => {
         setUrl(queryStr === "" ? allCarsUrl : `${baseUrl}?${queryStr}`);
     }
 
-    const bookCar = (carId) => {
-        let bookingData = {
-            customer: {"id": 1},
-            car: {"id": `${carId}`},
-            rentFrom: "2021-09-23",
-            rentTo: "2021-09-24"
-        }
-        dataHandler._api_post("http://localhost:8080/share-n-drive/book-car", 
-        bookingData, console.log, console.log);
-    }
 
     return (
         <>
@@ -161,14 +164,14 @@ const FilteredContainer = (props) => {
             </FilterButtons>
             <FilteredCarsContainer>
                 {filteredCars.map((car) =>
-                    <FilteredSingleElementContainer key={car.id}>
+                    <FilteredSingleElementContainer key={car.id} >
                         <CarCard>
                             <CardThumbnail img={getPicture(car.id)}/>
                             <CardDetails>
                                 <CardTitle>{car.brand} {car.title}</CardTitle>
                                     {car.carType} <br/> {car.fuel} <br/> {car.category}
                             </CardDetails>
-                            <button onClick={bookCar(car.id)}>Boook this car</button>
+                            <button onClick={() => bookCar(car.id) }>Boook this car</button>
                         </CarCard>
                     </FilteredSingleElementContainer>)}
             </FilteredCarsContainer>
