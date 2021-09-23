@@ -20,7 +20,11 @@ import {dataHandler} from "../../services/Data_handler";
 const animatedComponents = makeAnimated();
 
 const selectStyle = {
-    control: styles => ({...styles, backgroundColor: 'var(--clr-primary-200)', color: 'white'}),
+    control: styles => ({...styles,
+        backgroundColor: 'var(--clr-primary-200)',
+        color: 'white',
+        fontSize:'1.5rem'
+    }),
 
 
 }
@@ -47,81 +51,8 @@ const CarmakerOptions = [
 const FilteredContainer = (props) => {
 
     const [error, setError] = useState(false);
-    const [filteredCars, setFilteredCars] = useState([
-        {
-            id: 1,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
-            image: "../../assets/img/scirocco.jpg",
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        },
-        {
-            id: 2,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
-            image: "https://localhost:3000/assets/img/clio.jpg",
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        },
-        {
-            id: 3,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
-            image: "../../assets/img/clio.jpg",
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        },
-        {
-            id: 4,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
-            image: "../../assets/img/clio.jpg",
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        },
-        {
-            id: 5,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
-            image: "../../assets/img/clio.jpg",
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        },
-        {
-            id: 5,
-            title: 'Scirocco',
-            brand: 'Volkswagen',
-            bodyType: 'Coupe',
-            image: "../../assets/img/clio.jpg",
-            fuel: 'Gasoline',
-            category: 'Fun',
-            carType: 'Racing',
-            seat: '4',
-            price: '30000 HUF'
-        },
-    ]);
-    const baseUrl = "http://localhost:8080/filter/all";
+    const [filteredCars, setFilteredCars] = useState([]);
+    const baseUrl = "http://localhost:8080/share-n-drive/filter/all";
     const [url, setUrl] = useState(baseUrl);
 
     useEffect(() => {
@@ -160,7 +91,7 @@ const FilteredContainer = (props) => {
                             options={ColorOptions}/>
                 </FilterOption>
                 <FilterOption>
-                    <h2>Manufacturer</h2>
+                    <h2>Brand</h2>
                     <Select
                         styles={selectStyle}
                         onChange={event => handleChange("Manufacturer", event)}
@@ -170,7 +101,7 @@ const FilteredContainer = (props) => {
                         options={CarmakerOptions}/>
                 </FilterOption>
                 <FilterOption>
-                    <h2>BodyType</h2>
+                    <h2>Body type</h2>
                     <Select
                         onChange={event => handleChange("BodyType", event)}
                         closeMenuOnSelect={false}
