@@ -7,10 +7,13 @@ import { dataHandler } from '../../services/Data_handler';
 const AddCar= () => {
 
   const [fuelTypes, setFuelTypes] = useState([]);
+  const [bodyTypes, setBodyTypes] = useState([]);
 
     useEffect(() => {
       dataHandler._api_get('http://localhost:8080/share-n-drive/fuelTypes', 
       setFuelTypes, console.log);
+      dataHandler._api_get('http://localhost:8080/share-n-drive/bodyTypes', 
+      setBodyTypes, console.log);
     }, []);
 
     const handleSubmit = event => {
@@ -21,9 +24,11 @@ const AddCar= () => {
     const color = event.target.color.value;
     const price = event.target.price.value;
     const fuelType = event.target.fuelType.value;
+    const bodyType = event.target.bodyType.value;
+
 
     const url = 'http://localhost:8080/share-n-drive/add-car';
-    const data = { brand, licencePlate, color, price, fuelType };
+    const data = { brand, licencePlate, color, price, fuelType, bodyType };
     dataHandler._api_post(url, data, console.log, console.log)
         };
 
@@ -53,7 +58,14 @@ const AddCar= () => {
       <label for="fuelType">Choose fuel type </label>
       <select name="fuelType" id="fuelType">
       {fuelTypes.map((type) => 
-      (<option key={type} value={type}>{type}</option>))}
+      (<option key={type} value={type}>{type.replace("_", " ")}</option>))}
+        </select>
+      </div>
+      <div>
+      <label for="bodyType">Choose category </label>
+      <select name="bodyType" id="bodyType">
+      {bodyTypes.map((type) => 
+      (<option key={type} value={type}>{type.replace("_", " ")}</option>))}
         </select>
       </div>
       <button type="submit">
