@@ -26,7 +26,7 @@ const DetailsTextarea= styled.textarea`
   color: var(--clr-primary-500);
   padding: 1rem;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
 `;
 export const ComponentStatic = (props) => {
     return (
