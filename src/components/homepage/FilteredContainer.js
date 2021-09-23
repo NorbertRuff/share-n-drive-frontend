@@ -67,7 +67,7 @@ const FilteredContainer = (props) => {
     let queryData = {
         color:[],
         brand:[],
-        bodytype:[]
+        bodyType:[]
 
     }
 
@@ -82,7 +82,7 @@ const FilteredContainer = (props) => {
             fetchFilteredData(queryData)
             }
         else if (selector === "BodyType") {
-            queryData.bodytype = event.map(bodytype => bodytype.value);
+            queryData.bodyType = event.map(bodyType => bodyType.value);
             fetchFilteredData(queryData)
             }
         else {
@@ -92,10 +92,11 @@ const FilteredContainer = (props) => {
 
    const createQueryString = (obj) => {
         return Object.keys(obj)
+
             .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]))
             .join('&');
     }
-
+// .filter(k =>obj[k].length>0)
    const fetchFilteredData = (data)  =>{
         let queryStr = createQueryString(data);
         setUrl(`${baseUrl}?${queryStr}`);
@@ -157,9 +158,7 @@ const FilteredContainer = (props) => {
                             </CardDetails>
                         </CarCard>
                     </FilteredSingleElementContainer>)}
-
             </FilteredCarsContainer>
-
         </FilterCars>
     );
 }
