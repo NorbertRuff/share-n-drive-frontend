@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {
     CarCard,
     CardDetails,
+    CardSubTitle,
     CardThumbnail,
     CardTitle,
     FilterButtons,
@@ -15,6 +16,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
 import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "./FeaturedContainer";
+import {Error} from "../PageSyledElements/MainContainer";
 
 
 const animatedComponents = makeAnimated();
@@ -23,7 +25,7 @@ const selectStyle = {
     control: styles => ({...styles,
         backgroundColor: 'var(--clr-primary-200)',
         color: 'white',
-        fontSize:'1.5rem'
+        fontSize: '1.3rem'
     }),
 
 
@@ -111,20 +113,14 @@ const FilteredContainer = (props) => {
     }
 
     return (
-        <FilterCars>
-            <FilterHeroTitle>Filter Cars</FilterHeroTitle>
-            <FilterButtons>
-                <FilterOption>
-                <label for="start">Start date:</label>
+        <>
+            {!error ? (
+                <FilterCars>
 
-                <input type="date" id="start" name="trip-start"
-                    value={inputDate}
-                    min={todayDate} max="2022-01-01"
-                    onChange={event => handleDateChange("from", event)}>
-                    </input>
-                </FilterOption>
-                <FilterOption>
-                    <h2>Color</h2>
+                    <FilterHeroTitle>Filter Cars</FilterHeroTitle>
+                    <FilterButtons>
+                        <FilterOption>
+                        <h2>Color</h2>
                     <Select closeMenuOnSelect={false}
                             onChange={event => handleChange("color", event)}
                             styles={selectStyle}
@@ -176,7 +172,8 @@ const FilteredContainer = (props) => {
                         </CarCard>
                     </FilteredSingleElementContainer>)}
             </FilteredCarsContainer>
-        </FilterCars>
+        </FilterCars>) : (
+                <Error>An error occurred while fetching information. Please try again later!</Error>)}</>
     );
 }
 

@@ -63,12 +63,13 @@ export const CarCard = styled.div`
     transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
+  cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 30vw;
-  min-width: 30vw;
+  width: 20vw;
+  min-width: 20vw;
   border: 3px solid var(--clr-primary-300);
 `;
 
@@ -78,12 +79,17 @@ export const CardThumbnail = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
-  height: 30vh;
+  height: 20vh;
   object-fit: contain;
 `;
 
 export const CardTitle = styled.div`
   color: var(--clr-primary-200);
+`;
+
+export const CardSubTitle = styled.div`
+  color: var(--clr-primary-500);
+  font-size: 1.3rem;
 `;
 
 export const CardDetails = styled.div`

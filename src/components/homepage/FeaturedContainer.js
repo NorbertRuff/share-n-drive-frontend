@@ -23,25 +23,24 @@ import {
     Title
 } from "./FeaturedStyleElements";
 import {dataHandler} from "../../services/Data_handler";
+import {Error} from "../PageSyledElements/MainContainer";
 
-export const getPicture = (id)=> {
-    switch (id) {
-        case 1:
-            return pic2
-        case 2:
-            return pic6
-        case 3:
+export const getPicture = (title) => {
+    switch (title) {
+        case 'AMG GT':
             return pic1
-        case 4:
-            return pic7
-        case 5:
-            return pic5
-        case 6:
-            return pic5
-        case 7:
-            return pic4
-        case 8:
+        case 'S65 AMG':
+            return pic2
+        case '760Li':
             return pic3
+        case 'RS6':
+            return pic4
+        case 'model s':
+            return pic5
+        case 'model y':
+            return pic6
+        case 'clio':
+            return pic7
         default:
             return pic2
     }
@@ -61,31 +60,34 @@ const FeaturedContainer = (props) => {
 
     return (
         <FeaturedCarsContainer>
-            <Carousel
-                itemsToShow={1}
-                focusOnSelect={true}
-                enableAutoPlay autoPlaySpeed={2500}
-                onChange={(currentItem, pageIndex) => {
-                    if (pageIndex === featuredCars.length - 1) {
-
+            {!error ? (
+                <Carousel
+                    itemsToShow={1}
+                    focusOnSelect={true}
+                    enableAutoPlay autoPlaySpeed={4000}
+                    onChange={(pageIndex) => {
+                        if (pageIndex === 2) {
+                        }
                     }
-                }
-                }
-            >
-                {featuredCars.map(item =>
-                    <FeaturedSingleElementContainer key={item.id}>
-                        <Thumbnail src={getPicture(item.id)}/>
-                        <CarType><GridTitle>Type</GridTitle>{item.carType}</CarType>
-                        <Title>{item.brand} {item.title}</Title>
-                        <FuelType><GridTitle>Fuel type</GridTitle>{item.fuelType}</FuelType>
-                        <BodyType><GridTitle>Body Type</GridTitle>{item.bodyType}</BodyType>
-                        <Category><GridTitleStrong>Licence plate</GridTitleStrong> {item.licencePlate}</Category>
+                    }
+                >
+                    {featuredCars.map(item =>
+                        <FeaturedSingleElementContainer key={item.id}>
+                            <Thumbnail src={getPicture(item.title)}/>
+                            <CarType><GridTitle>Type</GridTitle>{item.carType}</CarType>
+                            <Title>{item.brand} {item.title}</Title>
+                            <FuelType><GridTitle>Fuel type</GridTitle>{item.fuelType}</FuelType>
+                            <BodyType><GridTitle>Body Type</GridTitle>{item.bodyType}</BodyType>
+                            <Category><GridTitleStrong>Licence plate</GridTitleStrong> {item.licencePlate}</Category>
 
-                        <SeatNumber><GridTitle>Seats</GridTitle> {item.seatNumber}</SeatNumber>
+                            <SeatNumber><GridTitle>Seats</GridTitle> {item.seatNumber}</SeatNumber>
 
-                        <Price><GridTitleStrong/>{item.price} / day</Price>
-                    </FeaturedSingleElementContainer>)}
-            </Carousel>
+                            <Price><GridTitleStrong/>{item.price} / day</Price>
+                        </FeaturedSingleElementContainer>)}
+
+
+                </Carousel>
+            ) : (<Error>An error occurred while fetching information. Please try again later!</Error>)}
         </FeaturedCarsContainer>
     );
 }
