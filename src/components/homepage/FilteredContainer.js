@@ -28,37 +28,23 @@ const selectStyle = {
         color: 'white',
         fontSize: '1.3rem'
     }),
-
-
 }
-const [ColorOptions, setColorOptions] = useState([
-    {value: 'chocolate', label: 'Chocolate'},
-    {value: 'strawberry', label: 'Strawberry'},
-    {value: 'vanilla', label: 'Vanilla'},
-    {value: 'silver', label: 'Silver'},
-    {value: 'black', label: 'Black'}
-])
-
-const BodyTypeOptions = [
-    {value: 'station_wagon', label: 'Station Wagon'},
-    {value: 'coupe', label: 'Coupe'},
-    {value: 'convertible', label: 'Convertible'}
-]
-
-const CarmakerOptions = [
-    {value: 'audi', label: 'Audi'},
-    {value: 'bmw', label: 'Bmw'},
-    {value: 'vw', label: 'Volkswagen'}
-]
-const FuelTypeOptions = [
-    {value: 'petrol', label: 'Petrol'},
-    {value: 'electric', label: 'Electric'},
-    {value: 'diesel', label: 'Diesel'}
-]
 
 let queryData = {}
 
 const FilteredContainer = (props) => {
+
+    const [ColorOptions, setColorOptions] = useState();
+    const [FuelTypeOptions, setFuelTypeOptions] = useState();
+    const [CarmakerOptions, setCarmakerOptions] = useState();
+    const [BodyTypeOptions, setBodyTypeOptions] = useState();
+    const [CarTypeOptions, setCarTypeOptions] = useState();
+
+    const makeSelectOptions = (items, callback) => {
+        const SelectOptions = []
+        items.map((item) => SelectOptions.push({"value": item, "label": item}))
+        callback(SelectOptions)
+    }
 
     const [error, setError] = useState(false);
     const [filteredCars, setFilteredCars] = useState([]);
@@ -67,6 +53,11 @@ const FilteredContainer = (props) => {
     const [url, setUrl] = useState(allCarsUrl);
 
     useEffect(() => {
+        dataHandler._api_get_selectOptions('http://localhost:8080/share-n-drive/colors', makeSelectOptions, setColorOptions, console.error)
+        dataHandler._api_get_selectOptions('http://localhost:8080/share-n-drive/fuelTypes', makeSelectOptions, setFuelTypeOptions, console.error)
+        dataHandler._api_get_selectOptions('http://localhost:8080/share-n-drive/brands', makeSelectOptions, setCarmakerOptions, console.error)
+        dataHandler._api_get_selectOptions('http://localhost:8080/share-n-drive/bodyTypes', makeSelectOptions, setBodyTypeOptions, console.error)
+        dataHandler._api_get_selectOptions('http://localhost:8080/share-n-drive/carTypes', makeSelectOptions, setCarTypeOptions, console.error)
         dataHandler._api_get(url, setFilteredCars, setError)
     }, [url]);
 
@@ -96,15 +87,6 @@ const FilteredContainer = (props) => {
                     <FilterHeroTitle>Filter Cars</FilterHeroTitle>
                     <FilterButtons>
                         <FilterOption>
-                            <h2>Color</h2>
-                            <Select closeMenuOnSelect={false}
-                                    onChange={event => handleChange("color", event)}
-                                    styles={selectStyle}
-                                    components={animatedComponents}
-                                    isMulti
-                                    options={ColorOptions}/>
-                        </FilterOption>
-                        <FilterOption>
                             <h2>Brand</h2>
                             <Select
                                 styles={selectStyle}
@@ -114,6 +96,16 @@ const FilteredContainer = (props) => {
                                 isMulti
                                 options={CarmakerOptions}/>
                         </FilterOption>
+                        <FilterOption>
+                            <h2>Color</h2>
+                            <Select closeMenuOnSelect={false}
+                                    onChange={event => handleChange("color", event)}
+                                    styles={selectStyle}
+                                    components={animatedComponents}
+                                    isMulti
+                                    options={ColorOptions}/>
+                        </FilterOption>
+
                         <FilterOption>
                             <h2>Body type</h2>
                             <Select
@@ -133,6 +125,16 @@ const FilteredContainer = (props) => {
                                 components={animatedComponents}
                                 isMulti
                                 options={FuelTypeOptions}/>
+                        </FilterOption>
+                        <FilterOption>
+                            <h2>Car type</h2>
+                            <Select
+                                onChange={event => handleChange("fuelType", event)}
+                                closeMenuOnSelect={false}
+                                styles={selectStyle}
+                                components={animatedComponents}
+                                isMulti
+                                options={CarTypeOptions}/>
                         </FilterOption>
                     </FilterButtons>
                     <FilteredCarsContainer>
