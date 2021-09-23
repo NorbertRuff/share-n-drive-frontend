@@ -15,6 +15,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
 import clio from "../../assets/img/clio.jpg";
 import {dataHandler} from "../../services/Data_handler";
+import {getPicture} from "./FeaturedContainer";
 
 
 const animatedComponents = makeAnimated();
@@ -115,7 +116,7 @@ const FilteredContainer = (props) => {
                 {filteredCars.map((car) =>
                     <FilteredSingleElementContainer key={car.id}>
                         <CarCard>
-                            <CardThumbnail img={clio}/>
+                            <CardThumbnail img={getPicture(car.id)}/>
                             <CardDetails>
                                 <CardTitle>{car.brand} {car.title}</CardTitle>
                                     {car.carType} <br/> {car.fuel} <br/> {car.category}

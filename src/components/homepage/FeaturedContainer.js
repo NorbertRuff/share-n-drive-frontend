@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import Carousel from 'react-elastic-carousel';
-import Scirocco from '../../assets/img/scirocco.jpg';
+import pic1 from '../../assets/img/mercedesamg.jpg';
+import pic2 from '../../assets/img/mercedess65.jpg';
+import pic3 from '../../assets/img/bmw.jpg';
+import pic4 from '../../assets/img/audi.jpg';
+import pic5 from '../../assets/img/teslas.jpg';
+import pic6 from '../../assets/img/teslax.jpg';
+import pic7 from '../../assets/img/clio.jpg';
+
 import {FeaturedCarsContainer} from "./HomeStyledElements";
 import {
     BodyType,
@@ -16,6 +23,29 @@ import {
     Title
 } from "./FeaturedStyleElements";
 import {dataHandler} from "../../services/Data_handler";
+
+export const getPicture = (id)=> {
+    switch (id) {
+        case 1:
+            return pic2
+        case 2:
+            return pic6
+        case 3:
+            return pic1
+        case 4:
+            return pic7
+        case 5:
+            return pic5
+        case 6:
+            return pic5
+        case 7:
+            return pic4
+        case 8:
+            return pic3
+        default:
+            return pic2
+    }
+}
 
 
 const FeaturedContainer = (props) => {
@@ -44,14 +74,14 @@ const FeaturedContainer = (props) => {
             >
                 {featuredCars.map(item =>
                     <FeaturedSingleElementContainer key={item.id}>
-                        <Thumbnail src={Scirocco}/>
+                        <Thumbnail src={getPicture(item.id)}/>
                         <CarType><GridTitle>Type</GridTitle>{item.carType}</CarType>
                         <Title>{item.brand} {item.title}</Title>
-                        <FuelType><GridTitle>Fuel type</GridTitle>{item.fuel}</FuelType>
+                        <FuelType><GridTitle>Fuel type</GridTitle>{item.fuelType}</FuelType>
                         <BodyType><GridTitle>Body Type</GridTitle>{item.bodyType}</BodyType>
-                        <Category><GridTitleStrong>Category</GridTitleStrong> {item.category}</Category>
+                        <Category><GridTitleStrong>Licence plate</GridTitleStrong> {item.licencePlate}</Category>
 
-                        <SeatNumber><GridTitle>Seats</GridTitle> {item.seat}</SeatNumber>
+                        <SeatNumber><GridTitle>Seats</GridTitle> {item.seatNumber}</SeatNumber>
 
                         <Price><GridTitleStrong/>{item.price} / day</Price>
                     </FeaturedSingleElementContainer>)}
