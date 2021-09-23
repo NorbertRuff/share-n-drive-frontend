@@ -1,5 +1,13 @@
 import React, {useState} from 'react';
-import {DropdownMenu, Logo, NavBarContainer, NavLinkContainer, NavLinks, UserLogo} from "./NavbarStyledElements";
+import {
+    DropdownMenu,
+    DropdownMenuItem,
+    Logo,
+    NavBarContainer,
+    NavLinkContainer,
+    NavLinks,
+    UserLogo
+} from "./NavbarStyledElements";
 
 
 const NavBar = () => {
@@ -24,16 +32,16 @@ const NavBar = () => {
             <Logo data-testid="logo" to="/" title="Home"/>
             <div/>
             <NavLinkContainer>
-                <NavLinks to="/cars" title="Cars">Link to somewhere</NavLinks>
-                <NavLinks  to="/user" title="Cars">User</NavLinks>
+                {/*<NavLinks to="/user" title="user">Profile</NavLinks>*/}
             </NavLinkContainer>
             <UserLogo onClick={dropMenu}>
                 {showMenu ? (
                     <DropdownMenu>
-                        <li>Profile</li>
-                        <li>Rent a car</li>
-                        <li>Share a car</li>
-                        <li>calendar</li>
+                        <DropdownMenuItem  to="/user" title="User">Profile</DropdownMenuItem>
+                        <DropdownMenuItem to="/user" title="User" >Rent a car</DropdownMenuItem>
+                        <DropdownMenuItem to="/user" title="User">Share a car</DropdownMenuItem>
+                        <DropdownMenuItem to="/user" title="User">calendar</DropdownMenuItem>
+                        <DropdownMenuItem to="/" title="User">calendar</DropdownMenuItem>
                     </DropdownMenu>
                 ) : null}
 

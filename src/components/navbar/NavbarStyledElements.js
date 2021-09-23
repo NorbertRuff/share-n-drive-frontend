@@ -12,6 +12,7 @@ export const Logo = styled(NavLink)`
   height: 80%;
   width: 50%;
   margin: 1rem;
+  
 `;
 
 export const NavLinks = styled(NavLink)`
@@ -25,14 +26,23 @@ export const NavLinkContainer = styled.div`
 
 export const DropdownMenu = styled.div`
   position: absolute;
-  top: 5vh;
-  right: 0;
+  top: 4rem;
+  right: 1rem;
   background-color: var(--clr-primary-300);
-  width: 8vw;
-  height: 10vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+`;
+
+export const DropdownMenuItem = styled(NavLink)`
+  font-size: 1.5rem;
+  padding: 0.4rem;
 `;
 
 export const UserLogo = styled.div`
+  
   padding: 1rem;
   background-image: url(${UserLogoPic});
   background-size: contain;
@@ -49,4 +59,5 @@ export const NavBarContainer = styled.div`
   align-items: center;
   background-color: var(--clr-primary-400);
   border-bottom: 3px solid var(--clr-primary-400);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 `;
