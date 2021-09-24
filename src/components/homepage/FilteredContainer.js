@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
+    AddBookingButton,
     CarCard,
     CardDetails,
     CardSubTitle,
@@ -29,7 +30,18 @@ const selectStyle = {
         fontSize: '1.3rem'
     }),
 }
+const bookCar = (carId) => {
 
+    console.log("in book car")
+    let bookingData = {
+        "customer": {"id": 11},
+        "car": {"id": `${carId}`},
+        "rentFrom": "2021-09-23",
+        "rentTo": "2021-09-24"
+    }
+    dataHandler._api_post("http://localhost:8080/share-n-drive/book-car",
+        bookingData, console.log, console.log);
+}
 let queryData = {}
 
 const FilteredContainer = (props) => {
@@ -147,6 +159,7 @@ const FilteredContainer = (props) => {
                                         <CardSubTitle>{car.bodyType} </CardSubTitle>
                                         <CardSubTitle>{car.fuelType} </CardSubTitle>
                                     </CardDetails>
+                                    <AddBookingButton onClick={() => bookCar(car.id) }>Book this car</AddBookingButton>
                                 </CarCard>
                             </FilteredSingleElementContainer>)}
                     </FilteredCarsContainer>

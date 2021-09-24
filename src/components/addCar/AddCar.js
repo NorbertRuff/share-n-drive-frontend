@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {HeroContainer, HeroSubTitle, HeroTitle, HomeContainer} from "../homepage/HomeStyledElements";
+import {HeroContainer, HeroSubTitle, HeroTitle} from "../homepage/HomeStyledElements";
 import car_share_img from "../../assets/img/sharecar.jpg";
 import {dataHandler} from '../../services/Data_handler';
 import {ErrorDiv} from "../PageSyledElements/MainContainer";
@@ -42,7 +42,7 @@ const AddCar = () => {
 
 
     const url = 'http://localhost:8080/share-n-drive/add-car';
-    const data = { customer: {id: 1}, brand, licencePlate, 
+    const data = { customer: {id: 11}, brand, licencePlate,
     color, price, fuelType, bodyType, carType };
     dataHandler._api_post(url, data, console.log, console.log)
         };

@@ -91,6 +91,10 @@ export const CardSubTitle = styled.div`
   color: var(--clr-primary-500);
   font-size: 1.3rem;
 `;
+export const AddBookingButton = styled.button`
+  color: var(--clr-primary-500);
+  font-size: 1.3rem;
+`;
 
 export const CardDetails = styled.div`
   text-align: center;

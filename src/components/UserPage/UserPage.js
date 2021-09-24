@@ -26,7 +26,7 @@ import {getPicture} from "../homepage/FeaturedContainer";
 import {ErrorDiv} from "../PageSyledElements/MainContainer";
 
 const UserPage = (props) => {
-    const baseUrl = "http://localhost:8080/share-n-drive/customer/5";
+    const baseUrl = "http://localhost:8080/share-n-drive/getFirstCustomer";
     const [error, setError] = useState();
     const [menuItem, setMenuItem] = useState("static")
 
