@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
-import MainLogo from "../../assets/img/logo.png"
+import MainLogo from "../../assets/img/logo2.png"
 import UserLogoPic from "../../assets/img/user.png"
 
 
@@ -9,9 +9,9 @@ export const Logo = styled(NavLink)`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 80%;
-  width: 50%;
-  margin: 1rem;
+  height: 4rem;
+  width: auto;
+  margin: 0 1rem;
 
 `;
 
@@ -20,6 +20,18 @@ export const NavbarUserName = styled.div`
   flex-wrap: nowrap;
   justify-content: flex-end;
   align-items: center;
+`;
+
+export const CompanyName = styled.div`
+  font-family: var(--ff-heading-bold);
+  color: var(--clr-primary-200);
+  //-webkit-text-stroke: 1px var(--clr-primary-500);
+  display: flex;
+  text-transform: uppercase;
+  font-size: 2rem;
+  justify-content: flex-start;
+  align-items: center;
+  text-shadow: 2px 2px 4px rgba(30, 30, 30, 1);
 `;
 
 export const DropdownMenu = styled.div`
@@ -53,7 +65,7 @@ export const UserLogo = styled.div`
 export const NavBarContainer = styled.div`
   grid-area: header;
   display: grid;
-  grid-template-columns: 1fr 4fr 0.5fr 0.5fr;
+  grid-template-columns: 0.6fr 0.8fr 4fr 0.5fr 0.5fr;
   align-items: center;
   background-color: var(--clr-primary-400);
   border-bottom: 3px solid var(--clr-primary-400);
