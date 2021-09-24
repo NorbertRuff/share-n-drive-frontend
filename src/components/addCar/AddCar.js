@@ -42,7 +42,7 @@ const AddCar = () => {
 
 
     const url = 'http://localhost:8080/share-n-drive/add-car';
-    const data = { customer: {id: 1}, brand, licencePlate, 
+    const data = { customer: {id: 11}, brand, licencePlate,
     color, price, fuelType, bodyType, carType };
     dataHandler._api_post(url, data, console.log, console.log)
         };
