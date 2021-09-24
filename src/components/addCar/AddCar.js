@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {HeroContainer, HeroSubTitle, HeroTitle, HomeContainer} from "../homepage/HomeStyledElements";
+import {HeroContainer, HeroSubTitle, HeroTitle} from "../homepage/HomeStyledElements";
 import car_share_img from "../../assets/img/sharecar.jpg";
 import {dataHandler} from '../../services/Data_handler';
 import {ErrorDiv} from "../PageSyledElements/MainContainer";
