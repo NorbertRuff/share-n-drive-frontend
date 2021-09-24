@@ -7,6 +7,12 @@ import pic4 from '../../assets/img/audi.jpg';
 import pic5 from '../../assets/img/teslas.jpg';
 import pic6 from '../../assets/img/teslax.jpg';
 import pic7 from '../../assets/img/clio.jpg';
+import pic8 from '../../assets/img/fiesta.jpg';
+import pic9 from '../../assets/img/leaf.jpg';
+import pic10 from '../../assets/img/skoda.jpg';
+import pic11 from '../../assets/img/dacia.jpg';
+import pic12 from '../../assets/img/teepee.jpg';
+import pic13 from '../../assets/img/swift.jpg';
 
 import {FeaturedCarsContainer} from "./HomeStyledElements";
 import {
@@ -35,12 +41,24 @@ export const getPicture = (title) => {
             return pic3
         case 'RS6':
             return pic4
-        case 'model s':
+        case 'Model S':
             return pic5
-        case 'model y':
+        case 'Model X':
             return pic6
-        case 'clio':
+        case 'Clio':
             return pic7
+        case 'Leaf':
+            return pic9
+        case 'Fiesta':
+            return pic8
+        case 'Octavia':
+            return pic10
+        case 'Swift':
+            return pic13
+        case 'Duster':
+            return pic11
+        case 'Teepee':
+            return pic12
         default:
             return pic2
     }
