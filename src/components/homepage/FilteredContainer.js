@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
+    AddBookingButton,
     CarCard,
     CardDetails,
     CardSubTitle,
@@ -158,7 +159,7 @@ const FilteredContainer = (props) => {
                                         <CardSubTitle>{car.bodyType} </CardSubTitle>
                                         <CardSubTitle>{car.fuelType} </CardSubTitle>
                                     </CardDetails>
-                                    <button onClick={() => bookCar(car.id) }>Book this car</button>
+                                    <AddBookingButton onClick={() => bookCar(car.id) }>Book this car</AddBookingButton>
                                 </CarCard>
                             </FilteredSingleElementContainer>)}
                     </FilteredCarsContainer>
