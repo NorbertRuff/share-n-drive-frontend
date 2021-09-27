@@ -100,7 +100,7 @@ const FeaturedContainer = (props) => {
 
                             <SeatNumber><GridTitle>Seats</GridTitle> {item.seatNumber}</SeatNumber>
 
-                            <Price><GridTitleStrong/>{item.price} / day</Price>
+                            <Price><GridTitleStrong/>{item.price} HUF / day</Price>
                         </FeaturedSingleElementContainer>)}
 
 
