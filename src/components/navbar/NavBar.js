@@ -12,7 +12,7 @@ import {dataHandler} from "../../services/Data_handler";
 
 
 const NavBar = () => {
-    const baseUrl = "http://localhost:8080/share-n-drive/customer/5";
+    const baseUrl = "http://localhost:8080/share-n-drive/getFirstCustomer";
     const [showMenu, setShowMenu] = useState(false);
     const [isToggled, setIsToggled] = useState('none');
     const [user, setUser] = useState({})
