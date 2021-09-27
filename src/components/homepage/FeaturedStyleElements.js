@@ -11,7 +11,6 @@ export const FeaturedSingleElementContainer = styled.div`
     "thumbnail category bodyType seatNumber price";
   justify-content: center;
   height: 100%;
-  width: 80vw;
   padding: 1rem;
 `;
 export const Thumbnail = styled.img`
@@ -43,15 +42,6 @@ export const CarType = styled.div`
   align-items: center;
   justify-content: center;
   grid-area: carType;
-`;
-export const Brand = styled.div`
-  border-bottom: 2px solid var(--clr-primary-300);
-  font-size: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  grid-area: brand;
 `;
 export const FuelType = styled.div`
   display: flex;
