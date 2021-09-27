@@ -18,15 +18,20 @@ import {FeaturedCarsContainer} from "./HomeStyledElements";
 import {
     BodyType,
     CarType,
-    Category,
+    Color,
+    Doors,
     FeaturedSingleElementContainer,
     FuelType,
     GridTitle,
     GridTitleStrong,
+    Licence,
+    OldPrice,
     Price,
+    Rating,
     SeatNumber,
     Thumbnail,
-    Title
+    Title,
+    TransmissionType
 } from "./FeaturedStyleElements";
 import {dataHandler} from "../../services/Data_handler";
 import {Error} from "../PageSyledElements/MainContainer";
@@ -73,9 +78,10 @@ const FeaturedContainer = (props) => {
 
     useEffect(() => {
         dataHandler._api_get(url, setFeaturedCars, setError)
+
     }, []);
 
-
+    console.log(featuredCars)
     return (
         <FeaturedCarsContainer>
             {!error ? (
@@ -92,16 +98,41 @@ const FeaturedContainer = (props) => {
                     {featuredCars.map(item =>
                         <FeaturedSingleElementContainer key={item.id}>
                             <Thumbnail src={getPicture(item.title)}/>
-                            <CarType><GridTitle>Type</GridTitle>{item.carType}</CarType>
+                            <CarType>
+                                <GridTitle>Type</GridTitle>{item.carType}
+                            </CarType>
                             <Title>{item.brand} {item.title}</Title>
-                            <FuelType><GridTitle>Fuel type</GridTitle>{item.fuelType}</FuelType>
-                            <BodyType><GridTitle>Body Type</GridTitle>{item.bodyType}</BodyType>
-                            <Category><GridTitleStrong>Licence plate</GridTitleStrong> {item.licencePlate}</Category>
-
-                            <SeatNumber><GridTitle>Seats</GridTitle> {item.seatNumber}</SeatNumber>
-
-                            <Price><GridTitleStrong/>{item.price} HUF / day</Price>
-                        </FeaturedSingleElementContainer>)}
+                            <FuelType>
+                                <GridTitle>Fuel type</GridTitle>{item.fuelType}
+                            </FuelType>
+                            <BodyType>
+                                <GridTitle>Body Type</GridTitle>{item.bodyType}
+                            </BodyType>
+                            <SeatNumber>
+                                <GridTitle>Seats</GridTitle> {item.seatNumber}
+                            </SeatNumber>
+                            <Doors>
+                                <GridTitle>Doors</GridTitle> {item.doors}
+                            </Doors>
+                            <Color>
+                                <GridTitle>Color</GridTitle> {item.color}
+                            </Color>
+                            <Licence>
+                                <GridTitle>Licence Plate</GridTitle> {item.licencePlate}
+                            </Licence>
+                            <Rating>
+                                <GridTitle>Rating</GridTitle> {item.rating}
+                            </Rating>
+                            <TransmissionType>
+                                <GridTitle>Transmission</GridTitle> {item.transmission}
+                            </TransmissionType>
+                            <Price>
+                                <OldPrice>{item.price * 1.2}HUF / day</OldPrice>
+                                <GridTitleStrong>{item.price} HUF / day</GridTitleStrong>
+                                <span>Price for rental period</span>
+                            </Price>
+                        </FeaturedSingleElementContainer>
+                    )}
 
 
                 </Carousel>
