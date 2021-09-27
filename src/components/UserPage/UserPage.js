@@ -13,13 +13,7 @@ import {
 } from "./UserPageStyledElements";
 import AvatarPic from "../../assets/img/avatar.png"
 import {HeroSubTitle, HeroTitle} from "../homepage/HomeStyledElements";
-import {
-    CarCard,
-    CardDetails,
-    CardThumbnail,
-    CardTitle,
-    FilteredSingleElementContainer
-} from "../homepage/FilteredStyleElements";
+import {CarCard, CardDetails, CardThumbnail, CardTitle,} from "../homepage/FilteredStyleElements";
 import {ComponentAddress, ComponentBasic, ComponentContact, ComponentStatic} from "./UserEdit";
 import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "../homepage/FeaturedContainer";
@@ -102,15 +96,15 @@ const UserPage = (props) => {
                     <HeroSubTitle>Share your cars now!</HeroSubTitle>
                     <UserCars>
                         {user.cars.map((car) =>
-                            <FilteredSingleElementContainer key={car.id}>
-                                <CarCard>
-                                    <CardThumbnail img={getPicture(car.title)}/>
-                                    <CardDetails>
-                                        <CardTitle>{car.brand} {car.title}</CardTitle>
-                                        {car.carType} <br/> {car.fuel} <br/> {car.category}
-                                    </CardDetails>
-                                </CarCard>
-                            </FilteredSingleElementContainer>)}
+
+                            <CarCard key={car.id}>
+                                <CardThumbnail img={getPicture(car.title)}/>
+                                <CardDetails>
+                                    <CardTitle>{car.brand} {car.title}</CardTitle>
+                                    {car.carType} <br/> {car.fuel} <br/> {car.category}
+                                </CardDetails>
+                            </CarCard>
+                        )}
                     </UserCars>
                     <HeroTitle>{user.userName}'s Calendar</HeroTitle>
                     <UserCalendar/>

@@ -7,13 +7,7 @@ export const FilteredCarsContainer = styled.div`
   justify-content: space-evenly;
   gap: 1vw;
   grid-area: FilteredItems;
-  border: 1px solid var(--clr-primary-100);
-
-`;
-export const FilteredSingleElementContainer = styled.div`
-  margin: 1rem;
-  border: 1px solid var(--clr-primary-100);
-
+  background-color: var(--clr-primary-200);
 `;
 
 
@@ -31,6 +25,7 @@ export const FilterCars = styled.div`
 `;
 export const FilterButtons = styled.div`
   grid-area: FilterButtons;
+  background-color: var(--clr-primary-100);
 `;
 
 
@@ -47,20 +42,39 @@ export const FilterHeroTitle = styled.div`
   color: var(--clr-primary-500);
 
 `;
+export const CardDetails = styled.div`
+  text-align: center;
+  top: 0;
+  width: auto;
+  padding: 1rem;
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--clr-primary-100);
 
+`;
 export const FilterOption = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 1rem;
+
 `;
 
 export const CarCard = styled.div`
   transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  margin: 1rem;
+  border: 2px solid var(--clr-dark);
 
   :hover, :focus-within {
+    box-shadow: rgba(6, 24, 44, 0.4) 0 0 0 2px,
+    rgba(6, 24, 44, 0.65) 0 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0 1px 0 inset;
     transform: translateY(-10px);
     transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  :hover ${CardDetails}, :focus-within ${CardDetails} {
+    background-color: var(--clr-primary-300);
   }
 
   cursor: pointer;
@@ -70,7 +84,6 @@ export const CarCard = styled.div`
   justify-content: center;
   width: 20vw;
   min-width: 20vw;
-  border: 3px solid var(--clr-primary-300);
 `;
 
 export const CardThumbnail = styled.div`
@@ -92,16 +105,8 @@ export const CardSubTitle = styled.div`
   font-size: 1.3rem;
 `;
 export const AddBookingButton = styled.button`
+  cursor: pointer;
   color: var(--clr-primary-500);
   font-size: 1.3rem;
 `;
 
-export const CardDetails = styled.div`
-  text-align: center;
-  top: 0;
-  width: auto;
-  padding: 1rem;
-  font-size: 2rem;
-  background-color: rgba(0, 0, 0, 0.3);
-  color: var(--clr-primary-100);
-`;

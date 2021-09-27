@@ -2,7 +2,7 @@ export const selectStyle = {
     control: styles => ({
         ...styles,
         fontFamily: 'var(--ff-body-bold)',
-        backgroundColor: 'var(--clr-primary-200)',
+        backgroundColor: 'white',
         color: 'var(--clr-primary-500)',
         fontSize: '1.2rem',
         padding: '0.3rem',
@@ -39,7 +39,7 @@ export const customColorStyle = {
     control: styles => ({
         ...styles,
         fontFamily: 'var(--ff-body-bold)',
-        backgroundColor: 'var(--clr-primary-200)',
+        backgroundColor: 'white',
         color: 'var(--clr-primary-500)',
         fontSize: '1.2rem',
         padding: '0.3rem',

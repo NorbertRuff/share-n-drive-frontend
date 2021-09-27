@@ -6,12 +6,13 @@ export const FeaturedSingleElementContainer = styled.div`
   grid-template-columns: 1.5fr 0.8fr 0.5fr 0.5fr 0.8fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas: 
-    "thumbnail title title title brand"
-    "thumbnail category carType fuelType price"
+    "thumbnail title title brand carType"
+    "thumbnail category . fuelType price"
     "thumbnail category bodyType seatNumber price";
   justify-content: center;
   height: 100%;
   width: 80vw;
+  padding: 1rem;
 `;
 export const Thumbnail = styled.img`
   object-fit: cover;

@@ -9,7 +9,6 @@ import {
     FilterButtons,
     FilterCars,
     FilteredCarsContainer,
-    FilteredSingleElementContainer,
     FilterHeroTitle,
     FilterOption
 } from "./FilteredStyleElements";
@@ -145,17 +144,16 @@ const FilteredContainer = (props) => {
                     </FilterButtons>
                     <FilteredCarsContainer>
                         {filteredCars.map((car) =>
-                            <FilteredSingleElementContainer key={car.id}>
-                                <CarCard>
-                                    <CardThumbnail img={getPicture(car.title)}/>
-                                    <CardDetails>
-                                        <CardTitle>{car.brand} {car.title}</CardTitle>
-                                        <CardSubTitle>{car.bodyType} </CardSubTitle>
-                                        <CardSubTitle>{car.fuelType} </CardSubTitle>
-                                    </CardDetails>
-                                    <AddBookingButton onClick={() => bookCar(car.id) }>Book this car</AddBookingButton>
-                                </CarCard>
-                            </FilteredSingleElementContainer>)}
+                            <CarCard key={car.id}>
+                                <CardThumbnail img={getPicture(car.title)}/>
+                                <CardDetails>
+                                    <CardTitle>{car.brand} {car.title}</CardTitle>
+                                    <CardSubTitle>{car.bodyType} </CardSubTitle>
+                                    <CardSubTitle>{car.fuelType} </CardSubTitle>
+                                </CardDetails>
+                                <AddBookingButton onClick={() => bookCar(car.id)}>Book this car</AddBookingButton>
+                            </CarCard>
+                        )}
                     </FilteredCarsContainer>
                 </FilterCars>) : (
                 <Error>An error occurred while fetching information. Please try again later!</Error>)}</>
