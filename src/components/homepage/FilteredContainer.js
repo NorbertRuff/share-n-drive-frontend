@@ -18,18 +18,12 @@ import makeAnimated from "react-select/animated/dist/react-select.esm";
 import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "./FeaturedContainer";
 import {Error} from "../PageSyledElements/MainContainer";
+import {customColorStyle, selectStyle} from "../../contexts/SelectStyles";
 
 
 const animatedComponents = makeAnimated();
 
-const selectStyle = {
-    control: styles => ({
-        ...styles,
-        backgroundColor: 'var(--clr-primary-200)',
-        color: 'white',
-        fontSize: '1.3rem'
-    }),
-}
+
 const bookCar = (carId) => {
 
     console.log("in book car")
@@ -43,7 +37,6 @@ const bookCar = (carId) => {
         bookingData, console.log, console.log);
 }
 let queryData = {}
-
 const FilteredContainer = (props) => {
 
     const [ColorOptions, setColorOptions] = useState();
@@ -107,12 +100,13 @@ const FilteredContainer = (props) => {
                                 components={animatedComponents}
                                 isMulti
                                 options={CarmakerOptions}/>
+
                         </FilterOption>
                         <FilterOption>
                             <h2>Color</h2>
                             <Select closeMenuOnSelect={false}
                                     onChange={event => handleChange("color", event)}
-                                    styles={selectStyle}
+                                    styles={customColorStyle}
                                     components={animatedComponents}
                                     isMulti
                                     options={ColorOptions}/>
