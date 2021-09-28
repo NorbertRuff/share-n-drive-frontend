@@ -9,7 +9,7 @@ export const FeaturedSingleElementContainer = styled.div`
     "thumbnail title title title title title"
     "thumbnail bodyType fuelType transmissionType rating carType"
     "thumbnail seatNumber doors color licence carType"
-    "thumbnail price price price price carType";
+    "thumbnail price price price price price";
   justify-content: center;
   width: 100%;
   height: 100%;

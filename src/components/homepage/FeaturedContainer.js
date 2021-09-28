@@ -75,68 +75,73 @@ const FeaturedContainer = (props) => {
     const [error, setError] = useState(false);
     const url = "http://localhost:8080/share-n-drive/filter/all";
     const [featuredCars, setFeaturedCars] = useState([]);
+    const [loading, setLoading] = useState(false);
+
 
     useEffect(() => {
-        dataHandler._api_get(url, setFeaturedCars, setError)
-
+        dataHandler._api_get(url, setFeaturedCars, setError, setLoading)
     }, []);
 
-    console.log(featuredCars)
+
+    if (loading) {
+        return <p>Data is loading...</p>;
+    }
+
+    if (error) {
+        return <Error>An error occurred while fetching information. Please try again later!</Error>;
+    }
+
     return (
         <FeaturedCarsContainer>
-            {!error ? (
-                <Carousel
-                    itemsToShow={1}
-                    focusOnSelect={true}
-                    enableAutoPlay autoPlaySpeed={4000}
-                    onChange={(pageIndex) => {
-                        if (pageIndex === 2) {
-                        }
+            <Carousel
+                itemsToShow={1}
+                focusOnSelect={true}
+                enableAutoPlay autoPlaySpeed={4000}
+                onChange={(pageIndex) => {
+                    if (pageIndex === 2) {
                     }
-                    }
-                >
-                    {featuredCars.map(item =>
-                        <FeaturedSingleElementContainer key={item.id}>
-                            <Thumbnail src={getPicture(item.title)}/>
-                            <CarType>
-                                <GridTitle>Type</GridTitle>{item.carType}
-                            </CarType>
-                            <Title>{item.brand} {item.title}</Title>
-                            <FuelType>
-                                <GridTitle>Fuel type</GridTitle>{item.fuelType}
-                            </FuelType>
-                            <BodyType>
-                                <GridTitle>Body Type</GridTitle>{item.bodyType}
-                            </BodyType>
-                            <SeatNumber>
-                                <GridTitle>Seats</GridTitle> {item.seatNumber}
-                            </SeatNumber>
-                            <Doors>
-                                <GridTitle>Doors</GridTitle> {item.doors}
-                            </Doors>
-                            <Color>
-                                <GridTitle>Color</GridTitle> {item.color}
-                            </Color>
-                            <Licence>
-                                <GridTitle>Licence Plate</GridTitle> {item.licencePlate}
-                            </Licence>
-                            <Rating>
-                                <GridTitle>Rating</GridTitle> {item.rating}
-                            </Rating>
-                            <TransmissionType>
-                                <GridTitle>Transmission</GridTitle> {item.transmission}
-                            </TransmissionType>
-                            <Price>
-                                <OldPrice>{item.price * 1.2}HUF / day</OldPrice>
-                                <GridTitleStrong>{item.price} HUF / day</GridTitleStrong>
-                                <span>Price for rental period</span>
-                            </Price>
-                        </FeaturedSingleElementContainer>
-                    )}
-
-
-                </Carousel>
-            ) : (<Error>An error occurred while fetching information. Please try again later!</Error>)}
+                }
+                }
+            >
+                {featuredCars.map(item =>
+                    <FeaturedSingleElementContainer key={item.id}>
+                        <Thumbnail src={getPicture(item.title)}/>
+                        <CarType>
+                            <GridTitle>Type</GridTitle>{item.carType}
+                        </CarType>
+                        <Title>{item.brand} {item.title}</Title>
+                        <FuelType>
+                            <GridTitle>Fuel type</GridTitle>{item.fuelType}
+                        </FuelType>
+                        <BodyType>
+                            <GridTitle>Body Type</GridTitle>{item.bodyType}
+                        </BodyType>
+                        <SeatNumber>
+                            <GridTitle>Seats</GridTitle> {item.seatNumber}
+                        </SeatNumber>
+                        <Doors>
+                            <GridTitle>Doors</GridTitle> {item.doors}
+                        </Doors>
+                        <Color>
+                            <GridTitle>Color</GridTitle> {item.color}
+                        </Color>
+                        <Licence>
+                            <GridTitle>Licence Plate</GridTitle> {item.licencePlate}
+                        </Licence>
+                        <Rating>
+                            <GridTitle>Rating</GridTitle> {item.rating}
+                        </Rating>
+                        <TransmissionType>
+                            <GridTitle>Transmission</GridTitle> {item.transmission}
+                        </TransmissionType>
+                        <Price>
+                            <OldPrice>{item.price * 1.2}HUF / day</OldPrice>
+                            <GridTitleStrong>{item.price} HUF / day</GridTitleStrong>
+                            <span>Price for rental period</span>
+                        </Price>
+                    </FeaturedSingleElementContainer>
+                )}
+            </Carousel>
         </FeaturedCarsContainer>
     );
 }
