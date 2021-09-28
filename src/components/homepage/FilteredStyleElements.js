@@ -17,7 +17,7 @@ export const FilterCars = styled.div`
   margin: 3rem 0;
   background-color: white;
   color: black;
-  grid-template-columns: 20vw 1fr;
+  grid-template-columns: 20% auto;
   grid-template-areas: 
     "heroTitle heroTitle heroTitle"
     "FilterButtons FilteredItems FilteredItems"
@@ -83,6 +83,7 @@ export const CarCard = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 20vw;
+  height: max-content;
   min-width: 20vw;
 `;
 
@@ -108,5 +109,12 @@ export const AddBookingButton = styled.button`
   cursor: pointer;
   color: var(--clr-primary-500);
   font-size: 1.3rem;
+  padding: 0.2rem;
+  margin: 0.5rem;
+
+  :hover, :focus-within {
+    color: var(--clr-primary-100);
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 `;
 
