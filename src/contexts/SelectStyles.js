@@ -6,6 +6,7 @@ export const selectStyle = {
         color: 'var(--clr-primary-500)',
         fontSize: '1.2rem',
         padding: '0.3rem',
+        maxWidth: '400px'
     }),
     option: (styles, {data, isDisabled, isFocused, isSelected}) => ({
         ...styles,

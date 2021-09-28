@@ -1,31 +1,50 @@
 import styled from "styled-components";
 
 export const FilteredCarsContainer = styled.div`
-
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 1vw;
   grid-area: FilteredItems;
   background-color: var(--clr-primary-200);
+  width: 100%;
 `;
 
 
-export const FilterCars = styled.div`
+export const FilterCarsMainContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  display: grid;
-  margin: 3rem 0;
-  background-color: white;
+  display: flex;
+  margin-bottom: 3rem;
+  justify-content: space-between;
   color: black;
-  grid-template-columns: 20% auto;
-  grid-template-areas: 
-    "heroTitle heroTitle heroTitle"
-    "FilterButtons FilteredItems FilteredItems"
-    "FilterButtons FilteredItems FilteredItems";
 `;
-export const FilterButtons = styled.div`
-  grid-area: FilterButtons;
+
+export const FilterButtonsContainer = styled.div`
   background-color: var(--clr-primary-100);
+  display: flex;
+  justify-content: space-between;
+  height: max-content;
+`;
+
+export const FilterOptions = styled.div`
+  background-color: var(--clr-primary-100);
+  width: auto;
+  display: ${({display}) => display};
+
+`;
+
+export const FilterCloseButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  cursor: pointer;
+  background-color: var(--clr-primary-100);
+  font-size: 3rem;
+
+  :hover {
+    color: var(--clr-primary-500);
+  }
 `;
 
 
@@ -33,7 +52,6 @@ export const FilterHeroTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  grid-area: heroTitle;
   font-size: 3rem;
   font-family: var(--ff-heading-light);
   background-color: var(--clr-primary-300);
@@ -57,13 +75,17 @@ export const FilterOption = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   padding: 1rem;
+  min-width: 20vw;
+`;
 
+export const FilterOptionLabel = styled.h2`
 `;
 
 export const CarCard = styled.div`
   transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
   margin: 1rem;
   border: 2px solid var(--clr-dark);
+  min-width: 300px;
 
   :hover, :focus-within {
     box-shadow: rgba(6, 24, 44, 0.4) 0 0 0 2px,
@@ -84,7 +106,6 @@ export const CarCard = styled.div`
   justify-content: center;
   width: 20vw;
   height: max-content;
-  min-width: 20vw;
 `;
 
 export const CardThumbnail = styled.div`
