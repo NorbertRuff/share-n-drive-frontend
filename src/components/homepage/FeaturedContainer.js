@@ -19,6 +19,7 @@ import {
     BodyType,
     CarType,
     Color,
+    ColorIcon,
     Doors,
     FeaturedSingleElementContainer,
     FuelType,
@@ -35,6 +36,12 @@ import {
 } from "./FeaturedStyleElements";
 import {dataHandler} from "../../services/Data_handler";
 import {Error} from "../PageSyledElements/MainContainer";
+import {FaGasPump, FaStar} from "react-icons/fa";
+import {GiCarDoor, GiCarSeat, GiPriceTag} from "react-icons/gi";
+import {BsFillGearFill} from "react-icons/bs";
+import {ImBarcode} from "react-icons/im";
+import {IoCar} from "react-icons/io5";
+import {HiOutlineColorSwatch} from "react-icons/hi";
 
 export const getPicture = (title) => {
     switch (title) {
@@ -111,30 +118,31 @@ const FeaturedContainer = (props) => {
                         </CarType>
                         <Title>{item.brand} {item.title}</Title>
                         <FuelType>
-                            <GridTitle>Fuel type</GridTitle>{item.fuelType}
+                            <GridTitle><FaGasPump/></GridTitle>{item.fuelType}
                         </FuelType>
                         <BodyType>
-                            <GridTitle>Body Type</GridTitle>{item.bodyType}
+                            <GridTitle><IoCar/></GridTitle>{item.bodyType}
                         </BodyType>
                         <SeatNumber>
-                            <GridTitle>Seats</GridTitle> {item.seatNumber}
+                            <GridTitle><GiCarSeat/></GridTitle> {item.seatNumber}
                         </SeatNumber>
                         <Doors>
-                            <GridTitle>Doors</GridTitle> {item.doors}
+                            <GridTitle><GiCarDoor/></GridTitle> {item.doors}
                         </Doors>
                         <Color>
-                            <GridTitle>Color</GridTitle> {item.color}
+                            <GridTitle><HiOutlineColorSwatch/></GridTitle> <ColorIcon
+                            color={item.color}/>{item.color}
                         </Color>
                         <Licence>
-                            <GridTitle>Licence Plate</GridTitle> {item.licencePlate}
+                            <GridTitle><ImBarcode/></GridTitle> {item.licencePlate}
                         </Licence>
                         <Rating>
-                            <GridTitle>Rating</GridTitle> {item.rating}
+                            <GridTitle><FaStar/></GridTitle> {item.rating}
                         </Rating>
                         <TransmissionType>
-                            <GridTitle>Transmission</GridTitle> {item.transmission}
+                            <GridTitle><BsFillGearFill/></GridTitle> {item.transmission}
                         </TransmissionType>
-                        <Price>
+                        <Price><GridTitle><GiPriceTag/></GridTitle>
                             <OldPrice>{item.price * 1.2}HUF / day</OldPrice>
                             <GridTitleStrong>{item.price} HUF / day</GridTitleStrong>
                             <span>Price for rental period</span>
