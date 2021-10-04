@@ -11,13 +11,13 @@ import {
 } from "./NavbarStyledElements";
 import {dataHandler} from "../../services/Data_handler";
 import {FaUserCircle} from "react-icons/fa";
+import {ErrorDiv} from "../PageSyledElements/MainContainer";
 
 
 const NavBar = () => {
     const baseUrl = "http://localhost:8080/share-n-drive/getFirstCustomer";
     const [showMenu, setShowMenu] = useState(false);
     const [isToggled, setIsToggled] = useState('none');
-    // const [user, setUser] = useState({userName: "Marta"})
     const [user, setUser] = useState()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
@@ -37,12 +37,14 @@ const NavBar = () => {
         dataHandler._api_get(baseUrl, setUser, setError, setLoading)
     }, [])
 
-    function getUserName() {
-        if (user) {
-            return (<h1>Login / register</h1>)
-        } else {
-            return (<h1>Login / register</h1>)
-        }
+    console.log(user)
+
+    if (loading) {
+        return <p>Data is loading...</p>;
+    }
+
+    if (error) {
+        return <ErrorDiv>An error occurred while fetching information. Please try again later!</ErrorDiv>;
     }
 
     return (
@@ -51,8 +53,8 @@ const NavBar = () => {
             <CompanyName>Share&Drive</CompanyName>
             <div/>
             <NavbarUser>{
-                user ? <UserButton to="/user" title="User">{user.userName}</UserButton> :
-                    <UserButton to="/register" title="UserControl">Login / UserControl</UserButton>}
+                user ? <UserButton to="/user" title="User">{user.username}</UserButton> :
+                    <UserButton to="/register" title="UserControl">Login / Register</UserButton>}
             </NavbarUser>
             <UserLogo onClick={dropMenu}><FaUserCircle/>
                 {showMenu ? (
