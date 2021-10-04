@@ -1,13 +1,27 @@
 import axios from 'axios';
 
+let getLocalstorage = () => {
+    if (localStorage.getItem('token') !== null) {
+        return `Bearer ${localStorage.getItem('token')}`;
+    } else {
+        return "";
+    }
+}
+
+let config = {
+    method: 'GET',
+    credentials: 'same-origin',
+    ContentType: "application/x-www-form-urlencoded",
+    headers: {
+        authorization: getLocalstorage(),
+    }
+}
+
 export let dataHandler = {
     _data: {},
     _api_get: function (url, callback, errorCallback, loadingCallback) {
         axios
-            .get(url, {
-                method: 'GET',
-                credentials: 'same-origin'
-            })
+            .get(url, config)
             .then((response) => {
                 callback(response.data);
             })
