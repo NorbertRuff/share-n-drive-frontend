@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 import MainLogo from "../../assets/img/logo2.png"
-import UserLogoPic from "../../assets/img/user.png"
 
 
 export const Logo = styled(NavLink)`
@@ -15,11 +14,15 @@ export const Logo = styled(NavLink)`
 
 `;
 
-export const NavbarUserName = styled.div`
+export const NavbarUser = styled.div`
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-end;
   align-items: center;
+`;
+
+export const UserButton = styled(NavLink)`
+  font-family: var(--ff-body-bold);
 `;
 
 export const CompanyName = styled.div`
@@ -52,13 +55,9 @@ export const DropdownMenuItem = styled(NavLink)`
 `;
 
 export const UserLogo = styled.div`
-
-  padding: 1rem;
-  background-image: url(${UserLogoPic});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 80%;
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
   cursor: pointer;
 `;
 
