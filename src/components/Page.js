@@ -8,6 +8,7 @@ import Footer from "./footer/Footer";
 import Cars from "./Cars/Cars";
 import UserPage from "./UserPage/UserPage";
 import AddCar from './addCar/AddCar';
+import UserControl from "./UserControl/UserControl";
 
 const Page = () => {
     return (
@@ -34,6 +35,11 @@ const Page = () => {
                         <Route
                             path="/add-car"
                             render={(props) => <AddCar {...props}/>}
+                            exact
+                        />
+                        <Route
+                            path="/register"
+                            render={(props) => <UserControl {...props}/>}
                             exact
                         />
                     </Switch>
