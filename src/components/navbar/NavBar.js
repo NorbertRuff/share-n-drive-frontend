@@ -12,11 +12,12 @@ import {dataHandler} from "../../services/Data_handler";
 
 
 const NavBar = () => {
-    const baseUrl = "http://localhost:8080/share-n-drive/customer/5";
+    const baseUrl = "http://localhost:8080/share-n-drive/getFirstCustomer";
     const [showMenu, setShowMenu] = useState(false);
     const [isToggled, setIsToggled] = useState('none');
     const [user, setUser] = useState({})
-    const [error, setError] = useState({})
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
 
     const dropMenu = () => {
         if (showMenu) {
@@ -30,14 +31,17 @@ const NavBar = () => {
     };
 
     useEffect(() => {
-        dataHandler._api_get(baseUrl, setUser, setError)
+        dataHandler._api_get(baseUrl, setUser, setError, setLoading)
     }, [])
+
     return (
         <NavBarContainer>
             <Logo data-testid="logo" to="/" title="Home"/>
             <CompanyName>Share&Drive</CompanyName>
             <div/>
-            <NavbarUserName>{!error ? "" : user.userName}</NavbarUserName>
+            <NavbarUserName>{
+                error || loading ? "" : user.userName
+            }</NavbarUserName>
             <UserLogo onClick={dropMenu}>
                 {showMenu ? (
                     <DropdownMenu>
