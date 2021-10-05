@@ -73,13 +73,9 @@ export let dataHandler = {
     },
     _api_post: function (url, data, callback, errorCallback) {
         axios
-            .post(url, data)
+            .post(url, data, config)
             .then(response => {
-                if (!response.status>400) {
-                    throw new Error('Network response was not ok');
-                } else {
-                    callback(response.data);
-                }
+                callback(response.data);
             })
             .catch((error) => {
                 errorCallback(error.message);
