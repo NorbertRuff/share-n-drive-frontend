@@ -28,7 +28,7 @@ const UserPage = (props) => {
     const [user, setUser] = useState({
         firstName: "",
         lastName: "",
-        userName: "",
+        username: "",
         email: "",
         phone: "",
         address: {
@@ -99,7 +99,7 @@ const UserPage = (props) => {
                     {getComponent()}
                 </Details>
             </UserProfileDetails>
-            <HeroTitle> {user.userName}'s Cars</HeroTitle>
+            <HeroTitle> {user.username}'s Cars</HeroTitle>
             <HeroSubTitle>Share your cars now!</HeroSubTitle>
             <UserCars>
                 {user.cars.map((car) =>
@@ -113,7 +113,7 @@ const UserPage = (props) => {
                     </CarCard>
                 )}
             </UserCars>
-            <HeroTitle>{user.userName}'s Calendar</HeroTitle>
+            <HeroTitle>{user.username}'s Calendar</HeroTitle>
             <UserCalendar/>
         </UserProfileContainer>
 

@@ -1,17 +1,10 @@
 import React, {useState} from 'react';
-import {
-    Ghost,
-    LoginOverlayPanel,
-    LoginWrapper,
-    OverlayContainer,
-    RegisterOverlayPanel,
-    UserControlContainer
-} from "./UserControlStyledElements";
+import {Ghost, LoginWrapper, OverlayPanel, UserControlContainer} from "./UserControlStyledElements";
 import Login from "./Login";
 import Register from "./Register";
 
 
-const UserControl = () => {
+const UserControl = (props) => {
 
     const [leftPanelActive, setLeftPanelActive] = useState(false)
     const [rightPanelActive, setRightPanelActive] = useState(true)
@@ -25,21 +18,16 @@ const UserControl = () => {
     return (
         <UserControlContainer>
             <LoginWrapper>
-                <Login/>
+                <Login {...props} setUser={props.setter}/>
                 <Register/>
-                <OverlayContainer>
-                    <LoginOverlayPanel opacity={rightPanelActive ? "flex" : "none"}>
-                        <h1>Hello! New here?</h1>
-                        <p>Register</p>
-                        <Ghost id="signIn" onClick={handleClick}>Sign Up</Ghost>
-                    </LoginOverlayPanel>
-                    <RegisterOverlayPanel opacity={leftPanelActive ? "flex" : "none"}>
-                        <h1>Hello!</h1>
-                        <h1>Welcome Back!</h1>
-                        <p>Login</p>
-                        <Ghost id="signUp" onClick={handleClick}>Sign In</Ghost>
-                    </RegisterOverlayPanel>
-                </OverlayContainer>
+                <OverlayPanel pos={leftPanelActive ? 0 : 100}
+                              color={leftPanelActive ? "var(--clr-primary-300)" : "var(--clr-primary-400)"}
+                              fontColor={leftPanelActive ? "var(--clr-primary-500)" : "var(--clr-primary-200)"}>
+                    <h1>{leftPanelActive ? "Hello!" : "Hello!"}</h1>
+                    <h2>{leftPanelActive ? "Welcome Back!" : "New here?"}</h2>
+                    <p>{leftPanelActive ? "Login" : "Register"}</p>
+                    <Ghost id="signIn" onClick={handleClick}>{leftPanelActive ? "Sign in" : "Sign up"}</Ghost>
+                </OverlayPanel>
             </LoginWrapper>
         </UserControlContainer>)
 };

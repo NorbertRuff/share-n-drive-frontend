@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {Container, FormWrap, SocialContainer} from "./UserControlStyledElements";
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import {FaFacebook, FaGoogle, FaLinkedin} from "react-icons/fa";
 import {dataHandler} from "../../services/Data_handler";
 import {Error} from "../PageSyledElements/MainContainer";
 
 
-const Login = () => {
+const Login = (props) => {
     const [error, setError] = useState(false)
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
@@ -29,12 +29,24 @@ const Login = () => {
         }
     }
 
+    const history = useHistory();
+
+    function redirect() {
+        const timer = setTimeout(() => {
+            history.push("/");
+        }, 1500);
+        return () => {
+            clearTimeout(timer)
+        };
+
+    }
+
 
     let handleData = async result => {
-        console.log(result);
         localStorage.setItem('token', result["token"]);
         localStorage.setItem('username', result["username"]);
-        console.log(localStorage);
+        props.setUser(userName);
+        redirect()
     }
 
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Home from "./homepage/Home";
@@ -11,11 +11,15 @@ import AddCar from './addCar/AddCar';
 import UserControl from "./UserControl/UserControl";
 
 const Page = () => {
+
+    const [userName, setUserName] = useState("")
+
+
     return (
         <React.Fragment>
             <BrowserRouter>
                 <MainContainer data-testid="main-container">
-                    <NavBar/>
+                    <NavBar user={userName}/>
                     <Switch>
                         <Route
                             path="/"
@@ -39,7 +43,7 @@ const Page = () => {
                         />
                         <Route
                             path="/register"
-                            render={(props) => <UserControl {...props}/>}
+                            render={(props) => <UserControl {...props} setter={setUserName} user={userName}/>}
                             exact
                         />
                     </Switch>
