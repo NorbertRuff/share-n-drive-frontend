@@ -19,7 +19,7 @@ export const LoginWrapper = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  min-width: 70vw;
+  min-width: 650px;
   max-height: 650px;
   margin: 3rem;
 `;
@@ -35,7 +35,7 @@ export const SocialContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 40px;
 
   > * {
     padding: 1rem;
@@ -62,6 +62,11 @@ export const FormWrap = styled.form`
     width: 100%;
   }
 
+  h1 {
+    font-size: 3rem;
+    color: var(--clr-primary-500);
+  }
+
   button {
     border-radius: 20px;
     border: 1px solid var(--clr-primary-500);
@@ -81,63 +86,50 @@ export const FormWrap = styled.form`
 
 `;
 
-
-export const OverlayContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-content: space-between;
-  align-items: center;
-
-`;
-
-export const RegisterOverlayPanel = styled.div`
+export const OverlayPanel = styled.div`
   position: absolute;
   left: 0;
   top: 0;
   border: 1px solid var(--clr-primary-200);
-  background-color: var(--clr-primary-300);
-  min-height: 600px;
-  max-height: 650px;
-  width: 35vw;
-  display: ${(props) => props.opacity};
+  background-color: ${(props) => props.color};
+  color: ${(props) => props.fontColor};
+  height: 100%;
+  width: 50%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: translateX(${(props) => props.pos}%);
+  transition: all 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+
+  > p {
+    font-size: 2rem;
+    font-family: var(--ff-body-bold);
+    color: var(--clr-light);
+  }
+
+  > h1 {
+    font-size: 4rem;
+    font-family: var(--ff-body-bold);
+  }
+
+  > h2 {
+    font-size: 2rem;
+    font-family: var(--ff-body-bold);
+    color: var(--clr-dark);
+  }
 
   > * {
     padding: 1rem;
   }
 `;
-export const LoginOverlayPanel = styled.div`
-  position: absolute;
-  right: 0;
-  top: 0;
-  border: 1px solid var(--clr-primary-100);
-  background-color: var(--clr-primary-200);
-  width: 35vw;
-  min-height: 600px;
-  max-height: 650px;
-  display: ${(props) => props.opacity};
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  > * {
-    padding: 1rem;
-  }
-`;
-
 export const Ghost = styled.button`
   border-radius: 20px;
-  color: var(--clr-dark);
-  font-size: 12px;
+  color: var(--clr-primary-100);
+  font-size: 1rem;
   font-family: var(--ff-body-bold);
   padding: 12px 45px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   background-color: transparent;
   border-color: var(--clr-light);
