@@ -9,13 +9,11 @@ import {
     UserButton,
     UserLogo
 } from "./NavbarStyledElements";
-import {dataHandler} from "../../services/Data_handler";
 import {FaUserCircle} from "react-icons/fa";
 import {ErrorDiv} from "../PageSyledElements/MainContainer";
 
 
 const NavBar = () => {
-    const baseUrl = "http://localhost:8080/share-n-drive/getFirstCustomer";
     const [showMenu, setShowMenu] = useState(false);
     const [isToggled, setIsToggled] = useState('none');
     const [user, setUser] = useState()
@@ -34,10 +32,10 @@ const NavBar = () => {
     };
 
     useEffect(() => {
-        dataHandler._api_get(baseUrl, setUser, setError, setLoading)
-    }, [])
-
-    console.log(user)
+        if (localStorage.getItem('username')) {
+            setUser(localStorage.getItem('username'))
+        }
+    }, [user])
 
     if (loading) {
         return <p>Data is loading...</p>;
@@ -53,7 +51,7 @@ const NavBar = () => {
             <CompanyName>Share&Drive</CompanyName>
             <div/>
             <NavbarUser>{
-                user ? <UserButton to="/user" title="User">{user.username}</UserButton> :
+                user ? <UserButton to="/user" title="User">{user}</UserButton> :
                     <UserButton to="/register" title="UserControl">Login / Register</UserButton>}
             </NavbarUser>
             <UserLogo onClick={dropMenu}><FaUserCircle/>

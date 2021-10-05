@@ -91,7 +91,7 @@ export const OverlayContainer = styled.div`
   justify-content: space-between;
   align-content: space-between;
   align-items: center;
-  
+
 `;
 
 export const RegisterOverlayPanel = styled.div`

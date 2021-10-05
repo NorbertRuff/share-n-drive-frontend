@@ -46,7 +46,7 @@ const UserControl = () => {
                 username: userName,
                 password: password
             }
-            dataHandler._api_post("http://localhost:8080/auth/signin", dataHandler._data, setUserData, setError)
+            dataHandler._api_post("http://localhost:8080/share-n-drive/register", dataHandler._data, setUserData, setError)
             localStorage.setItem('token', userData.token);
         }
     }
@@ -54,8 +54,8 @@ const UserControl = () => {
     let handleData = async result => {
         console.log(result);
         localStorage.setItem('token', result["token"]);
+        localStorage.setItem('username', result["username"]);
         console.log(localStorage);
-
     }
 
     function handleLoginSubmit() {
