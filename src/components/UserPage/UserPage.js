@@ -18,7 +18,8 @@ import {
     CardDetails,
     CardThumbnail,
     CardTitle,
-    FilteredSingleElementContainer
+    FilteredSingleElementContainer,
+    DeleteCarBtn,
 } from "../homepage/FilteredStyleElements";
 import {ComponentAddress, ComponentBasic, ComponentContact, ComponentStatic} from "./UserEdit";
 import {dataHandler} from "../../services/Data_handler";
@@ -28,7 +29,7 @@ import {ErrorDiv} from "../PageSyledElements/MainContainer";
 const UserPage = (props) => {
     const baseUrl = "http://localhost:8080/share-n-drive/getFirstCustomer";
     const [error, setError] = useState();
-    const [menuItem, setMenuItem] = useState("static")
+    const [menuItem, setMenuItem] = useState("static");
 
     const [user, setUser] = useState({
         firstName: "",
@@ -46,6 +47,7 @@ const UserPage = (props) => {
         userAvatar: "",
         bookings: "",
         cars: [{
+            id: '',
             title: '',
             brand: '',
             bodyType: '',
@@ -58,10 +60,11 @@ const UserPage = (props) => {
         }]
     })
 
-
+    // TODO: 
+    // add dependency to refresh after car was deleted
+    // and bug fix at CustomerController on backend
     useEffect(() => {
         dataHandler._api_get(baseUrl, setUser, setError);
-
     }, [baseUrl]);
 
     const getComponent = () => {
@@ -77,6 +80,11 @@ const UserPage = (props) => {
             default:
                 return <ComponentStatic userDetails={user}/>;
         }
+    }
+
+    function sendDeleteRequest(id) {
+        const deleteUrl = `http://localhost:8080/share-n-drive/remove-car/${id}`;
+        dataHandler._api_delete(deleteUrl, setUser, setError);
     }
 
     return (
@@ -109,16 +117,18 @@ const UserPage = (props) => {
                                         <CardTitle>{car.brand} {car.title}</CardTitle>
                                         {car.carType} <br/> {car.fuel} <br/> {car.category}
                                     </CardDetails>
+                                    <DeleteCarBtn onClick={() => sendDeleteRequest(car.id) && car}>
+                                        Remove car
+                                    </DeleteCarBtn>
                                 </CarCard>
                             </FilteredSingleElementContainer>)}
                     </UserCars>
                     <HeroTitle>{user.userName}'s Calendar</HeroTitle>
                     <UserCalendar/>
                 </UserProfileContainer>
-            ) : (<ErrorDiv>An error occurred while fetching information. Please try again later!</ErrorDiv>)}</>
-
+            ) : (<ErrorDiv>An error occurred while fetching information. Please try again later!</ErrorDiv>)}
+        </>
     )
 };
-
 
 export default UserPage;
