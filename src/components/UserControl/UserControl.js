@@ -12,47 +12,65 @@ import {
 } from "./UserControlStyledElements";
 import {FaFacebook, FaGoogle, FaLinkedin} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
+import {dataHandler} from "../../services/Data_handler";
+import {ErrorDiv} from "../PageSyledElements/MainContainer";
 
 
 const UserControl = () => {
-    // const [loading, setLoading] = useState(false)
-    // const [error, setError] = useState(false)
+    const [error, setError] = useState(false)
+    const [userData, setUserData] = useState({})
+    const [userName, setUserName] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [password, setPassword] = useState("")
     const [leftPanelActive, setLeftPanelActive] = useState(false)
     const [rightPanelActive, setRightPanelActive] = useState(true)
-    const [fields, setFields] = useState({
-        email: "",
-        password: "",
-        confirmPassword: "",
-        confirmationCode: "",
-    });
 
-    function validateForm() {
+    function validateRegisterForm() {
         return (
-            fields.email.length > 0 &&
-            fields.password.length > 0 &&
-            fields.password === fields.confirmPassword
+            userName.length > 0 &&
+            password.length > 0 &&
+            confirmPassword === password
         );
     }
 
-    function handleSubmit() {
-        validateForm();
+    function validateLoginForm() {
+        return (
+            userName.length > 0 &&
+            password.length > 0
+        );
     }
 
-    const handleChange = (e) => {
-        const {id, value} = e.target
-        setFields(prevState => ({
-            ...prevState,
-            [id]: value
-        }))
+    function handleRegisterSubmit() {
+        if (validateRegisterForm()) {
+            dataHandler._data = {
+                username: userName,
+                password: password
+            }
+            dataHandler._api_post("http://localhost:8080/auth/signin", dataHandler._data, setUserData, setError)
+            localStorage.setItem('token', userData.token);
+        }
     }
 
-    // if (loading) {
-    //     return <p>Data is loading...</p>;
-    // }
-    //
-    // if (error) {
-    //     return <ErrorDiv>An error occurred while fetching information. Please try again later!</ErrorDiv>;
-    // }
+    let handleData = async result => {
+        console.log(result);
+        localStorage.setItem('token', result["token"]);
+        console.log(localStorage);
+
+    }
+
+    function handleLoginSubmit() {
+        if (validateLoginForm()) {
+            dataHandler._data = {
+                username: userName,
+                password: password
+            }
+            dataHandler._api_post("http://localhost:8080/auth/signin", dataHandler._data, handleData, setError);
+        }
+    }
+
+    if (error) {
+        return <ErrorDiv>An error occurred while fetching information. Please try again later!</ErrorDiv>;
+    }
 
     function handleClick() {
         leftPanelActive ? setLeftPanelActive(false) : setLeftPanelActive(true)
@@ -63,7 +81,7 @@ const UserControl = () => {
         <UserControlContainer>
             <LoginWrapper>
                 <Container>
-                    <FormWrap onSubmit={handleSubmit}>
+                    <FormWrap>
                         <h1>Sign in</h1>
                         <SocialContainer>
                             <NavLink to="/user" title="User"><FaFacebook/></NavLink>
@@ -71,25 +89,23 @@ const UserControl = () => {
                             <NavLink to="/user" title="User"><FaLinkedin/></NavLink>
                         </SocialContainer>
                         <span>or use your account</span>
-                        <input type="email"
+                        <input type="text"
                                id="login_email"
                                aria-describedby="emailHelp"
                                placeholder="Enter email"
-                               value={fields.email}
-                               onChange={handleChange}
+                               onChange={e => setUserName(e.target.value)}
                         />
                         <input type="password"
                                id="login_password"
                                placeholder="Password"
-                               value={fields.password}
-                               onChange={handleChange}
+                               onChange={e => setPassword(e.target.value)}
                         />
                         <NavLink to="/user" title="User">Forgot your password?</NavLink>
-                        <button type={"submit"}>Sign In</button>
+                        <button type={"button"} onClick={handleLoginSubmit}>Sign In</button>
                     </FormWrap>
                 </Container>
                 <Container>
-                    <FormWrap onSubmit={handleSubmit}>
+                    <FormWrap>
                         <h1>Create account</h1>
                         <SocialContainer>
                             <NavLink to="/user" title="User"><FaFacebook/></NavLink>
@@ -101,22 +117,21 @@ const UserControl = () => {
                                id="register_email"
                                aria-describedby="emailHelp"
                                placeholder="Enter email"
-                               value={fields.email}
-                               onChange={handleChange}
+                               onChange={e => setUserName(e.target.value)}
+
                         />
                         <input type="password"
                                id="register_password"
                                placeholder="Password"
-                               value={fields.password}
-                               onChange={handleChange}
+                               onChange={e => setPassword(e.target.value)}
+
                         />
                         <input type="password"
                                id="confirm_password"
                                placeholder="Confirm Password"
-                               value={fields.password}
-                               onChange={handleChange}
+                               onChange={e => setConfirmPassword(e.target.value)}
                         />
-                        <button type={"submit"}>Sign Up</button>
+                        <button type={"button"} onClick={handleRegisterSubmit}>Sign Up</button>
                     </FormWrap>
                 </Container>
 
