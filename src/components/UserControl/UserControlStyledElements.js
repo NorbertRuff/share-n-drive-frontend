@@ -14,13 +14,14 @@ export const LoginWrapper = styled.div`
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
   0 10px 10px rgba(0, 0, 0, 0.22);
-  width: 70vw;
   overflow: hidden;
-  min-height: 50vh;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  min-width: 70vw;
+  max-height: 650px;
+  margin: 3rem;
 `;
 
 export const Container = styled.div`
@@ -35,25 +36,27 @@ export const SocialContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 2rem;
+
   > * {
     padding: 1rem;
   }
 
   padding: 1rem;
 `;
+
 export const FormWrap = styled.form`
   background-color: #eee;
   padding: 1rem;
   margin: 1rem;
   display: flex;
-  min-width: 30vw;
+  width: 30vw;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 
   input {
     background-color: #eee;
-    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 12px 15px;
     margin: 1rem;
     width: 100%;
@@ -88,29 +91,23 @@ export const OverlayContainer = styled.div`
   justify-content: space-between;
   align-content: space-between;
   align-items: center;
-`;
-
-export const Overlay = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 80vw;
-  height: 70vh;
-
+  
 `;
 
 export const RegisterOverlayPanel = styled.div`
   position: absolute;
   left: 0;
-  top:0;
+  top: 0;
   border: 1px solid var(--clr-primary-200);
   background-color: var(--clr-primary-300);
+  min-height: 600px;
+  max-height: 650px;
   width: 35vw;
-  height: 70vh;
   display: ${(props) => props.opacity};
-  z-index: ${(props) => props.zindex};
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   > * {
     padding: 1rem;
   }
@@ -118,16 +115,17 @@ export const RegisterOverlayPanel = styled.div`
 export const LoginOverlayPanel = styled.div`
   position: absolute;
   right: 0;
-  top:0;
+  top: 0;
   border: 1px solid var(--clr-primary-100);
   background-color: var(--clr-primary-200);
-  width: 35vw;  
-  height: 70vh;
-   display: ${(props) => props.opacity};
-  z-index: ${(props) => props.zindex};
-  flex-direction: column; 
+  width: 35vw;
+  min-height: 600px;
+  max-height: 650px;
+  display: ${(props) => props.opacity};
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
   > * {
     padding: 1rem;
   }

@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {
     Container,
     FormWrap,
-    Ghost, LoginOverlayPanel,
+    Ghost,
+    LoginOverlayPanel,
     LoginWrapper,
-    Overlay,
     OverlayContainer,
-    Panel, RegisterOverlayPanel,
+    RegisterOverlayPanel,
     SocialContainer,
     UserControlContainer
 } from "./UserControlStyledElements";
@@ -120,19 +120,19 @@ const UserControl = () => {
                     </FormWrap>
                 </Container>
 
-            <OverlayContainer>
-                    <LoginOverlayPanel opacity={rightPanelActive ? "flex" : "none"} zindex={rightPanelActive ? "10" : "1"}>
+                <OverlayContainer>
+                    <LoginOverlayPanel opacity={rightPanelActive ? "flex" : "none"}>
                         <h1>Hello! New here?</h1>
                         <p>Register</p>
                         <Ghost id="signIn" onClick={handleClick}>Sign Up</Ghost>
                     </LoginOverlayPanel>
-                    <RegisterOverlayPanel opacity={leftPanelActive ? "flex" : "none"} zindex={leftPanelActive ? "1" : "10"}>
+                    <RegisterOverlayPanel opacity={leftPanelActive ? "flex" : "none"}>
                         <h1>Hello!</h1>
                         <h1>Welcome Back!</h1>
                         <p>Login</p>
                         <Ghost id="signUp" onClick={handleClick}>Sign In</Ghost>
                     </RegisterOverlayPanel>
-            </OverlayContainer>
+                </OverlayContainer>
             </LoginWrapper>
         </UserControlContainer>)
 };
