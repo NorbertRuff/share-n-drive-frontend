@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {
     Container,
     FormWrap,
-    Ghost,
+    Ghost, LoginOverlayPanel,
     LoginWrapper,
     Overlay,
     OverlayContainer,
-    Panel,
+    Panel, RegisterOverlayPanel,
     SocialContainer,
     UserControlContainer
 } from "./UserControlStyledElements";
@@ -17,6 +17,8 @@ import {NavLink} from "react-router-dom";
 const UserControl = () => {
     // const [loading, setLoading] = useState(false)
     // const [error, setError] = useState(false)
+    const [leftPanelActive, setLeftPanelActive] = useState(false)
+    const [rightPanelActive, setRightPanelActive] = useState(true)
     const [fields, setFields] = useState({
         email: "",
         password: "",
@@ -52,6 +54,11 @@ const UserControl = () => {
     //     return <ErrorDiv>An error occurred while fetching information. Please try again later!</ErrorDiv>;
     // }
 
+    function handleClick() {
+        leftPanelActive ? setLeftPanelActive(false) : setLeftPanelActive(true)
+        rightPanelActive ? setRightPanelActive(false) : setRightPanelActive(true)
+    }
+
     return (
         <UserControlContainer>
             <LoginWrapper>
@@ -65,14 +72,14 @@ const UserControl = () => {
                         </SocialContainer>
                         <span>or use your account</span>
                         <input type="email"
-                               id="email"
+                               id="login_email"
                                aria-describedby="emailHelp"
                                placeholder="Enter email"
                                value={fields.email}
                                onChange={handleChange}
                         />
                         <input type="password"
-                               id="password"
+                               id="login_password"
                                placeholder="Password"
                                value={fields.password}
                                onChange={handleChange}
@@ -90,21 +97,21 @@ const UserControl = () => {
                             <NavLink to="/user" title="User"><FaLinkedin/></NavLink>
                         </SocialContainer>
                         <span>or use Email</span>
-                        <input type="email"
-                               id="email"
+                        <input type="register_email"
+                               id="register_email"
                                aria-describedby="emailHelp"
                                placeholder="Enter email"
                                value={fields.email}
                                onChange={handleChange}
                         />
                         <input type="password"
-                               id="password"
+                               id="register_password"
                                placeholder="Password"
                                value={fields.password}
                                onChange={handleChange}
                         />
                         <input type="password"
-                               id="password"
+                               id="confirm_password"
                                placeholder="Confirm Password"
                                value={fields.password}
                                onChange={handleChange}
@@ -112,21 +119,21 @@ const UserControl = () => {
                         <button type={"submit"}>Sign Up</button>
                     </FormWrap>
                 </Container>
-            </LoginWrapper>
+
             <OverlayContainer>
-                <Overlay>
-                    <Panel>
+                    <LoginOverlayPanel opacity={rightPanelActive ? "flex" : "none"} zindex={rightPanelActive ? "10" : "1"}>
+                        <h1>Hello! New here?</h1>
+                        <p>Register</p>
+                        <Ghost id="signIn" onClick={handleClick}>Sign Up</Ghost>
+                    </LoginOverlayPanel>
+                    <RegisterOverlayPanel opacity={leftPanelActive ? "flex" : "none"} zindex={leftPanelActive ? "1" : "10"}>
+                        <h1>Hello!</h1>
                         <h1>Welcome Back!</h1>
-                        <p></p>
-                        <Ghost id="signIn">Sign In</Ghost>
-                    </Panel>
-                    <Panel>
-                        <h1>Hello</h1>
-                        <p></p>
-                        <Ghost id="signUp">Sign Up</Ghost>
-                    </Panel>
-                </Overlay>
+                        <p>Login</p>
+                        <Ghost id="signUp" onClick={handleClick}>Sign In</Ghost>
+                    </RegisterOverlayPanel>
             </OverlayContainer>
+            </LoginWrapper>
         </UserControlContainer>)
 };
 
