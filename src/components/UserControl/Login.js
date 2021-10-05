@@ -4,6 +4,7 @@ import {NavLink, useHistory} from "react-router-dom";
 import {FaFacebook, FaGoogle, FaLinkedin} from "react-icons/fa";
 import {dataHandler} from "../../services/Data_handler";
 import {Error} from "../PageSyledElements/MainContainer";
+import Swal from "sweetalert2";
 
 
 const Login = (props) => {
@@ -42,11 +43,16 @@ const Login = (props) => {
     }
 
 
-    let handleData = async result => {
+    let handleData = result => {
         localStorage.setItem('token', result["token"]);
         localStorage.setItem('username', result["username"]);
         props.setUser(userName);
-        redirect()
+        Swal.fire({
+            icon: 'success',
+            title: 'Login success',
+            footer: '<a href="/">Share & Drive!</a>'
+        }).then(r => redirect())
+
     }
 
 

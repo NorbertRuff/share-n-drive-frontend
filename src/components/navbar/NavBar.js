@@ -13,6 +13,7 @@ import {
 } from "./NavbarStyledElements";
 import {FaUserCircle} from "react-icons/fa";
 import AvatarPic from "../../assets/img/avatar.png";
+import Swal from "sweetalert2";
 
 
 const NavBar = (props) => {
@@ -46,9 +47,25 @@ const NavBar = (props) => {
 
     function logout() {
         if (localStorage.getItem('username') && localStorage.getItem('token')) {
-            localStorage.removeItem('username')
-            localStorage.removeItem('token')
-            setUser()
+            Swal.fire({
+                icon: "question",
+                title: 'Do you want to log out?',
+                showDenyButton: true,
+                showConfirmButton: true,
+                confirmButtonText: "Yes",
+                denyButtonText: "No",
+                footer: '<a href="/">Share & Drive!</a>'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Logged out!', '', 'success')
+                        .then(() => {
+                            localStorage.removeItem('username')
+                            localStorage.removeItem('token')
+                            setUser()
+                        })
+                }
+            })
+
         }
     }
 
@@ -66,7 +83,6 @@ const NavBar = (props) => {
                     <DropdownMenu>
                         <DropdownMenuItem to="/user" title="User">Profile</DropdownMenuItem>
                         <DropdownMenuItem to="/add-car" title="User">Add a car</DropdownMenuItem>
-                        <DropdownMenuItem to="/user" title="User">Share a car</DropdownMenuItem>
                         <DropdownMenuItem to="/user" title="User">Calendar</DropdownMenuItem>
                         <LogOutButton onClick={() => logout()}>Logout</LogOutButton>
                     </DropdownMenu>
