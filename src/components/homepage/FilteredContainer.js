@@ -48,9 +48,7 @@ function initBookCarModal(bookingData) {
 }
 
 const bookCar = (carId) => {
-    console.log("in book car")
     let bookingData = {
-        "customer": {"id": 11},
         "car": {"id": `${carId}`},
         "rentFrom": "2021-09-23",
         "rentTo": "2021-09-24"
