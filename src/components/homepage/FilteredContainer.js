@@ -22,13 +22,32 @@ import {getPicture} from "./FeaturedContainer";
 import {customColorStyle, selectStyle} from "../../contexts/SelectStyles";
 import {Error} from "../PageSyledElements/MainContainer";
 import {IoMdArrowDropleft, IoMdArrowDropright} from "react-icons/io";
+import Swal from "sweetalert2";
 
 
 const animatedComponents = makeAnimated();
 
+function initBookCarModal(bookingData) {
+    Swal.fire({
+        icon: "question",
+        title: 'Do you want to book this car?',
+        showDenyButton: true,
+        showConfirmButton: true,
+        confirmButtonText: "Yes",
+        denyButtonText: "No",
+        footer: '<a href="/">Share & Drive!</a>'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire('Car booked!', '', 'success')
+                .then(() => {
+                    dataHandler._api_post("http://localhost:8080/share-n-drive/book-car",
+                        bookingData, console.log, console.error);
+                })
+        }
+    })
+}
 
 const bookCar = (carId) => {
-
     console.log("in book car")
     let bookingData = {
         "customer": {"id": 11},
@@ -36,8 +55,7 @@ const bookCar = (carId) => {
         "rentFrom": "2021-09-23",
         "rentTo": "2021-09-24"
     }
-    dataHandler._api_post("http://localhost:8080/share-n-drive/book-car",
-        bookingData, console.log, console.log);
+    initBookCarModal(bookingData);
 }
 let queryData = {}
 const FilteredContainer = (props) => {
