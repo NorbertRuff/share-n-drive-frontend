@@ -18,7 +18,8 @@ import makeAnimated from "react-select/animated/dist/react-select.esm";
 import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "./FeaturedContainer";
 import {Error} from "../PageSyledElements/MainContainer";
-
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const animatedComponents = makeAnimated();
 
@@ -91,6 +92,8 @@ const FilteredContainer = (props) => {
         setUrl(queryStr === "" ? allCarsUrl : `${baseUrl}?${queryStr}`);
     }
 
+    const [value, onChange] = useState(new Date());
+
     return (
         <>
             {!error ? (
@@ -148,6 +151,7 @@ const FilteredContainer = (props) => {
                                 isMulti
                                 options={CarTypeOptions}/>
                         </FilterOption>
+                        <Calendar onChange={onChange} value={value}/>
                     </FilterButtons>
                     <FilteredCarsContainer>
                         {filteredCars.map((car) =>
