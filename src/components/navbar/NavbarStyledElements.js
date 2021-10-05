@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 import MainLogo from "../../assets/img/logo2.png"
+import AvatarPic from "../../assets/img/avatar.png"
 
 
 export const Logo = styled(NavLink)`
@@ -22,6 +23,7 @@ export const NavbarUser = styled.div`
 `;
 
 export const UserButton = styled(NavLink)`
+  font-size: 1.3rem;
   font-family: var(--ff-body-bold);
 `;
 
@@ -52,6 +54,13 @@ export const DropdownMenu = styled.div`
 export const DropdownMenuItem = styled(NavLink)`
   font-size: 1.5rem;
   padding: 0.4rem;
+  font-family: var(--ff-heading-bold);
+`;
+
+export const LogOutButton = styled.div`
+  font-size: 1.5rem;
+  padding: 0.4rem;
+  font-family: var(--ff-heading-bold);
 `;
 
 export const UserLogo = styled.div`
@@ -60,11 +69,20 @@ export const UserLogo = styled.div`
   font-size: 3rem;
   cursor: pointer;
 `;
+export const NavbarAvatar = styled.div`
+  background-image: url(${AvatarPic});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 4rem;
+  width: 4rem;
+`;
 
 export const NavBarContainer = styled.div`
   grid-area: header;
+  max-height: 100%;
   display: grid;
-  grid-template-columns: 0.6fr 0.8fr 4fr 0.5fr 0.5fr;
+  grid-template-columns: 0.6fr 0.8fr 3fr 1fr 0.5fr;
   align-items: center;
   background-color: var(--clr-primary-400);
   border-bottom: 3px solid var(--clr-primary-400);
