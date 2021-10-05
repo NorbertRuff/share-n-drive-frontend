@@ -22,11 +22,11 @@ const AddCar = () => {
 
   useEffect(() => {
     dataHandler._api_get('http://localhost:8080/share-n-drive/fuelTypes',
-        setFuelTypes, setError);
+        setFuelTypes, setError, console.log);
     dataHandler._api_get('http://localhost:8080/share-n-drive/bodyTypes',
-        setBodyTypes, setError);
+        setBodyTypes, setError, console.log);
     dataHandler._api_get('http://localhost:8080/share-n-drive/carTypes',
-        setCarTypes, setError);
+        setCarTypes, setError, console.log);
     }, []);
 
     const handleSubmit = event => {
