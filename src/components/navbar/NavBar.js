@@ -10,15 +10,13 @@ import {
     UserLogo
 } from "./NavbarStyledElements";
 import {FaUserCircle} from "react-icons/fa";
-import {ErrorDiv} from "../PageSyledElements/MainContainer";
+
 
 
 const NavBar = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [isToggled, setIsToggled] = useState('none');
     const [user, setUser] = useState()
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
 
     const dropMenu = () => {
         if (showMenu) {
@@ -36,14 +34,6 @@ const NavBar = () => {
             setUser(localStorage.getItem('username'))
         }
     }, [user])
-
-    if (loading) {
-        return <p>Data is loading...</p>;
-    }
-
-    if (error) {
-        return <ErrorDiv>An error occurred while fetching information. Please try again later!</ErrorDiv>;
-    }
 
     return (
         <NavBarContainer>
