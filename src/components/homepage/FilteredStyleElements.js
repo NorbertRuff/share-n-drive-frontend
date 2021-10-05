@@ -105,3 +105,11 @@ export const CardDetails = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
   color: var(--clr-primary-100);
 `;
+
+export const DeleteCarBtn = styled.button`
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  background: none;
+  color: var(--clr-primary-100);
+`;
