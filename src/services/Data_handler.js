@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 export let dataHandler = {
+
     _data: {},
+
     _api_get: function (url, callback, errorCallback) {
         axios
             .get(url, {
@@ -19,6 +21,7 @@ export let dataHandler = {
                 );
             });
     },
+
     _api_get_selectOptions: function (url, callback, callbackOfTheCallback, errorCallback) {
         axios
             .get(url, {
@@ -36,6 +39,7 @@ export let dataHandler = {
                 );
             });
     },
+
     _api_get_results: function (url, callback, errorCallback) {
         axios
             .get(url)
@@ -69,6 +73,16 @@ export let dataHandler = {
                 );
             })
     },
+
+    _api_delete: function (url, data, callback) {
+        axios
+        .delete(url, data)
+        .then(response => {
+            callback(response.data);
+        })
+        .catch(error => 
+            `The request was made and the server responded with a status code that falls out of the range of 2xx `
+            + error.message
+            );
+    },
 }
-
-
