@@ -9,6 +9,7 @@ let getLocalstorage = () => {
 }
 
 export let dataHandler = {
+
     _data: {},
     _api_get: function (url, callback, errorCallback, loadingCallback) {
         axios
@@ -54,6 +55,7 @@ export let dataHandler = {
                 loadingCallback(false)
             });
     },
+
     _api_get_results: function (url, callback, errorCallback) {
         axios
             .get(url)
@@ -90,6 +92,13 @@ export let dataHandler = {
                 );
             })
     },
+
+    _api_delete: function (url, data ) {
+        axios.delete(url, {
+            headers: {
+              Authorization: getLocalstorage(),
+            },
+            data
+          });
+    },
 }
-
-
