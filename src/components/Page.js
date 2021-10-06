@@ -23,6 +23,16 @@ const Page = () => {
             dataHandler._api_get(baseUrl, setUser, setError, undefined);
         }
     }, [])
+
+    if (error) {
+        localStorage.removeItem('username')
+        localStorage.removeItem('token')
+        return (<React.Fragment>
+                <h1>Error with app</h1>
+            </React.Fragment>
+        );
+    }
+
     return (
         <React.Fragment>
             <BrowserRouter>
