@@ -21,7 +21,9 @@ export let dataHandler = {
                 }
             })
             .then((response) => {
-                callback(response.data);
+                if (callback !== undefined) {
+                    callback(response.data);
+                }
             })
             .catch((error) => {
                 errorCallback(error.message);
@@ -31,7 +33,9 @@ export let dataHandler = {
                 );
             })
             .finally(() => {
-                loadingCallback(false)
+                if (loadingCallback !== undefined) {
+                    loadingCallback(false)
+                }
             });
     },
     _api_get_selectOptions: function (url, callback, callbackOfTheCallback, errorCallback, loadingCallback) {
@@ -51,7 +55,9 @@ export let dataHandler = {
                 );
             })
             .finally(() => {
-                loadingCallback(false)
+                if (loadingCallback !== undefined) {
+                    loadingCallback(false)
+                }
             });
     },
     _api_get_results: function (url, callback, errorCallback) {
@@ -80,7 +86,9 @@ export let dataHandler = {
                 }
             })
             .then(response => {
-                callback(response.data);
+                if (callback !== undefined) {
+                    callback(response.data);
+                }
             })
             .catch((error) => {
                 errorCallback(error.message);
