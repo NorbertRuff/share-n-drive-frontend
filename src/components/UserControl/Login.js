@@ -12,7 +12,7 @@ const Login = () => {
     const [error, setError] = useState(false)
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
-    const {user, setUser} = useContext(UserContext);
+    const {setUser} = useContext(UserContext);
     const baseUrl = "http://localhost:8080/share-n-drive/customer-details";
 
     function validateLoginForm() {
