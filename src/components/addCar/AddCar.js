@@ -11,6 +11,8 @@ import {
     FormSubmitButton,
     InputElement
 } from "./AddCarStyledElements";
+import Swal from "sweetalert2";
+import {useHistory} from "react-router-dom";
 
 
 const AddCar = () => {
@@ -34,12 +36,26 @@ const AddCar = () => {
         dataHandler._api_get('http://localhost:8080/share-n-drive/transmissionTypes',
             setTransmissionTypes, undefined, undefined);
     }, []);
+
+    const history = useHistory();
+
+    function redirect() {
+        const timer = setTimeout(() => {
+            history.push("/");
+        }, 1500);
+        return () => {
+            clearTimeout(timer)
+        };
+
+    }
+
     const handleSubmit = event => {
         event.preventDefault();
 
         const brand = event.target.brand.value;
         const title = event.target.carMake.value;
         const licencePlate = event.target.licencePlate.value;
+        const seatNumber = event.target.seatNumber.value;
         const color = event.target.color.value;
         const price = event.target.price.value;
         const fuelType = event.target.fuelType.value;
@@ -50,23 +66,43 @@ const AddCar = () => {
 
         const url = 'http://localhost:8080/share-n-drive/add-car';
         const data = {
-            brand, title, licencePlate,
+            brand, title, licencePlate, seatNumber,
             color, price, fuelType, bodyType, carType, transmission, doors
         };
-        dataHandler._api_post(url, data, undefined, setError)
+        Swal.fire({
+            icon: "question",
+            title: 'Do you want to add this car?',
+            showDenyButton: true,
+            showConfirmButton: true,
+            confirmButtonText: "Yes",
+            denyButtonText: "No",
+            footer: '<a href="/">Share & Drive!</a>'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Car added!', '', 'success')
+                    .then(() => {
+                        dataHandler._api_post(url, data, undefined, setError);
+                        redirect();
+                    })
+            }
+        })
     };
 
     if (error) {
-        return <Error>An error occurred while fetching information. Please try again later!</Error>;
+        return <AddCarContainer>
+            <Error>An error occurred while fetching information. Please try again later!</Error>
+        </AddCarContainer>;
     }
     return (
         <AddCarContainer>
             <HeroContainer image={car_share_img}/>
             <HeroTitle>Share your car</HeroTitle>
-            <HeroSubTitle>Fill the form below and join our sharing community!</HeroSubTitle>
+
             <AddCarWrapper>
                 <FormContainer>
+                    <HeroSubTitle>Fill the form below and join our sharing community!</HeroSubTitle>
                     <AddCarForm onSubmit={handleSubmit}>
+
                         <InputElement>
                             <label>Brand</label>
                             <input type="text" name="brand" required="required"/>
@@ -86,6 +122,10 @@ const AddCar = () => {
                         <InputElement>
                             <label>Price per day (Ft)</label>
                             <input type="number" name="price" required="required"/>
+                        </InputElement>
+                        <InputElement>
+                            <label>Number of seats</label>
+                            <input type="seatNumber" name="seatNumber" required="required"/>
                         </InputElement>
                         <InputElement>
                             <label for="fuelType">Choose fuel type </label>
