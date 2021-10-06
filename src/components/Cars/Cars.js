@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Cars = () => {
     return (
-        <CarsContainer></CarsContainer>
+        <CarsContainer/>
     );
 };
 

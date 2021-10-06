@@ -34,6 +34,7 @@ export const UserAvatar = styled.img`
   height: 20vh;
   object-fit: contain;
 `;
+
 export const UserName = styled.div`
   grid-area: Name;
   text-align: center;
