@@ -1,17 +1,19 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Container, FormWrap, SocialContainer} from "./UserControlStyledElements";
 import {NavLink, useHistory} from "react-router-dom";
 import {FaFacebook, FaGoogle, FaLinkedin} from "react-icons/fa";
 import {dataHandler} from "../../services/Data_handler";
 import {Error} from "../PageSyledElements/MainContainer";
 import Swal from "sweetalert2";
+import {UserContext} from "../../contexts/UserContext";
 
 
-const Login = (props) => {
+const Login = () => {
     const [error, setError] = useState(false)
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
-
+    const {user, setUser} = useContext(UserContext);
+    const baseUrl = "http://localhost:8080/share-n-drive/customer-details";
 
     function validateLoginForm() {
         return (
@@ -46,7 +48,7 @@ const Login = (props) => {
     let handleData = result => {
         localStorage.setItem('token', result["token"]);
         localStorage.setItem('username', result["username"]);
-        props.setUser(userName);
+        dataHandler._api_get(baseUrl, setUser, setError, undefined);
         Swal.fire({
             icon: 'success',
             title: 'Login success',

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     Details,
     UserAvatar,
@@ -29,48 +29,36 @@ import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "../homepage/FeaturedContainer";
 import {ErrorDiv} from "../PageSyledElements/MainContainer";
 import Swal from "sweetalert2";
+import {UserContext} from "../../contexts/UserContext";
 
+
+export const getAvatar = userAvatar => {
+    switch (userAvatar) {
+        case 1:
+            return <UserAvatar src={AvatarPic1}/>;
+        case 2:
+            return <UserAvatar src={AvatarPic2}/>;
+        case 3:
+            return <UserAvatar src={AvatarPic3}/>;
+        case 4:
+            return <UserAvatar src={AvatarPic4}/>;
+        case 5:
+            return <UserAvatar src={AvatarPic5}/>;
+        case 6:
+            return <UserAvatar src={AvatarPic6}/>;
+        case 7:
+            return <UserAvatar src={AvatarPic7}/>;
+        case 8:
+            return <UserAvatar src={AvatarPic8}/>;
+        default:
+            return <UserAvatar src={AvatarPic}/>;
+    }
+}
 const UserPage = (props) => {
-    const baseUrl = "http://localhost:8080/share-n-drive/customer-details";
     const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [menuItem, setMenuItem] = useState("static")
-
-    const [user, setUser] = useState({
-        firstName: "",
-        lastName: "",
-        username: "",
-        email: "",
-        phone: "",
-        address: {
-            city: "",
-            zipCode: "",
-            street: "",
-            houseNumber: ""
-        },
-        interests: [],
-        avatar: "",
-        bookings: "",
-        cars: [{
-            id: '',
-            title: '',
-            brand: '',
-            bodyType: '',
-            image: '',
-            fuel: '',
-            category: '',
-            carType: '',
-            seat: '',
-            price: ''
-        }]
-    })
-    console.log(user)
-
-
-    useEffect(() => {
-        dataHandler._api_get(baseUrl, setUser, setError, setLoading);
-    }, []);
-
+    const {user, setUser} = useContext(UserContext);
+    const baseUrl = "http://localhost:8080/share-n-drive/customer-details";
     const getComponent = () => {
         switch (menuItem) {
             case 'basic':
@@ -83,28 +71,6 @@ const UserPage = (props) => {
                 return <ComponentStatic userDetails={user}/>;
             default:
                 return <ComponentStatic userDetails={user}/>;
-        }
-    }
-    const getAvatar = userAvatar => {
-        switch (userAvatar) {
-            case 1:
-                return <UserAvatar src={AvatarPic1}/>;
-            case 2:
-                return <UserAvatar src={AvatarPic2}/>;
-            case 3:
-                return <UserAvatar src={AvatarPic3}/>;
-            case 4:
-                return <UserAvatar src={AvatarPic4}/>;
-            case 5:
-                return <UserAvatar src={AvatarPic5}/>;
-            case 6:
-                return <UserAvatar src={AvatarPic6}/>;
-            case 7:
-                return <UserAvatar src={AvatarPic7}/>;
-            case 8:
-                return <UserAvatar src={AvatarPic8}/>;
-            default:
-                return <UserAvatar src={AvatarPic}/>;
         }
     }
 
@@ -124,17 +90,17 @@ const UserPage = (props) => {
                 Swal.fire('Car deleted!', '', 'success')
                     .then(() => {
                         dataHandler._api_delete(deleteUrl, setError);
+                        dataHandler._api_get(baseUrl, setUser, setError, undefined);
                     })
             }
         })
     }
 
-    if (loading) {
-        return <p>Data is loading...</p>;
-    }
-
     if (error) {
         return <ErrorDiv>An error occurred while fetching information. Please try again later!</ErrorDiv>;
+    }
+    if (user === undefined) {
+        return <ErrorDiv>Please log in!</ErrorDiv>;
     }
 
     return (

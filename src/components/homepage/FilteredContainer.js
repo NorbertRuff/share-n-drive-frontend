@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
     AddBookingButton,
     CarCard,
@@ -23,6 +23,7 @@ import {customColorStyle, selectStyle} from "../../contexts/SelectStyles";
 import {Error} from "../PageSyledElements/MainContainer";
 import {IoMdArrowDropleft, IoMdArrowDropright} from "react-icons/io";
 import Swal from "sweetalert2";
+import {UserContext} from "../../contexts/UserContext";
 
 
 const animatedComponents = makeAnimated();
@@ -57,7 +58,7 @@ const bookCar = (carId) => {
 }
 let queryData = {}
 const FilteredContainer = (props) => {
-
+    const {user, setUser} = useContext(UserContext);
     const [ColorOptions, setColorOptions] = useState();
     const [FuelTypeOptions, setFuelTypeOptions] = useState();
     const [CarmakerOptions, setCarmakerOptions] = useState();
@@ -225,7 +226,8 @@ const FilteredContainer = (props) => {
                                 <CardSubTitle>{car.bodyType} </CardSubTitle>
                                 <CardSubTitle>{car.fuelType} </CardSubTitle>
                             </CardDetails>
-                            <AddBookingButton onClick={() => bookCar(car.id)}>Book this car</AddBookingButton>
+                            {user ?
+                                <AddBookingButton onClick={() => bookCar(car.id)}>Book this car</AddBookingButton> : ""}
                         </CarCard>
                     )}
                 </FilteredCarsContainer>
