@@ -18,6 +18,7 @@ import {ComponentAddress, ComponentBasic, ComponentContact, ComponentStatic} fro
 import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "../homepage/FeaturedContainer";
 import {ErrorDiv} from "../PageSyledElements/MainContainer";
+import Swal from "sweetalert2";
 
 const UserPage = (props) => {
     const baseUrl = "http://localhost:8080/share-n-drive/customer-details";
@@ -54,12 +55,9 @@ const UserPage = (props) => {
         }]
     })
 
-    // TODO: 
-    // add dependency to refresh after car deleted
-    // should clean up the hook somehow
     useEffect(() => {
         dataHandler._api_get(baseUrl, setUser, setError, setLoading);
-    }, [baseUrl]);
+    }, [user]);
 
     const getComponent = () => {
         switch (menuItem) {
@@ -79,7 +77,22 @@ const UserPage = (props) => {
 
     function sendDeleteRequest(id) {
         const deleteUrl = `http://localhost:8080/share-n-drive/remove-car/${id}`;
-        dataHandler._api_delete(deleteUrl, setError);
+        Swal.fire({
+            icon: "question",
+            title: 'Do you want to delete this car?',
+            showDenyButton: true,
+            showConfirmButton: true,
+            confirmButtonText: "Yes",
+            denyButtonText: "No",
+            footer: '<a href="/">Share & Drive!</a>'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Car deleted!', '', 'success')
+                    .then(() => {
+                        dataHandler._api_delete(deleteUrl, setError);
+                    })
+            }
+        })
     }
 
     if (loading) {
