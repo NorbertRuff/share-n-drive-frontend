@@ -8,20 +8,18 @@ let getLocalstorage = () => {
     }
 }
 
-let config = {
-    method: 'GET',
-    credentials: 'same-origin',
-    ContentType: "application/x-www-form-urlencoded",
-    headers: {
-        authorization: getLocalstorage(),
-    }
-}
-
 export let dataHandler = {
     _data: {},
     _api_get: function (url, callback, errorCallback, loadingCallback) {
         axios
-            .get(url, config)
+            .get(url, {
+                method: 'GET',
+                credentials: 'same-origin',
+                ContentType: "application/x-www-form-urlencoded",
+                headers: {
+                    authorization: getLocalstorage(),
+                }
+            })
             .then((response) => {
                 callback(response.data);
             })
@@ -73,7 +71,14 @@ export let dataHandler = {
     },
     _api_post: function (url, data, callback, errorCallback) {
         axios
-            .post(url, data, config)
+            .post(url, data, {
+                method: 'POST',
+                credentials: 'same-origin',
+                ContentType: "application/x-www-form-urlencoded",
+                headers: {
+                    authorization: getLocalstorage(),
+                }
+            })
             .then(response => {
                 callback(response.data);
             })
