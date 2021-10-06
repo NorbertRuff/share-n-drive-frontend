@@ -60,16 +60,7 @@ export const FilterHeroTitle = styled.div`
   color: var(--clr-primary-500);
 
 `;
-export const CardDetails = styled.div`
-  text-align: center;
-  top: 0;
-  width: auto;
-  padding: 1rem;
-  font-size: 2rem;
-  background-color: rgba(0, 0, 0, 0.3);
-  color: var(--clr-primary-100);
 
-`;
 export const FilterOption = styled.div`
   display: flex;
   flex-direction: column;
@@ -79,6 +70,16 @@ export const FilterOption = styled.div`
 `;
 
 export const FilterOptionLabel = styled.h2`
+`;
+
+export const CardDetails = styled.div`
+  text-align: center;
+  top: 0;
+  width: auto;
+  padding: 1rem;
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--clr-primary-100);
 `;
 
 export const CarCard = styled.div`
@@ -139,3 +140,10 @@ export const AddBookingButton = styled.button`
   }
 `;
 
+export const DeleteCarBtn = styled.button`
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  background: none;
+  color: var(--clr-primary-100);
+`;

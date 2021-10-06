@@ -19,18 +19,10 @@ import {useHistory} from "react-router-dom";
 
 const NavBar = (props) => {
     const [showMenu, setShowMenu] = useState(false);
-    const [isToggled, setIsToggled] = useState('none');
     const [user, setUser] = useState()
 
     const dropMenu = () => {
-        if (showMenu) {
-            setShowMenu(false);
-        } else if (isToggled) {
-            setIsToggled('none');
-            setShowMenu(true);
-        } else {
-            setShowMenu(true);
-        }
+        setShowMenu(!showMenu);
     };
 
     useEffect(() => {
