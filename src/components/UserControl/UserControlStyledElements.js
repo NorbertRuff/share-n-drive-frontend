@@ -21,8 +21,7 @@ export const LoginWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   min-width: 650px;
-  max-height: 650px;
-  margin: 3rem;
+  margin: 1rem;
 `;
 
 export const Container = styled.div`
@@ -144,4 +143,26 @@ export const Ghost = styled.button`
   text-transform: uppercase;
   background-color: rgba(0, 0, 0, 0.8);
   border-color: var(--clr-light);
+`;
+
+
+export const AvatarContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--clr-primary-400);
+  border: var(--clr-primary-200);
+  border-radius: 20px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+`;
+export const AvatarThumbnail = styled.img`
+  width: 60px;
+  height: 80px;
+
+`;
+export const AvatarSingleElementContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
 `;
