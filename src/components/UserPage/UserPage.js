@@ -55,11 +55,10 @@ const UserPage = (props) => {
     })
 
     // TODO: 
-    // add dependency to refresh after car was deleted
-    // and bug fix at CustomerController on backend
+    // add dependency to refresh after car deleted
+    // should clean up the hook somehow
     useEffect(() => {
         dataHandler._api_get(baseUrl, setUser, setError, setLoading);
-
     }, [baseUrl]);
 
     const getComponent = () => {
@@ -80,7 +79,7 @@ const UserPage = (props) => {
 
     function sendDeleteRequest(id) {
         const deleteUrl = `http://localhost:8080/share-n-drive/remove-car/${id}`;
-        dataHandler._api_delete(deleteUrl, setUser, setError);
+        dataHandler._api_delete(deleteUrl, setError);
     }
 
     if (loading) {
@@ -119,7 +118,7 @@ const UserPage = (props) => {
                             <CardTitle>{car.brand} {car.title}</CardTitle>
                             {car.carType} <br/> {car.fuel} <br/> {car.category}
                         </CardDetails>
-                        <DeleteCarBtn onClick={() => sendDeleteRequest(car.id) && car}>
+                        <DeleteCarBtn onClick={() => sendDeleteRequest(car.id)}>
                             Remove car
                         </DeleteCarBtn>
                     </CarCard>

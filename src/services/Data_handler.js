@@ -88,15 +88,12 @@ export let dataHandler = {
             })
     },
 
-    _api_delete: function (url, data, callback) {
-        axios
-        .delete(url, data)
-        .then(response => {
-            callback(response.data);
-        })
-        .catch(error => 
-            `The request was made and the server responded with a status code that falls out of the range of 2xx `
-            + error.message
-            );
+    _api_delete: function (url, data ) {
+        axios.delete(url, {
+            headers: {
+              Authorization: getLocalstorage(),
+            },
+            data
+          });
     },
 }
