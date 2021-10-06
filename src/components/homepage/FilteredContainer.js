@@ -58,7 +58,7 @@ const bookCar = (carId) => {
 }
 let queryData = {}
 const FilteredContainer = (props) => {
-    const {user, setUser} = useContext(UserContext);
+    const {user} = useContext(UserContext);
     const [ColorOptions, setColorOptions] = useState();
     const [FuelTypeOptions, setFuelTypeOptions] = useState();
     const [CarmakerOptions, setCarmakerOptions] = useState();
