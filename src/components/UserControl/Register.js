@@ -1,18 +1,32 @@
 import React, {useState} from 'react';
-import {Container, FormWrap, SocialContainer} from "./UserControlStyledElements";
+import {
+    AvatarContainer,
+    AvatarSingleElementContainer,
+    AvatarThumbnail,
+    Container,
+    FormWrap,
+    SocialContainer
+} from "./UserControlStyledElements";
 import {NavLink} from "react-router-dom";
 import {FaFacebook, FaGoogle, FaLinkedin} from "react-icons/fa";
 import {dataHandler} from "../../services/Data_handler";
-import {Error} from "../PageSyledElements/MainContainer";
 import Swal from "sweetalert2";
+import AvatarPic1 from "../../assets/img/avatars/avatar1.png";
+import AvatarPic2 from "../../assets/img/avatars/avatar2.png";
+import AvatarPic3 from "../../assets/img/avatars/avatar3.png";
+import AvatarPic4 from "../../assets/img/avatars/avatar4.png";
+import AvatarPic5 from "../../assets/img/avatars/avatar5.png";
+import AvatarPic6 from "../../assets/img/avatars/avatar6.png";
+import AvatarPic7 from "../../assets/img/avatars/avatar7.png";
+import AvatarPic8 from "../../assets/img/avatars/avatar8.png";
 
 const Register = () => {
-    const [error, setError] = useState(false)
     const [state, setState] = useState({
         email: "",
         userName: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
+        avatar: ""
     })
 
     function validateRegisterForm() {
@@ -29,12 +43,14 @@ const Register = () => {
             dataHandler._data = {
                 username: state.userName,
                 email: state.email,
-                password: state.password
+                password: state.password,
+                avatar: parseInt(state.avatar)
             }
+            console.log(state)
             dataHandler._api_post("http://localhost:8080/share-n-drive/register",
                 dataHandler._data,
                 undefined,
-                setError);
+                undefined);
             Swal.fire({
                 icon: "success",
                 title: 'Successfully registered!',
@@ -49,9 +65,6 @@ const Register = () => {
         }
     }
 
-    if (error) {
-        return <Error>An error occurred while fetching information. Please try again later!</Error>;
-    }
     const handleChange = (e) => {
         const {id, value} = e.target
         setState(prevState => ({
@@ -59,6 +72,8 @@ const Register = () => {
             [id]: value
         }))
     }
+
+
     return (
         <Container>
             <FormWrap>
@@ -98,10 +113,79 @@ const Register = () => {
                        value={state.confirmPassword}
                        onChange={handleChange}
                 />
+                <AvatarContainer>
+                    <AvatarSingleElementContainer>
+                        <AvatarThumbnail src={AvatarPic1}/>
+                        <input type="radio"
+                               id="avatar"
+                               value="1"
+                               name="avatar"
+                               onChange={handleChange}/>
+                    </AvatarSingleElementContainer>
+                    <AvatarSingleElementContainer>
+                        <AvatarThumbnail src={AvatarPic2}/>
+                        <input type="radio"
+                               id="avatar"
+                               value="2"
+                               name="avatar"
+                               onChange={handleChange}/>
+                    </AvatarSingleElementContainer>
+                    <AvatarSingleElementContainer>
+                        <AvatarThumbnail src={AvatarPic3}/>
+                        <input type="radio"
+                               id="avatar"
+                               value="3"
+                               name="avatar"
+                               onChange={handleChange}/>
+                    </AvatarSingleElementContainer>
+                    <AvatarSingleElementContainer>
+                        <AvatarThumbnail src={AvatarPic4}/>
+                        <input type="radio"
+                               id="avatar"
+                               value="4"
+                               name="avatar"
+                               onChange={handleChange}/>
+                    </AvatarSingleElementContainer>
+                    <AvatarSingleElementContainer>
+                        <AvatarThumbnail src={AvatarPic5}/>
+                        <input type="radio"
+                               id="avatar"
+                               value="5"
+                               name="avatar"
+                               onChange={handleChange}/>
+                    </AvatarSingleElementContainer>
+                    <AvatarSingleElementContainer>
+                        <AvatarThumbnail src={AvatarPic6}/>
+                        <input type="radio"
+                               id="avatar"
+                               value="6"
+                               name="avatar"
+                               onChange={handleChange}/>
+                    </AvatarSingleElementContainer>
+                    <AvatarSingleElementContainer>
+                        <AvatarThumbnail src={AvatarPic7}/>
+                        <input type="radio"
+                               id="avatar"
+                               value="7"
+                               name="avatar"
+                               onChange={handleChange}/>
+                    </AvatarSingleElementContainer>
+                    <AvatarSingleElementContainer>
+                        <AvatarThumbnail src={AvatarPic8}/>
+                        <input type="radio"
+                               id="avatar"
+                               value="8"
+                               name="avatar"
+                               onChange={handleChange}/>
+                    </AvatarSingleElementContainer>
+
+                </AvatarContainer>
+
                 <button type={"button"} onClick={handleRegisterSubmit}>Sign Up</button>
             </FormWrap>
         </Container>
-    );
+    )
+        ;
 };
 
 export default Register;
