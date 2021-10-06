@@ -13,11 +13,12 @@ import {
 } from "./UserPageStyledElements";
 import AvatarPic from "../../assets/img/avatar.png"
 import {HeroSubTitle, HeroTitle} from "../homepage/HomeStyledElements";
-import {CarCard, CardDetails, CardThumbnail, CardTitle,} from "../homepage/FilteredStyleElements";
+import {CarCard, CardDetails, CardThumbnail, CardTitle, DeleteCarBtn} from "../homepage/FilteredStyleElements";
 import {ComponentAddress, ComponentBasic, ComponentContact, ComponentStatic} from "./UserEdit";
 import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "../homepage/FeaturedContainer";
 import {ErrorDiv} from "../PageSyledElements/MainContainer";
+import Swal from "sweetalert2";
 
 const UserPage = (props) => {
     const baseUrl = "http://localhost:8080/share-n-drive/customer-details";
@@ -41,6 +42,7 @@ const UserPage = (props) => {
         userAvatar: "",
         bookings: "",
         cars: [{
+            id: '',
             title: '',
             brand: '',
             bodyType: '',
@@ -53,11 +55,9 @@ const UserPage = (props) => {
         }]
     })
 
-
     useEffect(() => {
         dataHandler._api_get(baseUrl, setUser, setError, setLoading);
-
-    }, [baseUrl]);
+    }, [user]);
 
     const getComponent = () => {
         switch (menuItem) {
@@ -72,6 +72,27 @@ const UserPage = (props) => {
             default:
                 return <ComponentStatic userDetails={user}/>;
         }
+    }
+
+
+    function sendDeleteRequest(id) {
+        const deleteUrl = `http://localhost:8080/share-n-drive/remove-car/${id}`;
+        Swal.fire({
+            icon: "question",
+            title: 'Do you want to delete this car?',
+            showDenyButton: true,
+            showConfirmButton: true,
+            confirmButtonText: "Yes",
+            denyButtonText: "No",
+            footer: '<a href="/">Share & Drive!</a>'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Car deleted!', '', 'success')
+                    .then(() => {
+                        dataHandler._api_delete(deleteUrl, setError);
+                    })
+            }
+        })
     }
 
     if (loading) {
@@ -110,6 +131,9 @@ const UserPage = (props) => {
                             <CardTitle>{car.brand} {car.title}</CardTitle>
                             {car.carType} <br/> {car.fuel} <br/> {car.category}
                         </CardDetails>
+                        <DeleteCarBtn onClick={() => sendDeleteRequest(car.id)}>
+                            Remove car
+                        </DeleteCarBtn>
                     </CarCard>
                 )}
             </UserCars>
@@ -119,6 +143,5 @@ const UserPage = (props) => {
 
     )
 };
-
 
 export default UserPage;
