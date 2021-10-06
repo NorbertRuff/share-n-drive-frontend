@@ -20,7 +20,6 @@ const NavBar = (props) => {
     const [showMenu, setShowMenu] = useState(false);
     const [isToggled, setIsToggled] = useState('none');
     const [user, setUser] = useState()
-
     const dropMenu = () => {
         if (showMenu) {
             setShowMenu(false);

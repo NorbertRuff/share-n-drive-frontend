@@ -11,7 +11,17 @@ import {
     UserProfileContainer,
     UserProfileDetails
 } from "./UserPageStyledElements";
+
 import AvatarPic from "../../assets/img/avatar.png"
+import AvatarPic1 from "../../assets/img/avatars/avatar1.png"
+import AvatarPic2 from "../../assets/img/avatars/avatar2.png"
+import AvatarPic3 from "../../assets/img/avatars/avatar3.png"
+import AvatarPic4 from "../../assets/img/avatars/avatar4.png"
+import AvatarPic5 from "../../assets/img/avatars/avatar5.png"
+import AvatarPic6 from "../../assets/img/avatars/avatar6.png"
+import AvatarPic7 from "../../assets/img/avatars/avatar7.png"
+import AvatarPic8 from "../../assets/img/avatars/avatar8.png"
+
 import {HeroSubTitle, HeroTitle} from "../homepage/HomeStyledElements";
 import {CarCard, CardDetails, CardThumbnail, CardTitle,} from "../homepage/FilteredStyleElements";
 import {ComponentAddress, ComponentBasic, ComponentContact, ComponentStatic} from "./UserEdit";
@@ -38,7 +48,7 @@ const UserPage = (props) => {
             houseNumber: ""
         },
         interests: [],
-        userAvatar: "",
+        avatar: "",
         bookings: "",
         cars: [{
             title: '',
@@ -52,7 +62,7 @@ const UserPage = (props) => {
             price: ''
         }]
     })
-
+    console.log(user)
 
     useEffect(() => {
         dataHandler._api_get(baseUrl, setUser, setError, setLoading);
@@ -73,6 +83,28 @@ const UserPage = (props) => {
                 return <ComponentStatic userDetails={user}/>;
         }
     }
+    const getAvatar = userAvatar => {
+        switch (userAvatar) {
+            case 1:
+                return <UserAvatar src={AvatarPic1}/>;
+            case 2:
+                return <UserAvatar src={AvatarPic2}/>;
+            case 3:
+                return <UserAvatar src={AvatarPic3}/>;
+            case 4:
+                return <UserAvatar src={AvatarPic4}/>;
+            case 5:
+                return <UserAvatar src={AvatarPic5}/>;
+            case 6:
+                return <UserAvatar src={AvatarPic6}/>;
+            case 7:
+                return <UserAvatar src={AvatarPic7}/>;
+            case 8:
+                return <UserAvatar src={AvatarPic8}/>;
+            default:
+                return <UserAvatar src={AvatarPic}/>;
+        }
+    }
 
     if (loading) {
         return <p>Data is loading...</p>;
@@ -86,7 +118,7 @@ const UserPage = (props) => {
         <UserProfileContainer>
             <UserProfileDetails>
                 <UserAvatarDiv onClick={() => setMenuItem("static")}>
-                    <UserAvatar src={AvatarPic}/>
+                    {getAvatar(user.avatar)}
                 </UserAvatarDiv>
                 <HeroTitle>{user.firstName} {user.lastName}</HeroTitle>
                 <UserMenu>
