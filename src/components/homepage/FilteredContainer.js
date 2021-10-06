@@ -41,7 +41,7 @@ function initBookCarModal(bookingData) {
             Swal.fire('Car booked!', '', 'success')
                 .then(() => {
                     dataHandler._api_post("http://localhost:8080/share-n-drive/book-car",
-                        bookingData, console.log, console.error);
+                        bookingData, undefined, console.error);
                 })
         }
     })

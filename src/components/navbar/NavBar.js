@@ -14,21 +14,14 @@ import {
 import {FaUserCircle} from "react-icons/fa";
 import AvatarPic from "../../assets/img/avatar.png";
 import Swal from "sweetalert2";
+import {useHistory} from "react-router-dom";
 
 
 const NavBar = (props) => {
     const [showMenu, setShowMenu] = useState(false);
-    const [isToggled, setIsToggled] = useState('none');
     const [user, setUser] = useState()
     const dropMenu = () => {
-        if (showMenu) {
-            setShowMenu(false);
-        } else if (isToggled) {
-            setIsToggled('none');
-            setShowMenu(true);
-        } else {
-            setShowMenu(true);
-        }
+        setShowMenu(!showMenu);
     };
 
     useEffect(() => {
@@ -42,6 +35,18 @@ const NavBar = (props) => {
         logo = <NavbarAvatar src={AvatarPic}/>;
     } else {
         logo = <FaUserCircle/>;
+    }
+
+    const history = useHistory();
+
+    function redirect() {
+        const timer = setTimeout(() => {
+            history.push("/");
+        }, 1500);
+        return () => {
+            clearTimeout(timer)
+        };
+
     }
 
     function logout() {
@@ -60,7 +65,8 @@ const NavBar = (props) => {
                         .then(() => {
                             localStorage.removeItem('username')
                             localStorage.removeItem('token')
-                            setUser()
+                            setUser();
+                            redirect();
                         })
                 }
             })

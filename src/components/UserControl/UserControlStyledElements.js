@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import hero from "../../assets/img/new_mainbanner.jpg";
 
 export const UserControlContainer = styled.div`
   grid-area: MainContent;
@@ -92,6 +93,8 @@ export const OverlayPanel = styled.div`
   top: 0;
   border: 1px solid var(--clr-primary-200);
   background-color: ${(props) => props.color};
+  background-image: url(${hero});
+  background-position: ${(props) => props.pos}%;
   color: ${(props) => props.fontColor};
   height: 100%;
   width: 50%;
@@ -105,32 +108,40 @@ export const OverlayPanel = styled.div`
   > p {
     font-size: 2rem;
     font-family: var(--ff-body-bold);
-    color: var(--clr-light);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   > h1 {
-    font-size: 4rem;
+    outline: 3px solid ${(props) => props.fontColor};
+    font-size: 5rem;
     font-family: var(--ff-body-bold);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   > h2 {
+    -webkit-text-stroke: 1px var(--clr-primary-500);
     font-size: 2rem;
     font-family: var(--ff-body-bold);
-    color: var(--clr-dark);
+    color: ${(props) => props.fontColor};
+
   }
 
   > * {
-    padding: 1rem;
+
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
   }
 `;
 export const Ghost = styled.button`
+  margin-top: 3rem;
   border-radius: 20px;
-  color: var(--clr-primary-100);
-  font-size: 1rem;
+  color: var(--clr-primary-300);
+  font-size: 1.5rem;
   font-family: var(--ff-body-bold);
   padding: 12px 45px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.8);
   border-color: var(--clr-light);
 `;
