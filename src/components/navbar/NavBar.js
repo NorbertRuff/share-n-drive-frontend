@@ -14,6 +14,7 @@ import {
 import {FaUserCircle} from "react-icons/fa";
 import AvatarPic from "../../assets/img/avatar.png";
 import Swal from "sweetalert2";
+import {useHistory} from "react-router-dom";
 
 
 const NavBar = (props) => {
@@ -45,6 +46,18 @@ const NavBar = (props) => {
         logo = <FaUserCircle/>;
     }
 
+    const history = useHistory();
+
+    function redirect() {
+        const timer = setTimeout(() => {
+            history.push("/");
+        }, 1500);
+        return () => {
+            clearTimeout(timer)
+        };
+
+    }
+
     function logout() {
         if (localStorage.getItem('username') && localStorage.getItem('token')) {
             Swal.fire({
@@ -61,7 +74,8 @@ const NavBar = (props) => {
                         .then(() => {
                             localStorage.removeItem('username')
                             localStorage.removeItem('token')
-                            setUser()
+                            setUser();
+                            redirect();
                         })
                 }
             })
