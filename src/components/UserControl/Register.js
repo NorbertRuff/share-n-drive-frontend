@@ -33,7 +33,7 @@ const Register = () => {
             }
             dataHandler._api_post("http://localhost:8080/share-n-drive/register",
                 dataHandler._data,
-                console.log,
+                undefined,
                 setError);
             Swal.fire({
                 icon: "success",
