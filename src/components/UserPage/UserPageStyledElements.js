@@ -89,10 +89,10 @@ export const BookedSingleElement = styled.div`
   gap: 2rem;
   background-color: var(--clr-primary-200);
   grid-template-areas: 
-    "thumbnail title title title carType carType"
-    "thumbnail bodyType fuelType transmissionType rating price"
-    "thumbnail seatNumber doors color licence price"
-    "thumbnail booking booking booking booking booking ";
+    "thumbnail title title title carType carType delete"
+    "thumbnail bodyType fuelType transmissionType rating price delete"
+    "thumbnail seatNumber doors color licence price delete"
+    "thumbnail booking booking booking booking booking delete";
   justify-content: space-evenly;
   align-items: center;
   padding: 1rem;
@@ -132,6 +132,21 @@ export const BookingColorIcon = styled.div`
   border: 2px solid var(--clr-dark);
   background-color: ${({color}) => color};
   border-radius: 100%;
+`;
+
+
+export const DeleteButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor:pointer;
+  font-size: 3rem;
+  border: 1px solid var(--clr-dark);
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  grid-area: delete;
+  background-color: var(--clr-primary-400);
 `;
 
 

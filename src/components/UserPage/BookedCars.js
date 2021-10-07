@@ -4,7 +4,7 @@ import {
     BookingCarType, BookingColor, BookingDateContainer, BookingDoors, BookingFuelType,
     BookingGridTitleStrong, BookingLicence, BookingPrice, BookingRating, BookingSeatNumber,
     BookingThumbnail,
-    BookingTitle, BookingTransmissionType, From, To, UserName
+    BookingTitle, BookingTransmissionType, DeleteButton, From, To, UserName
 } from "./UserPageStyledElements";
 import {getPicture} from "../homepage/FeaturedContainer";
 import {FaGasPump, FaStar} from "react-icons/fa";
@@ -56,6 +56,7 @@ const BookedCarsContainer = (props) => {
                 <To>Booked to: {props.details.rentTo}</To>
                 <UserName>Owner: {props.details.customer.username}</UserName>
             </BookingDateContainer>
+            <DeleteButton>X</DeleteButton>
         </BookedSingleElement>
     );
 };
