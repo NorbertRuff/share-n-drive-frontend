@@ -35,8 +35,7 @@ export const SocialContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
-
+  font-size: 30px;
   > * {
     padding: 0 1rem;
   }
@@ -45,9 +44,9 @@ export const SocialContainer = styled.div`
 export const FormWrap = styled.form`
   background-color: #eee;
   padding: 1rem;
-  margin:0  1rem;
+  margin: 0  1rem;
   display: flex;
-  width: 30vw;
+  width: 35vw;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
@@ -56,12 +55,12 @@ export const FormWrap = styled.form`
     background-color: #eee;
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 12px 15px;
-    margin:10px;
+    margin:8px;
     width: 100%;
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.4rem;
     color: var(--clr-primary-500);
   }
 
@@ -146,7 +145,7 @@ export const Ghost = styled.button`
 
 export const AvatarContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   background-color: var(--clr-primary-400); 
   border: var(--clr-primary-200);
@@ -155,7 +154,7 @@ export const AvatarContainer = styled.div`
   margin-bottom: 1rem;
 `;
 export const AvatarThumbnail = styled.img`
-  width: 40px;
+  width: 30px;
   margin: 0 1rem;
 
 `;
