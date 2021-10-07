@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
     Details,
     UserAvatar,
@@ -30,6 +30,7 @@ import {getPicture} from "../homepage/FeaturedContainer";
 import {ErrorDiv} from "../PageSyledElements/MainContainer";
 import Swal from "sweetalert2";
 import {UserContext} from "../../contexts/UserContext";
+import BookedCarsContainer from "./BookedCars";
 
 
 export const getAvatar = userAvatar => {
@@ -57,8 +58,12 @@ export const getAvatar = userAvatar => {
 const UserPage = (props) => {
     const [error, setError] = useState(false);
     const [menuItem, setMenuItem] = useState("static")
+    const [userBookings, setUserBookings] = useState([])
+    // const [userBookings, setUserBookings] = useState()
     const {user, setUser} = useContext(UserContext);
     const baseUrl = "http://localhost:8080/share-n-drive/customer-details";
+    const userBookingsUrl = "http://localhost:8080/share-n-drive/bookings";
+    const calendarUrl = "http://localhost:8080/share-n-drive/bookings";
     const getComponent = () => {
         switch (menuItem) {
             case 'basic':
@@ -74,6 +79,12 @@ const UserPage = (props) => {
         }
     }
 
+    useEffect(() => {
+        dataHandler._api_get(userBookingsUrl, setUserBookings, setError, undefined)
+        // dataHandler._api_get(calendarUrl, setBookedCars, setError, undefined)
+    }, []);
+
+    console.log(userBookings)
 
     function sendDeleteRequest(id) {
         const deleteUrl = `http://localhost:8080/share-n-drive/remove-car/${id}`;
@@ -120,8 +131,7 @@ const UserPage = (props) => {
                     {getComponent()}
                 </Details>
             </UserProfileDetails>
-            <HeroTitle> {user.username}'s Cars</HeroTitle>
-            <HeroSubTitle>Share your cars now!</HeroSubTitle>
+            <HeroSubTitle> {user.username}'s registered Cars</HeroSubTitle>
             <UserCars>
                 {user.cars.map((car) =>
 
@@ -137,7 +147,13 @@ const UserPage = (props) => {
                     </CarCard>
                 )}
             </UserCars>
-            <HeroTitle>{user.username}'s Calendar</HeroTitle>
+            <HeroSubTitle>Booked cars by{user.username}</HeroSubTitle>
+            {userBookings.map((booking) =>
+                <BookedCarsContainer key={booking.id} details={booking}/>
+            )}
+            <HeroSubTitle>{user.username}'s Car booked by others</HeroSubTitle>
+
+
             <UserCalendar/>
         </UserProfileContainer>
 
