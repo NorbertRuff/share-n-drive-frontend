@@ -134,10 +134,29 @@ const FilteredContainer = (props) => {
     const [from, setFrom] = useState("");
     const [to, setTo] = useState("");
 
+    const dateFormatter = (date) => {
+        const year = date.getFullYear();
+        let month = String(date.getMonth() + 1);
+        let day = String(date.getDate());
+
+        if (month.length < 2) {
+            month = `0${month}`;
+        } else {
+            month = date.getMonth() + 1;
+        }
+
+        if (day.length < 2) {
+            day = `0${day}`;
+        } else {
+            day = date.getDate();
+        }
+
+        return `${year}-${month}-${day}`;
+    }
+
     const onChange = (date) => {
-        console.log(date);
-        const formFrom = `${date[0].getFullYear()}-${date[0].getMonth()}-${date[0].getDate()}`;
-        const formTo = `${date[1].getFullYear()}-${date[1].getMonth()}-${date[1].getDate()}`;
+        const formFrom = dateFormatter(date[0]);
+        const formTo = dateFormatter(date[1]);
         setFrom(formFrom);
         setTo(formTo);
         setDate(date);
