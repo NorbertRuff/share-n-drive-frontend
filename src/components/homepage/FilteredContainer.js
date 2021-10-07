@@ -1,3 +1,4 @@
+
 import React, {useContext, useEffect, useState} from 'react';
 import {
     AddBookingButton,
@@ -24,7 +25,8 @@ import {Error} from "../PageSyledElements/MainContainer";
 import {IoMdArrowDropleft, IoMdArrowDropright} from "react-icons/io";
 import Swal from "sweetalert2";
 import {UserContext} from "../../contexts/UserContext";
-
+import Calendar from "react-calendar";
+import 'react-calendar/dist/Calendar.css';
 
 const animatedComponents = makeAnimated();
 
@@ -48,15 +50,17 @@ function initBookCarModal(bookingData) {
     })
 }
 
-const bookCar = (carId) => {
+const bookCar = (carId, from, to) => {
     let bookingData = {
         "car": {"id": `${carId}`},
-        "rentFrom": "2021-09-23",
-        "rentTo": "2021-09-24"
+        "rentFrom": `${from}`,
+        "rentTo": `${to}`
     }
     initBookCarModal(bookingData);
 }
+
 let queryData = {}
+
 const FilteredContainer = (props) => {
     const {user} = useContext(UserContext);
     const [ColorOptions, setColorOptions] = useState();
@@ -124,6 +128,34 @@ const FilteredContainer = (props) => {
             setFilterContainerVisible("block");
             setCloseIcon(IoMdArrowDropleft);
         }
+    }
+
+    const [date, setDate] = useState(new Date());
+    const [from, setFrom] = useState("");
+    const [to, setTo] = useState("");
+
+    const dateFormatter = (date) => {
+        let year = date.getFullYear();
+        let month = String(date.getMonth() + 1);
+        let day = String(date.getDate());
+
+        month.length < 2 ? month = `0${month}` : month = date.getMonth() + 1;
+        day.length < 2 ? day = `0${day}` : day = date.getDate();
+
+        return `${year}-${month}-${day}`;
+    }
+
+    const onChange = (date) => {
+        const formFrom = dateFormatter(date[0]);
+        const formTo = dateFormatter(date[1]);
+
+        setFrom(formFrom);
+        setTo(formTo);
+        setDate(date);
+
+        queryData["rentFrom"] = formFrom;
+        queryData["rentTo"] = formTo;
+        fetchFilteredData(queryData);
     }
 
     if (loading) {
@@ -212,6 +244,10 @@ const FilteredContainer = (props) => {
                                 isMulti
                                 options={CarTypeOptions}/>
                         </FilterOption>
+                        <FilterOption>
+                            <FilterOptionLabel>When</FilterOptionLabel>
+                            <Calendar onChange={onChange} value={date} selectRange />
+                        </FilterOption>
                     </FilterOptions>
                     <FilterCloseButton onClick={closeFilterContainer}>
                         {closeIcon} </FilterCloseButton>
@@ -227,7 +263,7 @@ const FilteredContainer = (props) => {
                                 <CardSubTitle>{car.fuelType} </CardSubTitle>
                             </CardDetails>
                             {user ?
-                                <AddBookingButton onClick={() => bookCar(car.id)}>Book this car</AddBookingButton> : ""}
+                                <AddBookingButton onClick={() => bookCar(car.id, from, to)}>Book this car</AddBookingButton> : ""}
                         </CarCard>
                     )}
                 </FilteredCarsContainer>
