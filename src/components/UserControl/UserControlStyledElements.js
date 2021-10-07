@@ -38,16 +38,14 @@ export const SocialContainer = styled.div`
   font-size: 40px;
 
   > * {
-    padding: 1rem;
+    padding: 0 1rem;
   }
-
-  padding: 1rem;
 `;
 
 export const FormWrap = styled.form`
   background-color: #eee;
   padding: 1rem;
-  margin: 1rem;
+  margin:0  1rem;
   display: flex;
   width: 30vw;
   flex-direction: column;
@@ -58,7 +56,7 @@ export const FormWrap = styled.form`
     background-color: #eee;
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 12px 15px;
-    margin: 1rem;
+    margin:10px;
     width: 100%;
   }
 
@@ -149,15 +147,16 @@ export const Ghost = styled.button`
 export const AvatarContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  background-color: var(--clr-primary-400);
+  justify-content: center;
+  background-color: var(--clr-primary-400); 
   border: var(--clr-primary-200);
   border-radius: 20px;
-  padding: 1rem;
+  padding: 10px;
   margin-bottom: 1rem;
 `;
 export const AvatarThumbnail = styled.img`
-  width: 60px;
-  height: 80px;
+  width: 40px;
+  margin: 0 1rem;
 
 `;
 export const AvatarSingleElementContainer = styled.div`
