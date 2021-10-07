@@ -1,17 +1,30 @@
 import axios from 'axios';
 
+let getLocalstorage = () => {
+    if (localStorage.getItem('token') !== null) {
+        return `Bearer ${localStorage.getItem('token')}`;
+    } else {
+        return "";
+    }
+}
+
 export let dataHandler = {
 
     _data: {},
-
-    _api_get: function (url, callback, errorCallback) {
+    _api_get: function (url, callback, errorCallback, loadingCallback) {
         axios
             .get(url, {
                 method: 'GET',
-                credentials: 'same-origin'
+                credentials: 'same-origin',
+                ContentType: "application/x-www-form-urlencoded",
+                headers: {
+                    authorization: getLocalstorage(),
+                }
             })
             .then((response) => {
-                callback(response.data);
+                if (callback !== undefined) {
+                    callback(response.data);
+                }
             })
             .catch((error) => {
                 errorCallback(error.message);
@@ -19,10 +32,14 @@ export let dataHandler = {
                     `The request was made and the server responded
         with a status code that falls out of the range of 2xx ` + error.message
                 );
+            })
+            .finally(() => {
+                if (loadingCallback !== undefined) {
+                    loadingCallback(false)
+                }
             });
     },
-
-    _api_get_selectOptions: function (url, callback, callbackOfTheCallback, errorCallback) {
+    _api_get_selectOptions: function (url, callback, callbackOfTheCallback, errorCallback, loadingCallback) {
         axios
             .get(url, {
                 method: 'GET',
@@ -37,6 +54,11 @@ export let dataHandler = {
                     `The request was made and the server responded
         with a status code that falls out of the range of 2xx ` + error.message
                 );
+            })
+            .finally(() => {
+                if (loadingCallback !== undefined) {
+                    loadingCallback(false)
+                }
             });
     },
 
@@ -57,16 +79,23 @@ export let dataHandler = {
     },
     _api_post: function (url, data, callback, errorCallback) {
         axios
-            .post(url, data)
+            .post(url, data, {
+                method: 'POST',
+                credentials: 'same-origin',
+                ContentType: "application/x-www-form-urlencoded",
+                headers: {
+                    authorization: getLocalstorage(),
+                }
+            })
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                } else {
+                if (callback !== undefined) {
                     callback(response.data);
                 }
             })
             .catch((error) => {
-                errorCallback(error.message);
+                if (errorCallback !== undefined) {
+                    errorCallback(error.message);
+                }
                 console.error(
                     `The request was made and the server responded with a status code that falls out of the range of 2xx `
                     + error.message
@@ -74,15 +103,12 @@ export let dataHandler = {
             })
     },
 
-    _api_delete: function (url, data, callback) {
-        axios
-        .delete(url, data)
-        .then(response => {
-            callback(response.data);
-        })
-        .catch(error => 
-            `The request was made and the server responded with a status code that falls out of the range of 2xx `
-            + error.message
-            );
+    _api_delete: function (url, data) {
+        axios.delete(url, {
+            headers: {
+                Authorization: getLocalstorage(),
+            },
+            data
+        });
     },
 }

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 import MainLogo from "../../assets/img/logo2.png"
-import UserLogoPic from "../../assets/img/user.png"
 
 
 export const Logo = styled(NavLink)`
@@ -15,11 +14,16 @@ export const Logo = styled(NavLink)`
 
 `;
 
-export const NavbarUserName = styled.div`
+export const NavbarUser = styled.div`
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-end;
   align-items: center;
+`;
+
+export const UserButton = styled(NavLink)`
+  font-size: 1.3rem;
+  font-family: var(--ff-body-bold);
 `;
 
 export const CompanyName = styled.div`
@@ -49,23 +53,37 @@ export const DropdownMenu = styled.div`
 export const DropdownMenuItem = styled(NavLink)`
   font-size: 1.5rem;
   padding: 0.4rem;
+  font-family: var(--ff-heading-bold);
+`;
+
+export const LogOutButton = styled.div`
+  font-size: 1.5rem;
+  padding: 0.4rem;
+  font-family: var(--ff-heading-bold);
 `;
 
 export const UserLogo = styled.div`
-
-  padding: 1rem;
-  background-image: url(${UserLogoPic});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 80%;
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
   cursor: pointer;
+  border: 1px solid var(--clr-primary-200);
+  background-color: var(--clr-primary-300);
+  margin: 0 10px;
+  border-radius: 50px;
+`;
+
+export const NavbarAvatar = styled.img`
+  height: 3.8rem;
+
+
 `;
 
 export const NavBarContainer = styled.div`
   grid-area: header;
+  max-height: 100%;
   display: grid;
-  grid-template-columns: 0.6fr 0.8fr 4fr 0.5fr 0.5fr;
+  grid-template-columns: 0.6fr 0.8fr 3fr 1fr 80px;
   align-items: center;
   background-color: var(--clr-primary-400);
   border-bottom: 3px solid var(--clr-primary-400);
