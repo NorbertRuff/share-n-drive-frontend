@@ -135,21 +135,12 @@ const FilteredContainer = (props) => {
     const [to, setTo] = useState("");
 
     const dateFormatter = (date) => {
-        const year = date.getFullYear();
+        let year = date.getFullYear();
         let month = String(date.getMonth() + 1);
         let day = String(date.getDate());
 
-        if (month.length < 2) {
-            month = `0${month}`;
-        } else {
-            month = date.getMonth() + 1;
-        }
-
-        if (day.length < 2) {
-            day = `0${day}`;
-        } else {
-            day = date.getDate();
-        }
+        month.length < 2 ? month = `0${month}` : month = date.getMonth() + 1;
+        day.length < 2 ? day = `0${day}` : day = date.getDate();
 
         return `${year}-${month}-${day}`;
     }
@@ -157,9 +148,14 @@ const FilteredContainer = (props) => {
     const onChange = (date) => {
         const formFrom = dateFormatter(date[0]);
         const formTo = dateFormatter(date[1]);
+
         setFrom(formFrom);
         setTo(formTo);
         setDate(date);
+
+        queryData["rentFrom"] = formFrom;
+        queryData["rentTo"] = formTo;
+        fetchFilteredData(queryData);
     }
 
     if (loading) {
@@ -249,6 +245,7 @@ const FilteredContainer = (props) => {
                                 options={CarTypeOptions}/>
                         </FilterOption>
                         <FilterOption>
+                            <FilterOptionLabel>When</FilterOptionLabel>
                             <Calendar onChange={onChange} value={date} selectRange />
                         </FilterOption>
                     </FilterOptions>
