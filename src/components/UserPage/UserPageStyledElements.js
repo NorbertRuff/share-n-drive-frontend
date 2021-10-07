@@ -26,6 +26,7 @@ export const UserProfileDetails = styled.div`
 
 export const UserAvatarDiv = styled.div`
   grid-area: Avatar;
+  height: 100%;
   background-color: var(--clr-primary-400);
   cursor: pointer;
 `;
@@ -35,16 +36,9 @@ export const UserAvatar = styled.img`
   object-fit: contain;
 `;
 
-export const UserName = styled.div`
-  grid-area: Name;
-  text-align: center;
-  font-size: 2rem;
-  var(--ff-heading-bold);
-`;
-
 export const UserMenuItem = styled.div`
   text-align: right;
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: 1rem;
   text-transform: uppercase;
   border: 2px solid var(--clr-primary-100);
