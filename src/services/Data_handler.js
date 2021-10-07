@@ -93,7 +93,9 @@ export let dataHandler = {
                 }
             })
             .catch((error) => {
-                errorCallback(error.message);
+                if (errorCallback !== undefined) {
+                    errorCallback(error.message);
+                }
                 console.error(
                     `The request was made and the server responded with a status code that falls out of the range of 2xx `
                     + error.message
@@ -101,12 +103,12 @@ export let dataHandler = {
             })
     },
 
-    _api_delete: function (url, data ) {
+    _api_delete: function (url, data) {
         axios.delete(url, {
             headers: {
-              Authorization: getLocalstorage(),
+                Authorization: getLocalstorage(),
             },
             data
-          });
+        });
     },
 }

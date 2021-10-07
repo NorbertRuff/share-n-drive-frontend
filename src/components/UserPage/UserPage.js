@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     Details,
     UserAvatar,
@@ -11,7 +11,17 @@ import {
     UserProfileContainer,
     UserProfileDetails
 } from "./UserPageStyledElements";
+
 import AvatarPic from "../../assets/img/avatar.png"
+import AvatarPic1 from "../../assets/img/avatars/avatar1.png"
+import AvatarPic2 from "../../assets/img/avatars/avatar2.png"
+import AvatarPic3 from "../../assets/img/avatars/avatar3.png"
+import AvatarPic4 from "../../assets/img/avatars/avatar4.png"
+import AvatarPic5 from "../../assets/img/avatars/avatar5.png"
+import AvatarPic6 from "../../assets/img/avatars/avatar6.png"
+import AvatarPic7 from "../../assets/img/avatars/avatar7.png"
+import AvatarPic8 from "../../assets/img/avatars/avatar8.png"
+
 import {HeroSubTitle, HeroTitle} from "../homepage/HomeStyledElements";
 import {CarCard, CardDetails, CardThumbnail, CardTitle, DeleteCarBtn} from "../homepage/FilteredStyleElements";
 import {ComponentAddress, ComponentBasic, ComponentContact, ComponentStatic} from "./UserEdit";
@@ -19,46 +29,36 @@ import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "../homepage/FeaturedContainer";
 import {ErrorDiv} from "../PageSyledElements/MainContainer";
 import Swal from "sweetalert2";
+import {UserContext} from "../../contexts/UserContext";
 
+
+export const getAvatar = userAvatar => {
+    switch (userAvatar) {
+        case 1:
+            return <UserAvatar src={AvatarPic1}/>;
+        case 2:
+            return <UserAvatar src={AvatarPic2}/>;
+        case 3:
+            return <UserAvatar src={AvatarPic3}/>;
+        case 4:
+            return <UserAvatar src={AvatarPic4}/>;
+        case 5:
+            return <UserAvatar src={AvatarPic5}/>;
+        case 6:
+            return <UserAvatar src={AvatarPic6}/>;
+        case 7:
+            return <UserAvatar src={AvatarPic7}/>;
+        case 8:
+            return <UserAvatar src={AvatarPic8}/>;
+        default:
+            return <UserAvatar src={AvatarPic}/>;
+    }
+}
 const UserPage = (props) => {
-    const baseUrl = "http://localhost:8080/share-n-drive/customer-details";
     const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [menuItem, setMenuItem] = useState("static")
-
-    const [user, setUser] = useState({
-        firstName: "",
-        lastName: "",
-        username: "",
-        email: "",
-        phone: "",
-        address: {
-            city: "",
-            zipCode: "",
-            street: "",
-            houseNumber: ""
-        },
-        interests: [],
-        userAvatar: "",
-        bookings: "",
-        cars: [{
-            id: '',
-            title: '',
-            brand: '',
-            bodyType: '',
-            image: '',
-            fuel: '',
-            category: '',
-            carType: '',
-            seat: '',
-            price: ''
-        }]
-    })
-
-    useEffect(() => {
-        dataHandler._api_get(baseUrl, setUser, setError, setLoading);
-    }, [user]);
-
+    const {user, setUser} = useContext(UserContext);
+    const baseUrl = "http://localhost:8080/share-n-drive/customer-details";
     const getComponent = () => {
         switch (menuItem) {
             case 'basic':
@@ -90,24 +90,24 @@ const UserPage = (props) => {
                 Swal.fire('Car deleted!', '', 'success')
                     .then(() => {
                         dataHandler._api_delete(deleteUrl, setError);
+                        dataHandler._api_get(baseUrl, setUser, setError, undefined);
                     })
             }
         })
     }
 
-    if (loading) {
-        return <p>Data is loading...</p>;
-    }
-
     if (error) {
         return <ErrorDiv>An error occurred while fetching information. Please try again later!</ErrorDiv>;
+    }
+    if (user === undefined) {
+        return <ErrorDiv>Please log in!</ErrorDiv>;
     }
 
     return (
         <UserProfileContainer>
             <UserProfileDetails>
                 <UserAvatarDiv onClick={() => setMenuItem("static")}>
-                    <UserAvatar src={AvatarPic}/>
+                    {getAvatar(user.avatar)}
                 </UserAvatarDiv>
                 <HeroTitle>{user.firstName} {user.lastName}</HeroTitle>
                 <UserMenu>
@@ -143,5 +143,6 @@ const UserPage = (props) => {
 
     )
 };
+
 
 export default UserPage;

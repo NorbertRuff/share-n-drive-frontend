@@ -17,7 +17,7 @@ const UserControl = (props) => {
     return (
         <UserControlContainer>
             <LoginWrapper>
-                <Login {...props} setUser={props.setter}/>
+                <Login/>
                 <Register/>
                 <OverlayPanel pos={leftPanelActive ? 0 : 100}
                               color={leftPanelActive ? "var(--clr-primary-300)" : "var(--clr-primary-400)"}
