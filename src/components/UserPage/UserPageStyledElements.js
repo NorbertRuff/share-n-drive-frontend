@@ -97,6 +97,7 @@ export const BookedSingleElement = styled.div`
   align-items: center;
   padding: 1rem;
   margin: 10px;
+
   h2 {
     font-size: 1.5rem;
   }
@@ -139,7 +140,7 @@ export const DeleteButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor:pointer;
+  cursor: pointer;
   font-size: 3rem;
   border: 1px solid var(--clr-dark);
   border-radius: 100%;
@@ -148,8 +149,6 @@ export const DeleteButton = styled.div`
   grid-area: delete;
   background-color: var(--clr-primary-400);
 `;
-
-
 
 
 export const BookingCarType = styled.div`
@@ -236,3 +235,10 @@ export const BookingDateContainer = styled.div`
 export const From = styled.div``;
 export const To = styled.div``;
 export const UserName = styled.div``;
+export const BookedCarsByOthersContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+
+`;
