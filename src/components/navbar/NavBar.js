@@ -52,7 +52,6 @@ const getAvatar = userAvatar => {
 const NavBar = () => {
     const [showMenu, setShowMenu] = useState(false);
     const {user, setUser} = useContext(UserContext);
-    console.log(user)
     const dropMenu = () => {
         setShowMenu(!showMenu);
     };
