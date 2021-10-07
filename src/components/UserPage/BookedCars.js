@@ -1,17 +1,31 @@
 import React from 'react';
 import {
-    BookedSingleElement, BookingBodyType,
-    BookingCarType, BookingColor, BookingDateContainer, BookingDoors, BookingFuelType,
-    BookingGridTitleStrong, BookingLicence, BookingPrice, BookingRating, BookingSeatNumber,
+    BookedSingleElement,
+    BookingBodyType,
+    BookingCarType,
+    BookingColor,
+    BookingDateContainer,
+    BookingDoors,
+    BookingFuelType,
+    BookingGridTitleStrong,
+    BookingLicence,
+    BookingPrice,
+    BookingRating,
+    BookingSeatNumber,
     BookingThumbnail,
-    BookingTitle, BookingTransmissionType, DeleteButton, From, To, UserName
+    BookingTitle,
+    BookingTransmissionType,
+    DeleteButton,
+    From,
+    To,
+    UserName
 } from "./UserPageStyledElements";
 import {getPicture} from "../homepage/FeaturedContainer";
 import {FaGasPump, FaStar} from "react-icons/fa";
 import {IoCar} from "react-icons/io5";
 import {GiCarDoor, GiCarSeat, GiPriceTag} from "react-icons/gi";
 import {HiOutlineColorSwatch} from "react-icons/hi";
-import {ColorIcon, GridTitle} from "../homepage/FeaturedStyleElements";
+import {ColorIcon} from "../homepage/FeaturedStyleElements";
 import {ImBarcode} from "react-icons/im";
 import {BsFillGearFill} from "react-icons/bs";
 
