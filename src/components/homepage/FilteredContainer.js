@@ -18,7 +18,7 @@ import makeAnimated from "react-select/animated/dist/react-select.esm";
 import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "./FeaturedContainer";
 import {Error} from "../PageSyledElements/MainContainer";
-import Calendar from 'react-calendar';
+import { Calendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 const animatedComponents = makeAnimated();
@@ -31,14 +31,14 @@ const selectStyle = {
         fontSize: '1.3rem'
     }),
 }
-const bookCar = (carId) => {
+const bookCar = (carId, from, to) => {
 
     console.log("in book car")
     let bookingData = {
-        "customer": {"id": 11},
+        "customer": {"id": 9},
         "car": {"id": `${carId}`},
-        "rentFrom": "2021-09-23",
-        "rentTo": "2021-09-24"
+        "rentFrom": `${from}`,
+        "rentTo": `${to}`
     }
     dataHandler._api_post("http://localhost:8080/share-n-drive/book-car",
         bookingData, console.log, console.log);
@@ -92,7 +92,18 @@ const FilteredContainer = (props) => {
         setUrl(queryStr === "" ? allCarsUrl : `${baseUrl}?${queryStr}`);
     }
 
-    const [value, onChange] = useState(new Date());
+    const [date, setDate] = useState(new Date());
+    const [from, setFrom] = useState("");
+    const [to, setTo] = useState("");
+
+    const onChange = (date) => {
+        console.log(date);
+        const from = `${date[0].getFullYear()}-${date[0].getMonth()}-${date[0].getDate()}`;
+        const to = `${date[1].getFullYear()}-${date[1].getMonth()}-${date[1].getDate()}`;
+        setFrom(from);
+        setTo(to);
+        setDate(date);
+    }
 
     return (
         <>
@@ -151,7 +162,9 @@ const FilteredContainer = (props) => {
                                 isMulti
                                 options={CarTypeOptions}/>
                         </FilterOption>
-                        <Calendar onChange={onChange} value={value}/>
+                        <FilterOption>
+                            <Calendar onChange={onChange} value={date} selectRange />
+                        </FilterOption>
                     </FilterButtons>
                     <FilteredCarsContainer>
                         {filteredCars.map((car) =>
@@ -163,7 +176,7 @@ const FilteredContainer = (props) => {
                                         <CardSubTitle>{car.bodyType} </CardSubTitle>
                                         <CardSubTitle>{car.fuelType} </CardSubTitle>
                                     </CardDetails>
-                                    <AddBookingButton onClick={() => bookCar(car.id) }>Book this car</AddBookingButton>
+                                    <AddBookingButton onClick={() => bookCar(car.id, from, to) }>Book this car</AddBookingButton>
                                 </CarCard>
                             </FilteredSingleElementContainer>)}
                     </FilteredCarsContainer>
