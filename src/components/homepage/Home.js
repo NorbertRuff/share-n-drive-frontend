@@ -7,7 +7,6 @@ import hero2 from "../../assets/img/hero.jpg";
 
 const Home = () => {
 
-
     return (
         <HomeContainer>
             <HeroContainer image={hero}/>
