@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 
 
 export const UserProfileContainer = styled.div`
@@ -78,5 +79,145 @@ export const UserCalendar = styled.div`
   background-color: var(--clr-primary-300);
   height: 30vh;
   margin: 3rem;
-
 `;
+
+export const BookedSingleElement = styled.div`
+  display: grid;
+  font-size: 1rem;
+  font-family: var(--ff-body-bold);
+  border: 4px solid var(--clr-dark);
+  gap: 2rem;
+  background-color: var(--clr-primary-200);
+  grid-template-areas: 
+    "thumbnail title title title carType carType"
+    "thumbnail bodyType fuelType transmissionType rating price"
+    "thumbnail seatNumber doors color licence price"
+    "thumbnail booking booking booking booking booking ";
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem;
+  margin: 10px;
+  h2 {
+    font-size: 1.5rem;
+  }
+`;
+
+
+export const BookingThumbnail = styled.img`
+  object-fit: cover;
+  max-width: 400px;
+  height: 100%;
+  grid-area: thumbnail;
+`;
+export const BookingTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: title;
+  font-size: 2rem;
+  border-bottom: 2px solid var(--clr-primary-300);
+`;
+
+export const GridTitle = styled.h2`
+  font-size: 2rem;
+  width: 6vw;
+  text-align: center;
+  color: var(--clr-primary-400);
+`;
+
+
+export const BookingColorIcon = styled.div`
+  width: 25px;
+  height: 25px;
+  border: 2px solid var(--clr-dark);
+  background-color: ${({color}) => color};
+  border-radius: 100%;
+`;
+
+
+
+
+export const BookingCarType = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-area: carType;
+`;
+export const BookingFuelType = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-area: fuelType;
+`;
+export const BookingColor = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-area: color;
+`;
+export const BookingLicence = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-area: licence;
+`;
+
+export const BookingBodyType = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-area: bodyType;
+`;
+export const BookingSeatNumber = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-area: seatNumber;
+`;
+export const BookingPrice = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  grid-area: price;
+`;
+
+export const BookingDoors = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  grid-area: doors;
+`;
+export const BookingRating = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  grid-area: rating;
+`;
+export const BookingTransmissionType = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  grid-area: transmissionType;
+`;
+export const BookingGridTitleStrong = styled.h2`
+  font-size: 1.2rem;
+  font-family: var(--ff-heading-normal);
+  color: var(--clr-primary-400);
+`;
+
+export const BookingDateContainer = styled.div`
+  grid-area: booking;
+  display: flex;
+  gap: 2rem;
+  background-color: var(--clr-primary-300);
+  padding: 1rem;
+`;
+
+export const From = styled.div``;
+export const To = styled.div``;
+export const UserName = styled.div``;
