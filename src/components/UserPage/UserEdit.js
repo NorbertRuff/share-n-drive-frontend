@@ -17,14 +17,15 @@ const DetailsValue = styled.div`
   background-color: var(--clr-primary-300);
   color: var(--clr-primary-500);
   padding: 1rem;
+  vertical-align: center;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
 `;
 
-const DetailsTextarea = styled.textarea`
+const DetailsTextarea = styled.input`
   background-color: var(--clr-primary-300);
   color: var(--clr-primary-500);
-  padding: 1rem;
+  padding: 10px;
   text-align: center;
   font-size: 1rem;
 `;

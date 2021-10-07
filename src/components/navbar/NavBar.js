@@ -48,6 +48,7 @@ const getAvatar = userAvatar => {
             return <NavbarAvatar src={AvatarPic}/>;
     }
 }
+
 const NavBar = () => {
     const [showMenu, setShowMenu] = useState(false);
     const {user, setUser} = useContext(UserContext);

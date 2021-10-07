@@ -1,9 +1,9 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
+    BookedCarsByOthersContainer,
     Details,
     UserAvatar,
     UserAvatarDiv,
-    UserCalendar,
     UserCars,
     UserMenu,
     UserMenuItem,
@@ -23,13 +23,21 @@ import AvatarPic7 from "../../assets/img/avatars/avatar7.png"
 import AvatarPic8 from "../../assets/img/avatars/avatar8.png"
 
 import {HeroSubTitle, HeroTitle} from "../homepage/HomeStyledElements";
-import {CarCard, CardDetails, CardThumbnail, CardTitle, DeleteCarBtn} from "../homepage/FilteredStyleElements";
+import {
+    CarCard,
+    CardDetails,
+    CardSubTitle,
+    CardThumbnail,
+    CardTitle,
+    DeleteCarBtn
+} from "../homepage/FilteredStyleElements";
 import {ComponentAddress, ComponentBasic, ComponentContact, ComponentStatic} from "./UserEdit";
 import {dataHandler} from "../../services/Data_handler";
 import {getPicture} from "../homepage/FeaturedContainer";
 import {ErrorDiv} from "../PageSyledElements/MainContainer";
 import Swal from "sweetalert2";
 import {UserContext} from "../../contexts/UserContext";
+import BookedCarsContainer from "./BookedCars";
 
 
 export const getAvatar = userAvatar => {
@@ -57,8 +65,12 @@ export const getAvatar = userAvatar => {
 const UserPage = (props) => {
     const [error, setError] = useState(false);
     const [menuItem, setMenuItem] = useState("static")
+    const [userBookings, setUserBookings] = useState([])
+    const [bookedCarsByOthers, setBookedCarsByOthers] = useState([])
     const {user, setUser} = useContext(UserContext);
     const baseUrl = "http://localhost:8080/share-n-drive/customer-details";
+    const userBookingsUrl = "http://localhost:8080/share-n-drive/bookings";
+    const bookedCarsByOthersUrl = "http://localhost:8080/share-n-drive/get-all-bookings-for-user";
     const getComponent = () => {
         switch (menuItem) {
             case 'basic':
@@ -74,6 +86,12 @@ const UserPage = (props) => {
         }
     }
 
+    useEffect(() => {
+        dataHandler._api_get(userBookingsUrl, setUserBookings, setError, undefined)
+        dataHandler._api_get(bookedCarsByOthersUrl, setBookedCarsByOthers, setError, undefined)
+    }, []);
+
+    console.log(bookedCarsByOthers)
 
     function sendDeleteRequest(id) {
         const deleteUrl = `http://localhost:8080/share-n-drive/remove-car/${id}`;
@@ -120,16 +138,13 @@ const UserPage = (props) => {
                     {getComponent()}
                 </Details>
             </UserProfileDetails>
-            <HeroTitle> {user.username}'s Cars</HeroTitle>
-            <HeroSubTitle>Share your cars now!</HeroSubTitle>
+            <HeroSubTitle> {user.username}'s registered cars</HeroSubTitle>
             <UserCars>
                 {user.cars.map((car) =>
-
                     <CarCard key={car.id}>
                         <CardThumbnail img={getPicture(car.title)}/>
                         <CardDetails>
                             <CardTitle>{car.brand} {car.title}</CardTitle>
-                            {car.carType} <br/> {car.fuel} <br/> {car.category}
                         </CardDetails>
                         <DeleteCarBtn onClick={() => sendDeleteRequest(car.id)}>
                             Remove car
@@ -137,8 +152,24 @@ const UserPage = (props) => {
                     </CarCard>
                 )}
             </UserCars>
-            <HeroTitle>{user.username}'s Calendar</HeroTitle>
-            <UserCalendar/>
+            <HeroSubTitle>Cars booked by {user.username}</HeroSubTitle>
+            {userBookings.map((booking) =>
+                <BookedCarsContainer key={booking.id} details={booking}/>
+            )}
+            <HeroSubTitle>{user.username}'s car(s) booked by others</HeroSubTitle>
+            <BookedCarsByOthersContainer>
+                {bookedCarsByOthers.map((booking) =>
+                    <CarCard key={booking.id}>
+                        <CardThumbnail img={getPicture(booking.car.title)}/>
+                        <CardDetails>
+                            <CardTitle>{booking.car.brand} {booking.car.title}</CardTitle>
+                            <CardSubTitle>Booked from: {booking.rentFrom} <br/> Booked to: {booking.rentTo}
+                            </CardSubTitle>
+                            <CardSubTitle>Booked by: {booking.customer.username} </CardSubTitle>
+                        </CardDetails>
+                    </CarCard>
+                )}
+            </BookedCarsByOthersContainer>
         </UserProfileContainer>
 
     )

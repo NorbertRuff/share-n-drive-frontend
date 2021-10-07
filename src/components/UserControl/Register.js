@@ -46,7 +46,6 @@ const Register = () => {
                 password: state.password,
                 avatar: parseInt(state.avatar)
             }
-            console.log(state)
             dataHandler._api_post("http://localhost:8080/share-n-drive/register",
                 dataHandler._data,
                 undefined,
